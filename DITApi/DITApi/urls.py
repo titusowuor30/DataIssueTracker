@@ -23,6 +23,8 @@ from DQIT_Endpoint.management.commands import import_data  # Import your managem
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/',include('DQIT_Endpoint.urls')),
+    path('api/',include('DQITAuth.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns +=  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -33,6 +35,6 @@ admin.site.index_title = 'DQITs API Admin Area'
 admin.site.site_title = 'DQITss API Administration'
 
 # Initialize and configure the scheduler
-scheduler = BackgroundScheduler()
-scheduler.add_job(import_data.Command().handle, 'interval', minutes=1)  # Run every 1 hour
-scheduler.start()
+# scheduler = BackgroundScheduler()
+# scheduler.add_job(import_data.Command().handle, 'interval', minutes=1)  # Run every 1 hour
+# scheduler.start()

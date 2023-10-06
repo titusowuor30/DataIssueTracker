@@ -14,24 +14,25 @@ class DataImporter:
         facilities=Facilities.objects.all()
         if len(facilities) > 0:
             for _, row in df.iterrows():
-                date_str=str(row['Date of Entry']).split(' ')[0]
-                entry_date=datetime.strptime(str(date_str), '%Y-%m-%d').date(),
-                issues={
-                    'patient_id':row['Patient ID'],
-                    'facility':facilities.filter(facility_code=row['Facility']).first(),
-                    'date_of_entry':entry_date,
-                    'inconsistency':row['Inconsistency'],
-                    'action_taken':None,
-                    'date_action_taken':None,
-                }
-                _,created=DataQualityIssues.objects.get_or_create(
-                    patient_id=row['Patient ID'],
-                    date_of_entry=entry_date,
-                    inconsistency=row['Inconsistency'],
-                    defaults=issues,
-                    )
-                time.sleep(1)
-            print(f"Data imported from {file_path} successfully.")
+                facility=facilities.filter(facility_code=row['Facility']).first()
+                if facility is not None:
+                    date_str=str(str(row['Date of Entry']).split(' ')[0])
+                    issues={
+                        'patient_id':row['Patient ID'],
+                        'facility':facility,
+                        'date_of_entry':pd.to_datetime(date_str, format='%Y-%m-%d').date(),
+                        'inconsistency':row['Inconsistency'],
+                        'action_taken':None,
+                        'date_action_taken':None,
+                    }
+                    _,created=DataQualityIssues.objects.get_or_create(
+                        patient_id=row['Patient ID'],
+                        date_of_entry=pd.to_datetime(str(date_str), format='%Y-%m-%d').date(),
+                        inconsistency=row['Inconsistency'],
+                        defaults=issues,
+                        )
+                    time.sleep(1)
+                    print(f"Data imported from {file_path} successfully.")
             new_file_name = file_path.replace('.xlsx', '_processed.xlsx') if 'xlsx' in file_path else file_path.replace('.csv',  '_processed.csv')
             os.rename(file_path, new_file_name)
         else:
@@ -67,10 +68,9 @@ class DataImporter:
     def check_for_new_files(self,facility_file_path,duration=10):
         while True:
             for df, file_path in self.generate_data_from_files():
-                print(df.info())
                 df.drop_duplicates(inplace=True)#drop duplicates
-                df.dropna(inplace=True)#drop null values
-                print(df.info())
+                df.dropna(subset=['Inconsistency'],inplace=True)#drop rows where inconsistency is null
+                print(df.shape)
                 self.import_data_from_excel(file_path,facility_file_path,df)
             time.sleep(duration)  # Check for new files every 1 minute
 

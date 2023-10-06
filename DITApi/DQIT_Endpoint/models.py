@@ -5,7 +5,7 @@ class DataQualityIssues(models.Model):
     patient_id = models.CharField(max_length=100)
     facility = models.ForeignKey('Facilities',on_delete=models.CASCADE,related_name='issues')
     date_of_entry = models.DateField(blank=True,null=True)
-    inconsistency = models.CharField(max_length=100)
+    inconsistency = HTMLField()
     action_taken = models.CharField(max_length=100,blank=True,null=True)
     date_action_taken = models.DateField(blank=True,null=True)
 
@@ -60,7 +60,7 @@ class DataSyncSettings(models.Model):
     data_issues_folder_url=models.CharField(max_length=500,default='E:/projects/DataIssueTracker/DITApi/media/facility data issues')
     faclity_list_csv_path=models.CharField(max_length=500,default='E:/projects/DataIssueTracker/DITApi/media/Hospital ID and Names.csv')
     data_sync_frequency=models.IntegerField(default=60,help_text='In seconds')
-
+    data_sync_shedule_date=models.DateTimeField(blank=True,null=True)
 
     def __str__(self):
         return self.data_issues_folder_url
