@@ -2,11 +2,18 @@ from django.db import models
 from tinymce.models import HTMLField
 
 class DataQualityIssues(models.Model):
+    ACTIONS=(
+    ('Entry Corrected', 'Entry Corrected'),
+    ('Data Matches Source Document', 'Data Matches Source Document'),
+    ('Data Already Available', 'Data Already Available'),
+    ('No Data Needed', 'No Data Needed'),
+    ('Pending', 'Pending'),
+    )
     patient_id = models.CharField(max_length=100)
     facility = models.ForeignKey('Facilities',on_delete=models.CASCADE,related_name='issues')
     date_of_entry = models.DateField(blank=True,null=True)
     inconsistency = HTMLField()
-    action_taken = models.CharField(max_length=100,blank=True,null=True)
+    action_taken = models.CharField(max_length=100,choices=ACTIONS,default='Pending')
     date_action_taken = models.DateField(blank=True,null=True)
 
     def __str__(self):
