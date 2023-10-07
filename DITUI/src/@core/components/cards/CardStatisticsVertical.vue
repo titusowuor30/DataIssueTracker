@@ -1,22 +1,12 @@
-<script setup>
-const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  stats: {
-    type: String,
-    required: true,
-  },
-  change: {
-    type: Number,
-    required: true,
-  },
-})
+<script setup lang="ts">
+interface Props {
+  title: string
+  image: string
+  stats: string
+  change: number
+}
+
+const props = defineProps<Props>()
 
 const isPositive = controlledComputed(() => props.change, () => Math.sign(props.change) === 1)
 </script>
@@ -24,11 +14,11 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
 <template>
   <VCard>
     <VCardText class="d-flex align-center pb-4">
-      <VIcon
+      <img
         width="42"
         :src="props.image"
         alt="image"
-      />
+      >
 
       <VSpacer />
 

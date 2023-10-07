@@ -4,10 +4,14 @@
     "ComponentPublicInstance": true,
     "ComputedRef": true,
     "EffectScope": true,
+    "ExtractDefaultPropTypes": true,
+    "ExtractPropTypes": true,
+    "ExtractPublicPropTypes": true,
     "InjectionKey": true,
     "PropType": true,
     "Ref": true,
     "VNode": true,
+    "WritableComputedRef": true,
     "acceptHMRUpdate": true,
     "asyncComputed": true,
     "autoResetRef": true,
@@ -311,10 +315,6 @@
     "watchThrottled": true,
     "watchTriggerable": true,
     "watchWithFilter": true,
-    "whenever": true,
-    "ExtractDefaultPropTypes": true,
-    "ExtractPropTypes": true,
-    "ExtractPublicPropTypes": true,
-    "WritableComputedRef": true
+    "whenever": true
   }
 }

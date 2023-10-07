@@ -110,7 +110,7 @@ const upgradeBanner = computed(() => {
         :item="{
           title: 'Data Quality',
           icon: 'mdi-network',
-          to: '/dataissues',
+          to: '/data-issues',
         }"
       />
       <VerticalNavLink

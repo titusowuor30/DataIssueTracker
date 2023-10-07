@@ -8,7 +8,9 @@ import '@core/scss/template/index.scss'
 import '@layouts/styles/index.scss'
 import '@styles/styles.scss'
 import { createPinia } from 'pinia'
+import Swal from 'sweetalert2'
 import { createApp } from 'vue'
+import store from './store' // Import your Vuex store
 
 loadFonts()
 
@@ -16,11 +18,13 @@ loadFonts()
 // Create vue app
 const app = createApp(App)
 
+app.config.globalProperties.$swal = Swal
 
 // Use plugins
 app.use(vuetify)
 app.use(createPinia())
 app.use(router)
+app.use(store)
 
 // Mount vue app
 app.mount('#app')

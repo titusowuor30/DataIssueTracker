@@ -1,4 +1,5 @@
 <script setup>
+import axios from '@/axiosConfig'
 import DQAnalytics from '@/views/dashboard/DQAnalytics.vue'
 import Welcome from '@/views/dashboard/DQITsWelcome.vue'
 import DataHistory from '@/views/dashboard/DataIssueHistory.vue'
@@ -7,6 +8,41 @@ import DataLogs from '@/views/dashboard/DataLogs.vue'
 // 👉 Images
 import chart from '@images/cards/chart-success.png'
 import card from '@images/cards/credit-card-primary.png'
+
+const all_issues = ref(0)
+const pending_count = ref(10)
+const matching_count = ref(0)
+const corrected_count = ref(0)
+const no_data_count = ref(0)
+const available_count = ref(0)
+
+const fetchData = () => {
+  axios
+    .get('data_issue_stats/')
+    .then(response => {
+      pending_count.value = response.data.pending
+      all_issues.value = response.data.all_issues
+      matching_count.value = response.data.matching
+      corrected_count.value = response.data.corrected
+      no_data_count.value = response.data.no_data
+      available_count.value = response.data.available
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error)
+    })
+}
+
+watch(all_issues, fetchData)
+watch(pending_count, fetchData)
+watch(matching_count, fetchData)
+watch(corrected_count, fetchData)
+watch(no_data_count, fetchData)
+watch(available_count, fetchData)
+
+
+onMounted(() => {
+  fetchData()
+})
 </script>
 
 <template>
@@ -33,8 +69,8 @@ import card from '@images/cards/credit-card-primary.png'
             v-bind="{
               title: 'All Issues',
               image: chart,
-              stats: '12,628',
-              change: 72.80,
+              stats: new Intl.NumberFormat().format(all_issues),
+              change: Number(all_issues/all_issues*100).toFixed(2),
             }"
           />
         </VCol>
@@ -48,8 +84,8 @@ import card from '@images/cards/credit-card-primary.png'
             v-bind="{
               title: 'Pending',
               image: chart,
-              stats: '479',
-              change: 28.42,
+              stats: new Intl.NumberFormat().format(pending_count),
+              change: Number((pending_count/all_issues)*100).toFixed(2),
             }"
           />
         </VCol>
@@ -83,8 +119,8 @@ import card from '@images/cards/credit-card-primary.png'
             v-bind=" {
               title: 'Data already available',
               image: chart,
-              stats: '2,468',
-              change: -14.82,
+              stats: new Intl.NumberFormat().format(available_count),
+              change: Number((available_count/all_issues)*100).toFixed(2),
             }"
           />
         </VCol>
@@ -98,8 +134,8 @@ import card from '@images/cards/credit-card-primary.png'
             v-bind="{
               title: 'Entry Corrected',
               image: card,
-              stats: '4,857',
-              change: 28.14,
+              stats: new Intl.NumberFormat().format(corrected_count),
+              change: Number((corrected_count/all_issues)*100).toFixed(2),
             }"
           />
         </VCol>
@@ -112,8 +148,8 @@ import card from '@images/cards/credit-card-primary.png'
             v-bind="{
               title: 'Matching src doc',
               image: card,
-              stats: '1,857',
-              change: 28.14,
+              stats: new Intl.NumberFormat().format(matching_count),
+              change: Number((matching_count/all_issues)*100).toFixed(2),
             }"
           />
         </VCol>
@@ -125,8 +161,8 @@ import card from '@images/cards/credit-card-primary.png'
             v-bind="{
               title: 'No data needed',
               image: card,
-              stats: '187',
-              change: 28.14,
+              stats: new Intl.NumberFormat().format(no_data_count),
+              change: Number((no_data_count/all_issues)*100).toFixed(2),
             }"
           />
         </VCol>

@@ -1,6 +1,8 @@
 <script setup>
 import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
 import logo from '@images/icons/logo/triangle-dark.png'
+import Swal from 'sweetalert2'
+import { useStore } from 'vuex'
 
 const form = ref({
   email: '',
@@ -9,6 +11,50 @@ const form = ref({
 })
 
 const isPasswordVisible = ref(false)
+
+const store = useStore()
+const router = useRouter()
+
+const handleLogin = async () => {
+  try {
+    Swal.fire({
+      icon: 'warning',
+      title: "Please Wait!",
+      html: "Authenticating your credentials...", // add html attribute if you want or remove
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      willOpen: () => {
+        Swal.showLoading()
+      },
+    })
+
+    const { email, password } = form.value // Extract email and password from the form
+
+    console.log(form.value)
+    await store.dispatch('auth/login', { email: email, password: password })
+
+    // Login successful, navigate to another route or do something else
+    Swal.fire({
+      icon: 'success',
+      title: 'Login successful!',
+      html: 'Redirecting to DQITs Dashboard...',
+      showConfirmButton: false,
+      timer: 3000,
+    })
+    router.push('/')
+
+    Swal.close()
+  } catch (error) {
+    // Login error, show error message
+    console.error('Login error:', error)
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Login failed',
+      html: error || 'An error occurred while logging in.',
+    })
+  }
+}
 </script>
 
 <template>
@@ -45,7 +91,7 @@ const isPasswordVisible = ref(false)
       </VCardText>
 
       <VCardText>
-        <VForm @submit.prevent="$router.push('/')">
+        <VForm @submit.prevent="handleLogin">
           <VRow>
             <!-- email -->
             <VCol cols="12">

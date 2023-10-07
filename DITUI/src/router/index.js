@@ -1,43 +1,18 @@
+import routes from '@/router/routes'
+import store from '@/store'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    { path: '/', redirect: '/dashboard' },
-    {
-      path: '/',
-      component: () => import('../layouts/default.vue'),
-      children: [
-        {
-          path: 'dashboard',
-          component: () => import('../pages/dashboard.vue'),
-        },
-        {
-          path: 'account-settings',
-          name: 'account-settings',
-          component: () => import('../pages/account/account-settings.vue'),
-        },
-      ],
-    },
-    {
-      path: '/',
-      component: () => import('../layouts/blank.vue'),
-      children: [
-        {
-          path: 'login',
-          component: () => import('../pages/account/login.vue'),
-        },
-        {
-          path: 'register',
-          component: () => import('../pages/account/register.vue'),
-        },
-        {
-          path: '/:pathMatch(.*)*',
-          component: () => import('../pages/[...all].vue'),
-        },
-      ],
-    },
-  ],
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !store.state.auth.isAuthenticated) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

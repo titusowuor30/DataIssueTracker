@@ -1,46 +1,38 @@
 <script setup>
-const dataQualityIssues = [
-  {
-    Country: 'United States',
-    'Facility Name': 'XYZ Hospital',
-    Code: 'DQ-001',
-    Inconsistency: 'Missing patient records',
-    'Date of Entry': '2023-10-05',
-    'Data Team Action': 'Investigation initiated',
-  },
-  {
-    Country: 'Canada',
-    'Facility Name': 'ABC Clinic',
-    Code: 'DQ-002',
-    Inconsistency: 'Duplicate patient IDs',
-    'Date of Entry': '2023-10-07',
-    'Data Team Action': 'Data cleanup in progress',
-  },
-  {
-    Country: 'Australia',
-    'Facility Name': 'LMN Hospital',
-    Code: 'DQ-003',
-    Inconsistency: 'Incorrect patient ages',
-    'Date of Entry': '2023-10-10',
-    'Data Team Action': 'Data validation ongoing',
-  },
-  {
-    Country: 'United Kingdom',
-    'Facility Name': 'PQR Clinic',
-    Code: 'DQ-004',
-    Inconsistency: 'Mismatched patient genders',
-    'Date of Entry': '2023-10-12',
-    'Data Team Action': 'Data correction initiated',
-  },
-  {
-    Country: 'Germany',
-    'Facility Name': 'NOP Hospital',
-    Code: 'DQ-005',
-    Inconsistency: 'Incomplete patient contact details',
-    'Date of Entry': '2023-10-15',
-    'Data Team Action': 'Data enrichment in progress',
-  },
-]
+import axios from '@/axiosConfig'
+
+const data = ref([])
+const perPage = ref(10)
+const totalItems = ref(0)
+const currentPage = ref(1)
+const loading = ref(false)
+const search = ref('')
+
+const fetchData = () => {
+  axios
+    .get('data_issues/', {
+      params: {
+        limit: perPage.value,
+        offset: (currentPage.value - 1) * perPage.value,
+        search: search.value,
+      },
+    })
+    .then(response => {
+      data.value = response.data.results
+      totalItems.value = response.data.count
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error)
+    })
+}
+
+watch(currentPage, fetchData)
+watch(perPage, fetchData)
+watch(search, fetchData)
+
+onMounted(() => {
+  fetchData()
+})
 </script>
 
 <template>
@@ -51,52 +43,50 @@ const dataQualityIssues = [
     <thead>
       <tr>
         <th class="text-uppercase">
-          Country
-        </th>
-        <th>
-          Facility Name
-        </th>
-        <th>
-          Facility Code
-        </th>
-        <th>
-          Inconsistency
+          Patient ID
         </th>
         <th>
           Date of Entry
         </th>
         <th>
+          Facility ID
+        </th>
+        <th>
+          Inconsistency
+        </th>
+        <th>
           Data Team Action
+        </th>
+        <th>
+          Date of Action
         </th>
       </tr>
     </thead>
 
     <tbody>
       <tr
-        v-for="issue in dataQualityIssues"
-        :key="issue.Code"
+        v-for="issue in data"
+        :key="issue.id"
       >
         <td>
-          {{ issue.Country }}
+          {{ issue.patient_id }}
         </td>
         <td>
-          {{ issue['Facility Name'] }}
+          {{ issue.date_of_entry }}
         </td>
         <td>
-          {{ issue.Code }}
+          {{ issue.facility }}
         </td>
         <td>
-          {{ issue.Inconsistency }}
+          {{ issue.inconsistency }}
         </td>
         <td>
-          {{ issue['Date of Entry'] }}
+          {{ issue.action_taken }}
         </td>
         <td>
-          {{ issue['Data Team Action'] }}
+          {{ issue.date_action_taken }}
         </td>
-        <td>
-          {{ issue.Date }}
-        </td>
+        <td />
       </tr>
     </tbody>
   </VTable>

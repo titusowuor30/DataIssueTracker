@@ -41,7 +41,7 @@ class CustomUser(AbstractUser):
     GENDER = [("Male", "Male"), ("Female", "Female"), ("Other", "Other")]
     username = models.CharField(max_length=150, unique=True,blank=True,null=True)
     email = models.EmailField(unique=True)
-    user_role = models.ForeignKey("Roles",on_delete=models.CASCADE,related_name='roles')
+    role = models.ForeignKey("Roles",on_delete=models.CASCADE,related_name='roles')
     gender = models.CharField(max_length=10, choices=GENDER)
     profile_pic = models.ImageField(upload_to='profiles',blank=True,null=True)
     address = models.TextField()

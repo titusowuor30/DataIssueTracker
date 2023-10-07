@@ -20,6 +20,7 @@ module.exports = {
   plugins: [
     'vue',
     'regex',
+    'import',
   ],
   ignorePatterns: ['src/@iconify/*.js', 'node_modules', 'dist'],
   rules: {
