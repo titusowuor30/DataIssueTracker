@@ -9,12 +9,19 @@ from .serializers import DataQualityIssuesSerializer,FacilitiesSerializer,EmailS
 
 class DataQualityIssuesEndpoints(APIView):
 
+    def process_issues(self, data):
+        for id in data:
+            yield id  # Yield the processed ID, for memory effieciency in case of big data
+
     def post(self, request, format=None):
-        serializer = DataQualityIssuesSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        ids = request.data['data_ids']
+        processed_ids=self.process_issues(ids)
+        #print(list(processed_ids))
+        for id in processed_ids:
+            issue = self.get_object(id)
+            issue.action_taken =request.data['action']
+            issue.save()
+        return Response('success!', status=status.HTTP_201_CREATED)
 
     def get_object(self, pk):
         try:
@@ -50,11 +57,11 @@ class DataQualityIssuesEndpoints(APIView):
 
     def put(self, request, pk, format=None):
         issue = self.get_object(pk)
-        serializer = DataQualityIssuesSerializer(issue, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if issue:
+            issue.action_taken=request.data['action']
+            issue.save()
+            return Response('Success!')
+        return Response('Error updating issue', status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
         issue = self.get_object(pk)

@@ -113,7 +113,7 @@
               color="primary"
               class="px-2 py-2"
               outlined
-              @click="performBulkAction"
+              @click="updateDataIssues"
             >
               Perform Bulk Action
             </VBtn>
@@ -136,6 +136,7 @@
 import axios from "@/axiosConfig"
 import { exportCSV } from "@/components/report/exportUtils"
 import CSVExport from "@/pages/report/CSVExport.vue"
+import Swal from "sweetalert2"
 import { onMounted, reactive, ref, watch } from "vue"
 
 const currentPage = ref(1)
@@ -167,7 +168,7 @@ const actions = reactive([
   "Pending",
 ])
 
-const perPageOptions = reactive([10, 20, 50, 100, 500, 100])
+const perPageOptions = reactive([1, 5, 10, 20, 50, 100, 500, 100])
 
 const apiUrl = "data_issues"
 
@@ -245,8 +246,89 @@ const exportPDF = () => {
   // Add code to export data to PDF
 }
 
+const updateDataIssues = () => {
+  if (selectedRows.value.length === 0) {
+    return Swal.fire("No data to process!", "Please select at least one issue!", "info")
+  } else if (selectedRows.value.length === 1) {
+    updateSingele()
+  } else {
+    performBulkAction()
+  }
+}
+
+const updateSingele = () => {
+  const data_id = selectedRows.value[0]
+
+  const data = {
+    action: action.value,
+  }
+
+  Swal.fire({
+    icon: "info",
+    title: "Please Wait!",
+    html: "Processing...", // add html attribute if you want or remove
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    willOpen: () => {
+      Swal.showLoading()
+    },
+  })
+  axios
+    .put("data_issues/" + data_id + "/", data)
+    .then(response => {
+      console.log(response)
+      Swal.fire({
+        icon: "success",
+        title: "success!",
+        html: "Process completed successfully",
+        timer: 3000,
+      }).finally(() => {
+        Swal.close()
+      })
+      selectedRows.value = []
+      loadData()
+    })
+    .catch(error => {
+      console.error("Error loading data:", error)
+      Swal.fire("Error!", "Something went wrong:" + error, "error")
+    })
+}
+
 const performBulkAction = () => {
-  // Add code to perform bulk action on selected items
+  const data = {
+    data_ids: selectedRows.value,
+    action: action.value,
+  }
+
+  Swal.fire({
+    icon: "info",
+    title: "Please Wait!",
+    html: "Processing...", // add html attribute if you want or remove
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    willOpen: () => {
+      Swal.showLoading()
+    },
+  })
+  axios
+    .post("data_issues/", data)
+    .then(response => {
+      console.log(response)
+      Swal.fire({
+        icon: "success",
+        title: "success!",
+        html: "Bulk update process completed successfully!",
+        timer: 3000,
+      }).finally(() => {
+        Swal.close()
+      })
+      selectedRows.value = []
+      loadData()
+    })
+    .catch(error => {
+      console.error("Error loading data:", error)
+      Swal.fire("Error!", "Something went wrong:" + error, "error")
+    })
 }
 
 onMounted(loadData)
