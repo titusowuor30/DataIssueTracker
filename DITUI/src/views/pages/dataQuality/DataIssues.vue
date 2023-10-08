@@ -49,7 +49,7 @@ onMounted(() => {
           Date of Entry
         </th>
         <th>
-          Facility ID
+          Facility
         </th>
         <th>
           Inconsistency
@@ -75,7 +75,7 @@ onMounted(() => {
           {{ issue.date_of_entry }}
         </td>
         <td>
-          {{ issue.facility }}
+          {{ issue.facility_name }}
         </td>
         <td>
           {{ issue.inconsistency }}

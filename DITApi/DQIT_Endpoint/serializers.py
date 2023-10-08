@@ -4,9 +4,13 @@ from .models import DataQualityIssues,Facilities, EmailSetup, DataSyncSettings
 
 
 class DataQualityIssuesSerializer(serializers.ModelSerializer):
+    facility_name = serializers.CharField(source='facility.facility_name', read_only=True)
+    country = serializers.CharField(source='facility.country', read_only=True)
+
     class Meta:
         model = DataQualityIssues
-        fields = '__all__'
+        fields = ['id', 'patient_id', 'date_of_entry', 'inconsistency', 'action_taken', 'date_action_taken', 'country','facility_name']
+
 
 
 class FacilitiesSerializer(serializers.ModelSerializer):

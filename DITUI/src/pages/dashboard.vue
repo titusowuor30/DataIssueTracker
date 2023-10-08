@@ -1,13 +1,11 @@
 <script setup>
-import axios from '@/axiosConfig'
-import DQAnalytics from '@/views/dashboard/DQAnalytics.vue'
-import Welcome from '@/views/dashboard/DQITsWelcome.vue'
-import DataHistory from '@/views/dashboard/DataIssueHistory.vue'
-import DataLogs from '@/views/dashboard/DataLogs.vue'
+import axios from "@/axiosConfig"
+import DQAnalytics from "@/views/dashboard/DQAnalytics.vue"
+import Welcome from "@/views/dashboard/DQITsWelcome.vue"
+import DataHistory from "@/views/dashboard/DataIssueHistory.vue"
+import DataLogs from "@/views/dashboard/DataLogs.vue"
 
 // 👉 Images
-import chart from '@images/cards/chart-success.png'
-import card from '@images/cards/credit-card-primary.png'
 
 const all_issues = ref(0)
 const pending_count = ref(10)
@@ -18,7 +16,7 @@ const available_count = ref(0)
 
 const fetchData = () => {
   axios
-    .get('data_issue_stats/')
+    .get("data_issue_stats/")
     .then(response => {
       pending_count.value = response.data.pending
       all_issues.value = response.data.all_issues
@@ -28,7 +26,7 @@ const fetchData = () => {
       available_count.value = response.data.available
     })
     .catch(error => {
-      console.error('Error fetching data:', error)
+      console.error("Error fetching data:", error)
     })
 }
 
@@ -38,7 +36,6 @@ watch(matching_count, fetchData)
 watch(corrected_count, fetchData)
 watch(no_data_count, fetchData)
 watch(available_count, fetchData)
-
 
 onMounted(() => {
   fetchData()
@@ -68,9 +65,10 @@ onMounted(() => {
           <CardStatisticsVertical
             v-bind="{
               title: 'All Issues',
-              image: chart,
+              image: 'bx-bar-chart',
+              style: 'bg-primary',
               stats: new Intl.NumberFormat().format(all_issues),
-              change: Number(all_issues/all_issues*100).toFixed(2),
+              change: Number((all_issues / all_issues) * 100).toFixed(2),
             }"
           />
         </VCol>
@@ -83,9 +81,10 @@ onMounted(() => {
           <CardStatisticsVertical
             v-bind="{
               title: 'Pending',
-              image: chart,
+              style: 'bg-info',
+              image: 'bx-line-chart',
               stats: new Intl.NumberFormat().format(pending_count),
-              change: Number((pending_count/all_issues)*100).toFixed(2),
+              change: Number((pending_count / all_issues) * 100).toFixed(2),
             }"
           />
         </VCol>
@@ -116,11 +115,12 @@ onMounted(() => {
           sm="6"
         >
           <CardStatisticsVertical
-            v-bind=" {
+            v-bind="{
               title: 'Data already available',
-              image: chart,
+              image: 'bx-data',
+              style: 'bg-info',
               stats: new Intl.NumberFormat().format(available_count),
-              change: Number((available_count/all_issues)*100).toFixed(2),
+              change: Number((available_count / all_issues) * 100).toFixed(2),
             }"
           />
         </VCol>
@@ -133,9 +133,10 @@ onMounted(() => {
           <CardStatisticsVertical
             v-bind="{
               title: 'Entry Corrected',
-              image: card,
+              style: 'bg-primary',
+              image: 'bx-check',
               stats: new Intl.NumberFormat().format(corrected_count),
-              change: Number((corrected_count/all_issues)*100).toFixed(2),
+              change: Number((corrected_count / all_issues) * 100).toFixed(2),
             }"
           />
         </VCol>
@@ -147,9 +148,10 @@ onMounted(() => {
           <CardStatisticsVertical
             v-bind="{
               title: 'Matching src doc',
-              image: card,
+              style: 'bg-primary',
+              image: 'bx-file',
               stats: new Intl.NumberFormat().format(matching_count),
-              change: Number((matching_count/all_issues)*100).toFixed(2),
+              change: Number((matching_count / all_issues) * 100).toFixed(2),
             }"
           />
         </VCol>
@@ -160,9 +162,10 @@ onMounted(() => {
           <CardStatisticsVertical
             v-bind="{
               title: 'No data needed',
-              image: card,
+              style: 'bg-info',
+              image: 'bx-box',
               stats: new Intl.NumberFormat().format(no_data_count),
-              change: Number((no_data_count/all_issues)*100).toFixed(2),
+              change: Number((no_data_count / all_issues) * 100).toFixed(2),
             }"
           />
         </VCol>

@@ -12,6 +12,7 @@ import Swal from 'sweetalert2'
 import { createApp } from 'vue'
 import store from './store' // Import your Vuex store
 
+
 loadFonts()
 
 

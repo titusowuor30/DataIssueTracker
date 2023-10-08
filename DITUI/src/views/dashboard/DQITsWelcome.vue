@@ -1,10 +1,15 @@
 <script setup>
-import illustrationDataQualityDark from '@images/cards/illustration-john-dark.png'
-import illustrationDataQualityLight from '@images/cards/illustration-john-light.png'
-import { useTheme } from 'vuetify'
+import illustrationDataQualityDark from "@images/cards/illustration-john-dark.png"
+import illustrationDataQualityLight from "@images/cards/illustration-john-light.png"
+import { useTheme } from "vuetify"
 
 const { global } = useTheme()
-const illustrationDataQuality = computed(() => global.name.value === 'dark' ? illustrationDataQualityDark : illustrationDataQualityLight)
+
+const illustrationDataQuality = computed(() =>
+  global.name.value === "dark"
+    ? illustrationDataQualityDark
+    : illustrationDataQualityLight,
+)
 </script>
 
 <template>
@@ -18,7 +23,7 @@ const illustrationDataQuality = computed(() => global.name.value === 'dark' ? il
       >
         <VCardItem>
           <VCardTitle class="text-md-h5 text-primary">
-            Welcome to the Data Quality Issue Tracker Dashboard! 📊
+            Welcome to the <span style="color: rgb(255, 170, 0);">D</span><span class="text-error">QITs</span> Dashboard! 📊
           </VCardTitle>
         </VCardItem>
 
