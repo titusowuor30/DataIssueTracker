@@ -45,7 +45,7 @@ class CustomUser(AbstractUser):
     gender = models.CharField(max_length=10, choices=GENDER)
     profile_pic = models.ImageField(upload_to='profiles',blank=True,null=True)
     address = models.TextField()
-    facilities_assigned=models.ManyToManyField(Facilities)
+    facilities_assigned=models.ManyToManyField(Facilities,null=True,blank=True)
     fcm_token = models.TextField(default="")  # For firebase notifications
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

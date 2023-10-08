@@ -96,7 +96,12 @@
           </tr>
         </tbody>
       </table>
-
+      <p
+        v-if="filteredDataIssues.length === 0"
+        class="text-muted px-2"
+      >
+        No data found!
+      </p>
       <VCard class="px-2 py-2">
         <VRow>
           <VCol cols="3">
@@ -115,7 +120,8 @@
               outlined
               @click="updateDataIssues"
             >
-              Perform Bulk Action
+              <span v-if="selectedRows.length > 1">Apply Bulk Action</span>
+              <span v-else>Apply Action</span>
             </VBtn>
           </VCol>
         </VRow>
