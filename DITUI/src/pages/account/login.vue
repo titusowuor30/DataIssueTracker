@@ -1,12 +1,12 @@
 <script setup>
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
-import logo from '@images/icons/logo/triangle-dark.png'
-import Swal from 'sweetalert2'
-import { useStore } from 'vuex'
+import AuthProvider from "@/views/pages/authentication/AuthProvider.vue"
+import logo from "@images/icons/logo/triangle-dark.png"
+import Swal from "sweetalert2"
+import { useStore } from "vuex"
 
 const form = ref({
-  email: '',
-  password: '',
+  email: "",
+  password: "",
   remember: false,
 })
 
@@ -18,7 +18,7 @@ const router = useRouter()
 const handleLogin = async () => {
   try {
     Swal.fire({
-      icon: 'warning',
+      icon: "warning",
       title: "Please Wait!",
       html: "Authenticating your credentials...", // add html attribute if you want or remove
       allowOutsideClick: false,
@@ -31,27 +31,27 @@ const handleLogin = async () => {
     const { email, password } = form.value // Extract email and password from the form
 
     console.log(form.value)
-    await store.dispatch('auth/login', { email: email, password: password })
+    await store.dispatch("auth/login", { email: email, password: password })
 
     // Login successful, navigate to another route or do something else
     Swal.fire({
-      icon: 'success',
-      title: 'Login successful!',
-      html: 'Redirecting to DQITs Dashboard...',
+      icon: "success",
+      title: "Login successful!",
+      html: "Redirecting to DQITs Dashboard...",
       showConfirmButton: false,
       timer: 3000,
     })
-    router.push('/')
+    router.push("/")
 
     Swal.close()
   } catch (error) {
     // Login error, show error message
-    console.error('Login error:', error)
+    console.error("Login error:", error)
 
     Swal.fire({
-      icon: 'error',
-      title: 'Login failed',
-      html: error || 'An error occurred while logging in.',
+      icon: "error",
+      title: "Login failed",
+      html: error || "An error occurred while logging in.",
     })
   }
 }
@@ -81,7 +81,7 @@ const handleLogin = async () => {
         </template>
       </VCardItem>
 
-      <VCardText class="pt-2  text-center">
+      <VCardText class="pt-2 text-center">
         <h5 class="text-h5 mb-1">
           Welcome to DQITs! 👋🏻
         </h5>

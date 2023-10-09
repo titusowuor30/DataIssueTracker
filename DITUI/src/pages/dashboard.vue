@@ -8,7 +8,7 @@ import DataLogs from "@/views/dashboard/DataLogs.vue"
 // 👉 Images
 
 const all_issues = ref(0)
-const pending_count = ref(10)
+const pending_count = ref(0)
 const matching_count = ref(0)
 const corrected_count = ref(0)
 const no_data_count = ref(0)

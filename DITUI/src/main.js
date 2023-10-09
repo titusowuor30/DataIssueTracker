@@ -10,8 +10,12 @@ import '@styles/styles.scss'
 import { createPinia } from 'pinia'
 import Swal from 'sweetalert2'
 import { createApp } from 'vue'
-import store from './store' // Import your Vuex store
+import store from './store'
 
+// Import your Vuex store
+//Base Url
+window.$http = 'http://localhost:8000/api/'
+console.log
 
 loadFonts()
 

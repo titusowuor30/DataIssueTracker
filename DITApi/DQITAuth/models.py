@@ -44,6 +44,7 @@ class CustomUser(AbstractUser):
     role = models.ForeignKey("Roles",on_delete=models.CASCADE,related_name='roles')
     gender = models.CharField(max_length=10, choices=GENDER)
     profile_pic = models.ImageField(upload_to='profiles',blank=True,null=True)
+    phone=models.CharField(max_length=15,default='+254743793901')
     address = models.TextField()
     facilities_assigned=models.ManyToManyField(Facilities,null=True,blank=True)
     fcm_token = models.TextField(default="")  # For firebase notifications
@@ -57,6 +58,7 @@ class CustomUser(AbstractUser):
     def save(self, *args, **kwargs):
         if not self.username:
             self.username = slugify(self.email.split('@')[0])
+            self.password=self.set_password(self.password)
         super().save(*args, **kwargs)
 
     def __str__(self):

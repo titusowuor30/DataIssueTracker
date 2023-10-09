@@ -1,5 +1,21 @@
 <script setup>
-import avatar1 from '@images/avatars/avatar-1.png'
+import avatar1 from "@images/avatars/avatar-1.png"
+import { useStore } from "vuex"
+
+const store = useStore()
+const router = useRouter()
+
+const user = ref(store.state.auth.user)
+const imgbaseUrl = ref(store.state.setup.baseUrl)
+
+const logout = async () => {
+  try {
+    await store.dispatch("auth/logout")
+    router.push("/login")
+  } catch (e) {
+    console.log(e)
+  }
+}
 </script>
 
 <template>
@@ -16,7 +32,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
       color="primary"
       variant="tonal"
     >
-      <VImg :src="avatar1" />
+      <VImg :src="imgbaseUrl + user.profile_pic" />
 
       <!-- SECTION Menu -->
       <VMenu
@@ -41,16 +57,16 @@ import avatar1 from '@images/avatars/avatar-1.png'
                     color="primary"
                     variant="tonal"
                   >
-                    <VImg :src="avatar1" />
+                    <VImg :src="imgbaseUrl + user.profile_pic" />
                   </VAvatar>
                 </VBadge>
               </VListItemAction>
             </template>
 
             <VListItemTitle class="font-weight-semibold">
-              John Doe
+              {{ user.first_name }} {{ user.last_name }}
             </VListItemTitle>
-            <VListItemSubtitle>Admin</VListItemSubtitle>
+            <VListItemSubtitle>{{ user.role }}</VListItemSubtitle>
           </VListItem>
           <VDivider class="my-2" />
 
@@ -64,7 +80,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
               />
             </template>
 
-            <VListItemTitle>Profile</VListItemTitle>
+            <VListItemTitle> Profile </VListItemTitle>
           </VListItem>
 
           <!-- 👉 Settings -->
@@ -83,7 +99,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
           <VDivider class="my-2" />
 
           <!-- 👉 Logout -->
-          <VListItem to="/login">
+          <VListItem @click="logout">
             <template #prepend>
               <VIcon
                 class="me-2"

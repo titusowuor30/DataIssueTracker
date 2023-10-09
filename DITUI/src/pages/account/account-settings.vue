@@ -1,8 +1,13 @@
 <script setup>
-import { useRoute } from 'vue-router'
-import AccountSettingsAccount from '@/views/pages/account-settings/AccountSettingsAccount.vue'
-import AccountSettingsNotification from '@/views/pages/account-settings/AccountSettingsNotification.vue'
-import AccountSettingsSecurity from '@/views/pages/account-settings/AccountSettingsSecurity.vue'
+import { useRoute } from "vue-router"
+import AccountSettingsAccount from "@/views/pages/account-settings/AccountSettingsAccount.vue"
+import AccountSettingsNotification from "@/views/pages/account-settings/AccountSettingsNotification.vue"
+import AccountSettingsSecurity from "@/views/pages/account-settings/AccountSettingsSecurity.vue"
+import { useStore } from "vuex"
+
+const store = useStore()
+const user = ref(store.state.auth.user)
+const imgbaseUrl = ref(store.state.setup.baseUrl)
 
 const route = useRoute()
 const activeTab = ref(route.params.tab)
@@ -10,19 +15,19 @@ const activeTab = ref(route.params.tab)
 // tabs
 const tabs = [
   {
-    title: 'Account',
-    icon: 'bx-user',
-    tab: 'account',
+    title: "Account",
+    icon: "bx-user",
+    tab: "account",
   },
   {
-    title: 'Security',
-    icon: 'bx-lock-open',
-    tab: 'security',
+    title: "Security",
+    icon: "bx-lock-open",
+    tab: "security",
   },
   {
-    title: 'Notifications',
-    icon: 'bx-bell',
-    tab: 'notification',
+    title: "Notifications",
+    icon: "bx-bell",
+    tab: "notification",
   },
 ]
 </script>

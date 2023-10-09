@@ -6,12 +6,13 @@ from .models import DataQualityIssues
 class DataIssuesStats(APIView):
 
     def get(self,request, format=None):
-        all_issues=DataQualityIssues.objects.count()
-        pending_count=DataQualityIssues.objects.filter(action_taken='Pending').count()
-        corrected_count=DataQualityIssues.objects.filter(action_taken='Entry Corrected').count()
-        matching_count=DataQualityIssues.objects.filter(action_taken='Data Matches Source Document').count()
-        available_count=DataQualityIssues.objects.filter(action_taken='Data Already Available').count()
-        no_data_count=DataQualityIssues.objects.filter(action_taken='No Data Needed').count()
+        issues=DataQualityIssues.objects.filter(facility__in=request.user.facilities_assigned.all()) if request.user.role.role_name !='Admin' else DataQualityIssues.objects.all()
+        all_issues=issues.count()
+        pending_count=issues.filter(action_taken='Pending').count()
+        corrected_count=issues.filter(action_taken='Entry Corrected').count()
+        matching_count=issues.filter(action_taken='Data Matches Source Document').count()
+        available_count=issues.filter(action_taken='Data Already Available').count()
+        no_data_count=issues.filter(action_taken='No Data Needed').count()
 
         data={
             'pending':pending_count,

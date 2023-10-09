@@ -1,18 +1,25 @@
 <script setup>
-import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
-import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
-import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
-import { useTheme } from 'vuetify'
+import VerticalNavSectionTitle from "@/@layouts/components/VerticalNavSectionTitle.vue"
+import VerticalNavLayout from "@layouts/components/VerticalNavLayout.vue"
+import VerticalNavLink from "@layouts/components/VerticalNavLink.vue"
+import { useTheme } from "vuetify"
+import { useStore } from "vuex"
 
 // Components
-import Footer from '@/layouts/components/Footer.vue'
-import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
-import UserProfile from '@/layouts/components/UserProfile.vue'
+import Footer from "@/layouts/components/Footer.vue"
+import NavbarThemeSwitcher from "@/layouts/components/NavbarThemeSwitcher.vue"
+import UserProfile from "@/layouts/components/UserProfile.vue"
 
 const vuetifyTheme = useTheme()
+const store = useStore()
+const isAdmin = ref(store.state.auth)
+
+console.log(isAdmin)
 
 const upgradeBanner = computed(() => {
-  return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
+  return vuetifyTheme.global.name.value === "light"
+    ? upgradeBannerLight
+    : upgradeBannerDark
 })
 </script>
 
@@ -73,32 +80,34 @@ const upgradeBanner = computed(() => {
       />
 
       <!-- 👉 Pages -->
-      <VerticalNavSectionTitle
-        :item="{
-          heading: 'Security',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Users',
-          icon: 'bxs-group',
-          to: '/users',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Password Policy',
-          icon: 'bx-lock',
-          to: '/passworddpolicy',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Backup & Restore',
-          icon: 'bx-data',
-          to: '/dbbackup',
-        }"
-      />
+      <div v-if="isAdmin">
+        <VerticalNavSectionTitle
+          :item="{
+            heading: 'Security',
+          }"
+        />
+        <VerticalNavLink
+          :item="{
+            title: 'Users',
+            icon: 'bxs-group',
+            to: '/users',
+          }"
+        />
+        <VerticalNavLink
+          :item="{
+            title: 'Password Policy',
+            icon: 'bx-lock',
+            to: '/passworddpolicy',
+          }"
+        />
+        <VerticalNavLink
+          :item="{
+            title: 'Backup & Restore',
+            icon: 'bx-data',
+            to: '/dbbackup',
+          }"
+        />
+      </div>
 
       <!-- 👉 User Interface -->
       <VerticalNavSectionTitle
@@ -122,6 +131,7 @@ const upgradeBanner = computed(() => {
       />
 
       <VerticalNavLink
+        v-if="isAdmin"
         :item="{
           title: 'System Settings',
           icon: 'mdi-cog',

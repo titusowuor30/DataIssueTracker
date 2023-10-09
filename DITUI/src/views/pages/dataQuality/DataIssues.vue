@@ -1,16 +1,16 @@
 <script setup>
-import axios from '@/axiosConfig'
+import axios from "@/axiosConfig"
 
 const data = ref([])
 const perPage = ref(10)
 const totalItems = ref(0)
 const currentPage = ref(1)
 const loading = ref(false)
-const search = ref('')
+const search = ref("")
 
 const fetchData = () => {
   axios
-    .get('data_issues/', {
+    .get("data_issues/", {
       params: {
         limit: perPage.value,
         offset: (currentPage.value - 1) * perPage.value,
@@ -22,7 +22,7 @@ const fetchData = () => {
       totalItems.value = response.data.count
     })
     .catch(error => {
-      console.error('Error fetching data:', error)
+      console.error("Error fetching data:", error)
     })
 }
 
@@ -45,21 +45,11 @@ onMounted(() => {
         <th class="text-uppercase">
           Patient ID
         </th>
-        <th>
-          Date of Entry
-        </th>
-        <th>
-          Facility
-        </th>
-        <th>
-          Inconsistency
-        </th>
-        <th>
-          Data Team Action
-        </th>
-        <th>
-          Date of Action
-        </th>
+        <th>Date of Entry</th>
+        <th>Facility</th>
+        <th>Inconsistency</th>
+        <th>Data Team Action</th>
+        <th>Date of Action</th>
       </tr>
     </thead>
 
@@ -88,7 +78,9 @@ onMounted(() => {
         </td>
         <td />
       </tr>
+      <p class="text-muted px-2">
+        No history yet!
+      </p>
     </tbody>
   </VTable>
 </template>
-

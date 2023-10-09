@@ -4,11 +4,13 @@ import axios from '../../axiosConfig'
 const state = {
   isAuthenticated: false,
   user: null,
+  isAdmin: false,
 }
 
 const mutations = {
-  SET_AUTHENTICATED(state, isAuthenticated) {
-    state.isAuthenticated = isAuthenticated
+  SET_AUTHENTICATED(state, isAuthenticated, isAdmin) {
+    state.isAuthenticated = isAuthenticated,
+    state.isAdmin = isAdmin
   },
   SET_USER(state, user) {
     state.user = user
@@ -21,8 +23,13 @@ const actions = {
       const response = await axios.post('/login/', payload)
       const { token, user } = response.data
 
+      if (user.role === "Admin") {
+        commit('SET_AUTHENTICATED', true, true)
+      } else {
+        commit('SET_AUTHENTICATED', true, false)
+      }
       localStorage.setItem('token', token)
-      commit('SET_AUTHENTICATED', true)
+      localStorage.setItem('user', user)
       commit('SET_USER', user)
     } catch (error) {
       // Modify this part to include the response message in the error
@@ -36,14 +43,20 @@ const actions = {
 
   logout({ commit }) {
     localStorage.removeItem('token')
-    commit('SET_AUTHENTICATED', false)
+    localStorage.removeItem('user')
+    commit('SET_AUTHENTICATED', false, false)
     commit('SET_USER', null)
   },
 
   checkAuthentication({ commit }) {
     const token = localStorage.getItem('token')
+    const user = this.localStorage.getItem('user')
     if (token) {
-      commit('SET_AUTHENTICATED', true)
+      if (user.role === "Admin") {
+        commit('SET_AUTHENTICATED', true, true)
+      } else {
+        commit('SET_AUTHENTICATED', true, false)
+      }
 
       // Fetch user data or perform other checks here
     }
