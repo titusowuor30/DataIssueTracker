@@ -35,6 +35,6 @@ admin.site.index_title = 'DQITs API Admin Area'
 admin.site.site_title = 'DQITss API Administration'
 
 # Initialize and configure the scheduler
-# scheduler = BackgroundScheduler()
-# scheduler.add_job(import_data.Command().handle, 'interval', minutes=1)  # Run every 1 hour
-# scheduler.start()
+scheduler = BackgroundScheduler()
+scheduler.add_job(import_data.Command().handle, 'interval', minutes=1)  # Run every 1 hour
+scheduler.start()

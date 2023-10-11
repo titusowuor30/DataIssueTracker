@@ -4,13 +4,11 @@ import axios from '../../axiosConfig'
 const state = {
   isAuthenticated: false,
   user: null,
-  isAdmin: false,
 }
 
 const mutations = {
-  SET_AUTHENTICATED(state, isAuthenticated, isAdmin) {
-    state.isAuthenticated = isAuthenticated,
-    state.isAdmin = isAdmin
+  SET_AUTHENTICATED(state, isAuthenticated) {
+    state.isAuthenticated = isAuthenticated
   },
   SET_USER(state, user) {
     state.user = user
@@ -24,10 +22,11 @@ const actions = {
       const { token, user } = response.data
 
       if (user.role === "Admin") {
-        commit('SET_AUTHENTICATED', true, true)
+        localStorage.setItem('isAdmin', true)
       } else {
-        commit('SET_AUTHENTICATED', true, false)
+        localStorage.setItem('isAdmin', false)
       }
+      commit('SET_AUTHENTICATED', true)
       localStorage.setItem('token', token)
       localStorage.setItem('user', user)
       commit('SET_USER', user)
@@ -44,6 +43,7 @@ const actions = {
   logout({ commit }) {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
+    localStorage.removeItem('isAdmin')
     commit('SET_AUTHENTICATED', false, false)
     commit('SET_USER', null)
   },
@@ -52,11 +52,7 @@ const actions = {
     const token = localStorage.getItem('token')
     const user = this.localStorage.getItem('user')
     if (token) {
-      if (user.role === "Admin") {
-        commit('SET_AUTHENTICATED', true, true)
-      } else {
-        commit('SET_AUTHENTICATED', true, false)
-      }
+      commit('SET_AUTHENTICATED', true)
 
       // Fetch user data or perform other checks here
     }

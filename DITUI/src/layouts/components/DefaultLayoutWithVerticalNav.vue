@@ -12,7 +12,7 @@ import UserProfile from "@/layouts/components/UserProfile.vue"
 
 const vuetifyTheme = useTheme()
 const store = useStore()
-const isAdmin = ref(store.state.auth)
+const isAdmin = ref(JSON.parse(localStorage.getItem("isAdmin")))
 
 console.log(isAdmin)
 
@@ -87,6 +87,7 @@ const upgradeBanner = computed(() => {
           }"
         />
         <VerticalNavLink
+          v-if="isAdmin"
           :item="{
             title: 'Users',
             icon: 'bxs-group',
@@ -131,7 +132,7 @@ const upgradeBanner = computed(() => {
       />
 
       <VerticalNavLink
-        v-if="isAdmin"
+        v-show="isAdmin"
         :item="{
           title: 'System Settings',
           icon: 'mdi-cog',

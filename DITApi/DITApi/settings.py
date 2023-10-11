@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'DQIT_Endpoint',
     'DQITAuth',
     #third pirty
+    'django_countries',
+    'timezone_field',
     'tinymce',
     'widget_tweaks',
 ]
@@ -126,6 +128,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'DQITAuth.backends.PasswordPolicyBackend',  # Add your backend here
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 

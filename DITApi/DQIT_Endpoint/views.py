@@ -40,7 +40,7 @@ class DataQualityIssuesEndpoints(APIView):
         date_of_entry = query_params.get('date_of_entry',None)
         inconsistency = query_params.get('inconsistency',None)
 
-        issues = DataQualityIssues.objects.filter(facility__in=request.user.facilities_assigned.all()) if request.user.role.role_name !='Admin' else DataQualityIssues.objects.all()
+        issues = DataQualityIssues.objects.filter(facility__in=request.user.facilities.all()) if request.user.role.role_name !='Admin' else DataQualityIssues.objects.all()
 
         if patient_id:
             issues = issues.filter(patient_id=patient_id)

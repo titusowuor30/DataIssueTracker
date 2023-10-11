@@ -22,8 +22,8 @@ class DataImporter:
                         'facility':facility,
                         'date_of_entry':pd.to_datetime(date_str, format='%Y-%m-%d').date(),
                         'inconsistency':row['Inconsistency'],
-                        'action_taken':None,
-                        'date_action_taken':None,
+                        'action_taken':'Pending',
+                        'date_action_taken':datetime.utcnow().date(),
                     }
                     _,created=DataQualityIssues.objects.get_or_create(
                         patient_id=row['Patient ID'],
@@ -32,7 +32,7 @@ class DataImporter:
                         defaults=issues,
                         )
                     time.sleep(1)
-                    print(f"Data imported from {file_path} successfully.")
+            print(f"Data imported from {file_path} successfully.")
             new_file_name = file_path.replace('.xlsx', '_processed.xlsx') if 'xlsx' in file_path else file_path.replace('.csv',  '_processed.csv')
             os.rename(file_path, new_file_name)
         else:

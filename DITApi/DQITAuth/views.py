@@ -5,8 +5,10 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import api_view, permission_classes,authentication_classes
 from rest_framework.authtoken.models import Token
+from rest_framework import viewsets
 from django.contrib.auth import authenticate, login
 from .models import CustomUser
+from DQIT_Endpoint.models import Facilities
 from .serializers import CustomUserSerializer
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -55,3 +57,47 @@ class UserAPIView(APIView):
             serializer = CustomUserSerializer(user)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+class CustomUserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+
+    def create(self, request, *args, **kwargs):
+        # Serialize the user data
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # Extract all the fields from the request data
+        email = serializer.validated_data.get('email')
+        password = serializer.validated_data.get('password')
+        role = serializer.validated_data.get('role')
+        gender = serializer.validated_data.get('gender')
+        profile_pic = serializer.validated_data.get('profile_pic')
+        phone = serializer.validated_data.get('phone')
+        address = serializer.validated_data.get('address')
+        facilities = serializer.validated_data.get('facilities')
+        fcm_token = serializer.validated_data.get('fcm_token')
+
+        # Create the user with the provided fields
+        user,created= CustomUser.objects.get_or_create(
+            email=email,
+            defaults={
+            'email':email,
+            'password':password,
+            'role':role,
+            'gender':gender,
+            'profile_pic':profile_pic,
+            'phone':phone,
+            'address':address,
+            'fcm_token':fcm_token,
+            }
+            )
+        user.is_active=False
+        user.facilities.set(facilities)
+        user.save()
+
+        # Serialize the created user
+        serializer = self.get_serializer(user)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

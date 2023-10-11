@@ -14,7 +14,7 @@ def create_initial_users(apps, schema_editor):
         'username':'admin',
         'email':'admin@example.com',
         'first_name':'admin',
-        'user_role':admin_role,  # Assign the Admin role
+        'role':admin_role,  # Assign the Admin role
         'gender':'Male',
         'address':'Admin Address',
         'is_staff':True,

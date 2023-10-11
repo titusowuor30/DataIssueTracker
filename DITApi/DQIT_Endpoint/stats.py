@@ -6,7 +6,7 @@ from .models import DataQualityIssues
 class DataIssuesStats(APIView):
 
     def get(self,request, format=None):
-        issues=DataQualityIssues.objects.filter(facility__in=request.user.facilities_assigned.all()) if request.user.role.role_name !='Admin' else DataQualityIssues.objects.all()
+        issues=DataQualityIssues.objects.filter(facility__in=request.user.facilities.all()) if request.user.role.role_name !='Admin' else DataQualityIssues.objects.all()
         all_issues=issues.count()
         pending_count=issues.filter(action_taken='Pending').count()
         corrected_count=issues.filter(action_taken='Entry Corrected').count()

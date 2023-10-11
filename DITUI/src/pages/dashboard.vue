@@ -38,7 +38,10 @@ watch(no_data_count, fetchData)
 watch(available_count, fetchData)
 
 onMounted(() => {
-  fetchData()
+  setInterval(fetchData, 3000)
+})
+onUnmounted(() => {
+  clearInterval(fetchData)
 })
 </script>
 
