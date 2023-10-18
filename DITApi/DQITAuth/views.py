@@ -12,6 +12,8 @@ from DQIT_Endpoint.models import Facilities
 from .serializers import CustomUserSerializer
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+from rest_framework.pagination import LimitOffsetPagination
+from django.http import Http404
 
 class RegistrationAPIView(APIView):
     permission_classes = ()
@@ -50,13 +52,66 @@ class LoginAPIView(APIView):
 
         return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
-class UserAPIView(APIView):
-    def get(self, request):
-        user = request.user
-        if user.is_authenticated:
+class UserApiView(APIView):
+
+    def process_issues(self, data):
+        for id in data:
+            yield id  # Yield the processed ID, for memory effieciency in case of big data
+
+    def post(self, request, format=None):
+        ids = request.data['data_ids']
+        processed_ids=self.process_issues(ids)
+        #print(list(processed_ids))
+        for id in processed_ids:
+            issue = self.get_object(id)
+            issue.action_taken =request.data['action']
+            issue.save()
+        return Response('success!', status=status.HTTP_201_CREATED)
+
+    def get_object(self, pk):
+        try:
+            return CustomUser.objects.get(pk=pk)
+        except CustomUser.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk=None, format=None):
+        if pk:
+            user=self.get_object(pk)
             serializer = CustomUserSerializer(user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response(serializer.data)
+
+        query_params = request.query_params
+        username = query_params.get('username',None)
+        email = query_params.get('email',None)
+        country = query_params.get('country',None)
+
+        users = CustomUser.objects.filter(email=request.user.email) if request.user.role.role_name !='Admin' else CustomUser.objects.all()
+
+        if username:
+            users = users.filter(username=username)
+        if email:
+            users = users.filter(email=email)
+        if country:
+            users = users.filter(country=country)
+
+        paginator = LimitOffsetPagination()
+        paginator.default_limit = 100
+        result_page = paginator.paginate_queryset(users, request)
+        serializer = CustomUserSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        user = self.get_object(pk)
+        if user:
+            user.username=request.data['username']
+            user.save()
+            return Response('Success!')
+        return Response('Error updating issue', status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        issue = self.get_object(pk)
+        issue.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):

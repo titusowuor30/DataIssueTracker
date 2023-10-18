@@ -19,7 +19,7 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from apscheduler.schedulers.background import BackgroundScheduler
-from DQIT_Endpoint.management.commands import import_data  # Import your management command
+from DQIT_Endpoint.management.commands import run_schedules  # Import your management command
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,5 +36,5 @@ admin.site.site_title = 'DQITss API Administration'
 
 # Initialize and configure the scheduler
 scheduler = BackgroundScheduler()
-scheduler.add_job(import_data.Command().handle, 'interval', minutes=1)  # Run every 1 hour
+scheduler.add_job(run_schedules.Command().handle, 'interval', minutes=0.50)  # Run every 1 hour
 scheduler.start()

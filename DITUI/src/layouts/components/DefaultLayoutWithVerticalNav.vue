@@ -1,26 +1,26 @@
 <script setup>
-import VerticalNavSectionTitle from "@/@layouts/components/VerticalNavSectionTitle.vue"
-import VerticalNavLayout from "@layouts/components/VerticalNavLayout.vue"
-import VerticalNavLink from "@layouts/components/VerticalNavLink.vue"
-import { useTheme } from "vuetify"
-import { useStore } from "vuex"
+import VerticalNavSectionTitle from "@/@layouts/components/VerticalNavSectionTitle.vue";
+import VerticalNavLayout from "@layouts/components/VerticalNavLayout.vue";
+import VerticalNavLink from "@layouts/components/VerticalNavLink.vue";
+import { useTheme } from "vuetify";
+import { useStore } from "vuex";
 
 // Components
-import Footer from "@/layouts/components/Footer.vue"
-import NavbarThemeSwitcher from "@/layouts/components/NavbarThemeSwitcher.vue"
-import UserProfile from "@/layouts/components/UserProfile.vue"
+import Footer from "@/layouts/components/Footer.vue";
+import NavbarThemeSwitcher from "@/layouts/components/NavbarThemeSwitcher.vue";
+import UserProfile from "@/layouts/components/UserProfile.vue";
 
-const vuetifyTheme = useTheme()
-const store = useStore()
-const isAdmin = ref(JSON.parse(localStorage.getItem("isAdmin")))
+const vuetifyTheme = useTheme();
+const store = useStore();
+const isAdmin = ref(JSON.parse(localStorage.getItem("isAdmin")));
 
-console.log(isAdmin)
+console.log(isAdmin);
 
 const upgradeBanner = computed(() => {
   return vuetifyTheme.global.name.value === "light"
     ? upgradeBannerLight
-    : upgradeBannerDark
-})
+    : upgradeBannerDark;
+});
 </script>
 
 <template>
@@ -29,18 +29,12 @@ const upgradeBanner = computed(() => {
     <template #navbar="{ toggleVerticalOverlayNavActive }">
       <div class="d-flex h-100 align-center">
         <!-- 👉 Vertical nav toggle in overlay mode -->
-        <IconBtn
-          class="ms-n3 d-lg-none"
-          @click="toggleVerticalOverlayNavActive(true)"
-        >
+        <IconBtn class="ms-n3 d-lg-none" @click="toggleVerticalOverlayNavActive(true)">
           <VIcon icon="bx-menu" />
         </IconBtn>
 
         <!-- 👉 Search -->
-        <div
-          class="d-flex align-center cursor-pointer"
-          style="user-select: none;"
-        >
+        <div class="d-flex align-center cursor-pointer" style="user-select: none;">
           <!-- 👉 Search Trigger button -->
           <IconBtn>
             <VIcon icon="bx-search" />
@@ -127,7 +121,7 @@ const upgradeBanner = computed(() => {
         :item="{
           title: 'Data Sync',
           icon: 'bx-sync',
-          to: '/data_sync',
+          to: '/data-sync',
         }"
       />
 

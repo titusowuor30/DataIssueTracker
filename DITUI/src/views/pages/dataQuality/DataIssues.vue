@@ -31,7 +31,7 @@ watch(perPage, fetchData)
 watch(search, fetchData)
 
 onMounted(() => {
-  setInterval(fetchData, 3000)
+  setInterval(fetchData, 10000)
 })
 onUnmounted(() => {
   clearInterval(fetchData)

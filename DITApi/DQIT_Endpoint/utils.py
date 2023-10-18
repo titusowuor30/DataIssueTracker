@@ -65,13 +65,11 @@ class DataImporter:
         else:
             print('All files processed')
 
-    def check_for_new_files(self,facility_file_path,duration=10):
-        while True:
-            for df, file_path in self.generate_data_from_files():
-                df.drop_duplicates(inplace=True)#drop duplicates
-                df.dropna(subset=['Inconsistency'],inplace=True)#drop rows where inconsistency is null
-                print(df.shape)
-                self.import_data_from_excel(file_path,facility_file_path,df)
-            time.sleep(duration)  # Check for new files every 1 minute
+    def check_for_new_files(self,facility_file_path):
+        for df, file_path in self.generate_data_from_files():
+            df.drop_duplicates(inplace=True)#drop duplicates
+            df.dropna(subset=['Inconsistency'],inplace=True)#drop rows where inconsistency is null
+            print(df.shape)
+            self.import_data_from_excel(file_path,facility_file_path,df)
 
 

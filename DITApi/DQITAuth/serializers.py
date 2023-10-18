@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from DQIT_Endpoint.models import EmailSetup
 from .models import Roles
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
@@ -13,9 +12,9 @@ from django.conf import settings
 import re
 from django.core.mail.backends.smtp import EmailBackend
 from django.core.mail import EmailMessage
+from DQIT_Endpoint.models import EmailSetup
 import threading
 from django.contrib.auth import get_user_model
-
 User = get_user_model()
 
 
@@ -26,7 +25,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['role', 'first_name', 'last_name','username','password','email', 'phone','gender','fcm_token','organisation','facilities','address','country','state','zip','timezone']
+        fields = ['id','username','email','first_name', 'last_name','password', 'role', 'phone','gender','fcm_token','organisation','facilities','address','country','state','zip','timezone']
         depth = 2
 
     # Define a method to serialize the timezone field

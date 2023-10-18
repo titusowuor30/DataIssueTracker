@@ -21,6 +21,30 @@ const routes= [
         component: () => import('@/pages/data/dataQuality.vue'),
         meta: { requiresAuth: true },
       },
+      {
+        path: 'data-sync',
+        name: 'dataSync',
+        component: () => import('@/pages/data/dataSync.vue'),
+        meta: { requiresAuth: true },
+      },
+         {
+        path: 'users',
+        name: 'users',
+        component: () => import('@/views/pages/authentication/users.vue'),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'passworddpolicy',
+        name: 'passworddpolicy',
+        component: () => import('@/views/pages/system_settings/PasswordPolicy.vue'),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'dbbackup',
+        name: 'dbbackup',
+        component: () => import('@/views/pages/system_settings/BackupSchedule.vue'),
+        meta: { requiresAuth: true },
+      },
     ],
   },
   {

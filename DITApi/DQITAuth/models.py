@@ -7,7 +7,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from datetime import datetime
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import (AbstractUser,BaseUserManager)
 from django.utils.text import slugify
 from DQIT_Endpoint.models import Facilities
 from django.utils import timezone
@@ -17,6 +17,16 @@ from timezone_field import TimeZoneField
 mobile_num_regex = RegexValidator(
         regex=r"^(?:\+254|0)[17]\d{8}$", message="Entered mobile number isn't in a right format!"
     )
+
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, phone, password=None, **extra_fields):
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, phone=phone, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
 class CustomUser(AbstractUser):
     GENDER = [("Male", "Male"), ("Female", "Female"), ("Other", "Other")]
@@ -38,12 +48,13 @@ class CustomUser(AbstractUser):
     updated_at = models.DateTimeField(auto_now=True)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+    objects=CustomUserManager()
 
 
     def save(self, *args, **kwargs):
         if not self.username:
             self.username = slugify(self.email.split('@')[0])
-            self.password=self.set_password(self.password)
+            self.password=self.make_password(self.password)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -112,8 +123,8 @@ class BackupSchedule(models.Model):
     last_run_datetime = models.DateTimeField(null=True, blank=True)
     next_run_datetime = models.DateTimeField(null=True, blank=True)
     enabled = models.BooleanField(default=True)
-    destination_path = models.CharField(max_length=255)
-    source_path = models.CharField(max_length=255)
+    folder_path = models.CharField(max_length=255,default='E:\projects\DataIssueTracker\DITApi\media\backups')
+    mysql_cmd_path = models.CharField(max_length=255,default='C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump',help_text='For windows environment')
 
     def __str__(self):
         return f'{self.get_task_type_display()} Schedule ({self.get_schedule_type_display()})'

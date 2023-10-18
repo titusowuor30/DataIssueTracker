@@ -1,5 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
+from django.utils import timezone
 
 class DataQualityIssues(models.Model):
     ACTIONS=(
@@ -62,15 +63,25 @@ class EmailSetup(models.Model):
     class Meta:
         verbose_name_plural='Email Settings'
 
-
 class DataSyncSettings(models.Model):
     data_issues_folder_url=models.CharField(max_length=500,default='E:/projects/DataIssueTracker/DITApi/media/facility data issues')
     faclity_list_csv_path=models.CharField(max_length=500,default='E:/projects/DataIssueTracker/DITApi/media/Hospital ID and Names.csv')
-    data_sync_frequency=models.IntegerField(default=60,help_text='In seconds')
-    data_sync_shedule_date=models.DateTimeField(blank=True,null=True)
+    DAYS_OF_WEEK = (
+        ('sun', 'Sunday'),
+        ('mon', 'Monday'),
+        ('tue', 'Tuesday'),
+        ('wed', 'Wednesday'),
+        ('thu', 'Thursday'),
+        ('fri', 'Friday'),
+        ('sat', 'Saturday'),
+    )
+    local_time = timezone.localtime(timezone.now())
+    day_of_week = models.CharField(max_length=3, choices=DAYS_OF_WEEK,default='sun')
+    time_of_day = models.TimeField(default=local_time.time())
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.data_issues_folder_url
+        return f"Sync on {self.get_day_of_week_display()} at {self.time_of_day}"
 
     class Meta:
         verbose_name_plural='Data Sync Settings'

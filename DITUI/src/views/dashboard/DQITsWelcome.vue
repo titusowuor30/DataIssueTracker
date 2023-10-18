@@ -38,6 +38,7 @@ const illustrationDataQuality = computed(() =>
             variant="tonal"
             class="mt-4"
             size="small"
+            to="/data-issues"
           >
             Get Started
           </VBtn>

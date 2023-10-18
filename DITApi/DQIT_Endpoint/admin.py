@@ -3,14 +3,14 @@ from .models import DataQualityIssues, Facilities, EmailSetup, DataSyncSettings
 
 @admin.register(DataQualityIssues)
 class DataQualityIssuesAdmin(admin.ModelAdmin):
-    list_display = ('patient_id', 'facility', 'date_of_entry', 'inconsistency', 'action_taken', 'date_action_taken')
-    list_filter = ('facility', 'date_of_entry','action_taken', 'date_action_taken')
+    list_display = ('patient_id', 'facility','date_of_entry','inconsistency', 'action_taken', 'date_action_taken',)
+    list_filter = ('facility','date_of_entry','action_taken', 'date_action_taken')
     search_fields = ('patient_id', 'facility', 'date_of_entry', 'inconsistency', 'action_taken', 'date_action_taken')
 
 @admin.register(Facilities)
 class FacilitiesAdmin(admin.ModelAdmin):
     list_display = ('facility_code', 'facility_name','country')
-    list_filter = ('country',)
+    list_filter = ('country','facility_code', 'facility_name')
     search_fields = ('facility_code', 'facility_name','country')
 
 @admin.register(EmailSetup)
@@ -21,6 +21,6 @@ class EmailSetupAdmin(admin.ModelAdmin):
 
 @admin.register(DataSyncSettings)
 class DataSyncSettingsAdmin(admin.ModelAdmin):
-    list_display = ('data_issues_folder_url','faclity_list_csv_path','data_sync_frequency')
-    list_filter= ('data_issues_folder_url','faclity_list_csv_path','data_sync_frequency')
-    search_fields= ('data_issues_folder_url','faclity_list_csv_path','data_sync_frequency')
+    list_display = ('day_of_week','time_of_day','is_active','data_issues_folder_url','faclity_list_csv_path')
+    list_filter= ('data_issues_folder_url','faclity_list_csv_path','day_of_week','time_of_day','is_active')
+    search_fields= ('data_issues_folder_url','faclity_list_csv_path','day_of_week','time_of_day','is_active')

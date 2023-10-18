@@ -4,13 +4,14 @@
       <VCardTitle>
         <VRow
           style="
-            background: linear-gradient(
-              90deg,
-              rgb(246, 235, 255) 0%,
-              rgb(240, 225, 225) 50%,
-              rgb(240, 239, 237) 100%
-            );
-          "
+            background:
+              linear-gradient(
+                90deg,
+                rgb(246, 235, 255) 0%,
+                rgb(240, 225, 225) 50%,
+                rgb(240, 239, 237) 100%
+              );
+"
           align="center"
           justify="space-between"
           class="px-2 m-0"
@@ -35,14 +36,21 @@
               />
             </div>
           </VCol>
-          <VCol cols="4" class="text-right">
+          <VCol
+            cols="4"
+            class="text-right"
+          >
             <CSVExport
               :filename="exportcsvFileName"
               :data="exportData"
               @export-csv="handleCSVExport"
             />
 
-            <VIcon size="40" icon="bxs-file-pdf" class="text-error" />
+            <VIcon
+              size="40"
+              icon="bxs-file-pdf"
+              class="text-error"
+            />
           </VCol>
         </VRow>
       </VCardTitle>
@@ -51,7 +59,11 @@
         <thead>
           <tr>
             <th>
-              <input v-model="selectAll" type="checkbox" @change="selectAllRows" />
+              <input
+                v-model="selectAll"
+                type="checkbox"
+                @change="selectAllRows"
+              >
             </th>
             <th>ID</th>
             <th>Country</th>
@@ -63,9 +75,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="issue in filteredDataIssues" :key="issue.id">
+          <tr
+            v-for="issue in filteredDataIssues"
+            :key="issue.id"
+          >
             <td>
-              <input v-model="selectedRows" type="checkbox" :value="issue.id" />
+              <input
+                v-model="selectedRows"
+                type="checkbox"
+                :value="issue.id"
+              >
             </td>
             <td>{{ issue.id }}</td>
             <td>{{ issue.country }}</td>
@@ -77,16 +96,30 @@
           </tr>
         </tbody>
       </table>
-      <p v-if="filteredDataIssues.length === 0" class="text-muted px-2">No data found!</p>
+      <p
+        v-if="filteredDataIssues.length === 0"
+        class="text-muted px-2"
+      >
+        No data found!
+      </p>
       <VCard class="px-2 py-2">
         <VRow>
           <VCol cols="3">
             <div class="select-action">
-              <VSelect v-model="action" :items="actions" label="Select Action" />
+              <VSelect
+                v-model="action"
+                :items="actions"
+                label="Select Action"
+              />
             </div>
           </VCol>
           <VCol cols="3">
-            <VBtn color="primary" class="px-2 py-2" outlined @click="updateDataIssues">
+            <VBtn
+              color="primary"
+              class="px-2 py-2"
+              outlined
+              @click="updateDataIssues"
+            >
               <span v-if="selectedRows.length > 1">Apply Bulk Action</span>
               <span v-else>Apply Action</span>
             </VBtn>
@@ -106,20 +139,20 @@
 </template>
 
 <script setup>
-import axios from "@/axiosConfig";
-import { exportCSV } from "@/components/report/exportUtils";
-import CSVExport from "@/pages/report/CSVExport.vue";
-import Swal from "sweetalert2";
-import { onMounted, reactive, ref, watch } from "vue";
+import axios from "@/axiosConfig"
+import { exportCSV } from "@/components/report/exportUtils"
+import CSVExport from "@/pages/report/CSVExport.vue"
+import Swal from "sweetalert2"
+import { onMounted, reactive, ref, watch } from "vue"
 
-const currentPage = ref(1);
-const perPage = ref(10); // Adjust as needed
-const totalItems = ref(0);
-const dataIssues = ref([]);
-const action = ref("Pending");
+const currentPage = ref(1)
+const perPage = ref(10) // Adjust as needed
+const totalItems = ref(0)
+const dataIssues = ref([])
+const action = ref("Pending")
 
 //reports
-const exportData = ref([]);
+const exportData = ref([])
 
 const rptheaders = [
   "ID",
@@ -129,9 +162,9 @@ const rptheaders = [
   "Date of Entry",
   "Inconsistency",
   "Action Taken",
-];
+]
 
-const exportcsvFileName = ref("data_issues.csv");
+const exportcsvFileName = ref("data_issues.csv")
 
 const actions = reactive([
   "Entry Corrected",
@@ -139,22 +172,22 @@ const actions = reactive([
   "Data Already Available",
   "No Data Needed",
   "Pending",
-]);
+])
 
-const perPageOptions = reactive([1, 5, 10, 20, 50, 100, 500, 100]);
+const perPageOptions = reactive([1, 5, 10, 20, 50, 100, 500, 100])
 
-const apiUrl = "data_issues";
+const apiUrl = "data_issues"
 
 // Filters
-const searchText = ref("");
-const filteredDataIssues = ref([]);
-const selectedRows = ref([]);
-const selectAll = ref(false);
+const searchText = ref("")
+const filteredDataIssues = ref([])
+const selectedRows = ref([])
+const selectAll = ref(false)
 
-const updatePage = (page) => {
-  currentPage.value = page;
-  loadData();
-};
+const updatePage = page => {
+  currentPage.value = page
+  loadData()
+}
 
 const loadData = () => {
   axios
@@ -164,10 +197,10 @@ const loadData = () => {
         offset: (currentPage.value - 1) * perPage.value,
       },
     })
-    .then((response) => {
-      dataIssues.value = response.data.results;
-      totalItems.value = response.data.count;
-      exportData.value = dataIssues.value.map((issue) => [
+    .then(response => {
+      dataIssues.value = response.data.results
+      totalItems.value = response.data.count
+      exportData.value = dataIssues.value.map(issue => [
         issue.id,
         issue.country,
         issue.facility_name,
@@ -175,66 +208,66 @@ const loadData = () => {
         issue.date_of_entry,
         issue.inconsistency,
         issue.action_taken,
-      ]); //map data as a list
-      exportData.value.unshift(rptheaders); //add headers as first row
-      console.log(exportData.value);
-      applyFilters();
+      ]) //map data as a list
+      exportData.value.unshift(rptheaders) //add headers as first row
+      console.log(exportData.value)
+      applyFilters()
     })
-    .catch((error) => {
-      console.error("Error loading data:", error);
-    });
-};
+    .catch(error => {
+      console.error("Error loading data:", error)
+    })
+}
 
 const applyFilters = () => {
-  filteredDataIssues.value = dataIssues.value.filter((issue) => {
-    const searchTextLower = searchText.value.toLowerCase();
+  filteredDataIssues.value = dataIssues.value.filter(issue => {
+    const searchTextLower = searchText.value.toLowerCase()
 
     return (
       issue.patient_id.toLowerCase().includes(searchTextLower) ||
       issue.date_of_entry.includes(searchTextLower) ||
       issue.inconsistency.toLowerCase().includes(searchTextLower) ||
       issue.action_taken.toLowerCase().includes(searchTextLower)
-    );
-  });
-};
+    )
+  })
+}
 
 const selectAllRows = () => {
   if (selectAll.value) {
-    selectedRows.value = filteredDataIssues.value.map((issue) => issue.id);
+    selectedRows.value = filteredDataIssues.value.map(issue => issue.id)
   } else {
-    selectedRows.value = [];
+    selectedRows.value = []
   }
-};
+}
 
 watch(selectedRows, () => {
-  selectAll.value = selectedRows.value.length === filteredDataIssues.value.length;
-});
+  selectAll.value = selectedRows.value.length === filteredDataIssues.value.length
+})
 
 const handleCSVExport = ({ filename, data }) => {
-  console.log("Exporting to CSV:", filename, data);
-  exportCSV(data, filename);
-};
+  console.log("Exporting to CSV:", filename, data)
+  exportCSV(data, filename)
+}
 
 const exportPDF = () => {
   // Add code to export data to PDF
-};
+}
 
 const updateDataIssues = () => {
   if (selectedRows.value.length === 0) {
-    return Swal.fire("No data to process!", "Please select at least one issue!", "info");
+    return Swal.fire("No data to process!", "Please select at least one issue!", "info")
   } else if (selectedRows.value.length === 1) {
-    updateSingele();
+    updateSingele()
   } else {
-    performBulkAction();
+    performBulkAction()
   }
-};
+}
 
 const updateSingele = () => {
-  const data_id = selectedRows.value[0];
+  const data_id = selectedRows.value[0]
 
   const data = {
     action: action.value,
-  };
+  }
 
   Swal.fire({
     icon: "info",
@@ -243,35 +276,35 @@ const updateSingele = () => {
     allowOutsideClick: false,
     showConfirmButton: false,
     willOpen: () => {
-      Swal.showLoading();
+      Swal.showLoading()
     },
-  });
+  })
   axios
     .put("data_issues/" + data_id + "/", data)
-    .then((response) => {
-      console.log(response);
+    .then(response => {
+      console.log(response)
       Swal.fire({
         icon: "success",
         title: "success!",
         html: "Process completed successfully",
         timer: 3000,
       }).finally(() => {
-        Swal.close();
-      });
-      selectedRows.value = [];
-      loadData();
+        Swal.close()
+      })
+      selectedRows.value = []
+      loadData()
     })
-    .catch((error) => {
-      console.error("Error loading data:", error);
-      Swal.fire("Error!", "Something went wrong:" + error, "error");
-    });
-};
+    .catch(error => {
+      console.error("Error loading data:", error)
+      Swal.fire("Error!", "Something went wrong:" + error, "error")
+    })
+}
 
 const performBulkAction = () => {
   const data = {
     data_ids: selectedRows.value,
     action: action.value,
-  };
+  }
 
   Swal.fire({
     icon: "info",
@@ -280,36 +313,36 @@ const performBulkAction = () => {
     allowOutsideClick: false,
     showConfirmButton: false,
     willOpen: () => {
-      Swal.showLoading();
+      Swal.showLoading()
     },
-  });
+  })
   axios
     .post("data_issues/", data)
-    .then((response) => {
-      console.log(response);
+    .then(response => {
+      console.log(response)
       Swal.fire({
         icon: "success",
         title: "success!",
         html: "Bulk update process completed successfully!",
         timer: 3000,
       }).finally(() => {
-        Swal.close();
-      });
-      selectedRows.value = [];
-      loadData();
+        Swal.close()
+      })
+      selectedRows.value = []
+      loadData()
     })
-    .catch((error) => {
-      console.error("Error loading data:", error);
-      Swal.fire("Error!", "Something went wrong:" + error, "error");
-    });
-};
+    .catch(error => {
+      console.error("Error loading data:", error)
+      Swal.fire("Error!", "Something went wrong:" + error, "error")
+    })
+}
 
 onMounted(() => {
-  setInterval(loadData, 3000);
-});
+  setInterval(loadData, 10000)
+})
 onUnmounted(() => {
-  clearInterval(loadData);
-});
+  clearInterval(loadData)
+})
 </script>
 
 <style scoped>

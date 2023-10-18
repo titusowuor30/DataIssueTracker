@@ -1,178 +1,77 @@
 <template>
-  <VRow>
-    <VCol cols="12">
-      <VCard title="Headlines">
-        <VCardText class="d-flex flex-column gap-y-8">
-          <div>
-            <h1 class="text-h1">
-              Heading 1
-            </h1>
-            <span>font-size: 6rem / line-height: 6rem / font-weight: 300</span>
-          </div>
-
-          <div>
-            <h2 class="text-h2">
-              Heading 2
-            </h2>
-            <span>font-size: 3.75rem / line-height: 3.75rem / font-weight: 300</span>
-          </div>
-
-          <div>
-            <h3 class="text-h3">
-              Heading 3
-            </h3>
-            <span>font-size: 3rem / line-height: 3.125rem / font-weight: 400</span>
-          </div>
-
-          <div>
-            <h4 class="text-h4">
-              Heading 4
-            </h4>
-            <span>font-size: 2.125rem / line-height: 2.5rem / font-weight: 400</span>
-          </div>
-
-          <div>
-            <h5 class="text-h5">
-              Heading 5
-            </h5>
-            <span>font-size: 1.5rem  / line-height: 2rem / font-weight: 400</span>
-          </div>
-
-          <div>
-            <h6 class="text-h6">
-              Heading 6
-            </h6>
-            <span>font-size: 1.25rem / line-height: 2rem / font-weight: 500</span>
-          </div>
-        </VCardText>
-      </VCard>
-    </VCol>
-
-    <VCol cols="12">
-      <VCard title="Texts">
-        <VCardText>
-          <VRow no-gutters>
-            <VCol
-              cols="12"
-              md="2"
-            >
-              <span class="text-subtitle-1 text-no-wrap">text-subtitle-1</span>
+  <VContainer>
+    <VCard>
+      <VCardTitle>Manage Data Sync Schedule</VCardTitle>
+      <VCardText>
+        <VForm @submit.prevent="saveBackupSchedule">
+          <VRow>
+            <VCol cols="6">
+              <VSelect
+                v-model="schedule.task_type"
+                :items="taskTypes"
+                label="Task Type"
+              />
+              <VSelect
+                v-model="schedule.schedule_type"
+                :items="scheduleTypes"
+                label="Schedule Type"
+              />
+              <VTextField v-model="schedule.destination_path" label="Destination Path" />
+              <VTextField
+                v-model="schedule.source_path"
+                class="py-2"
+                label="Source Path"
+              />
             </VCol>
-            <VCol
-              cols="12"
-              md="10"
-              class="mb-6"
-            >
-              <p class="text-subtitle-1 text-truncate mb-1">
-                Cupcake ipsum dolor sit amet fruitcake donut chocolate.
-              </p>
-              <span>font-size: 1rem / line-height: 1.75rem / font-weight: 400</span>
-            </VCol>
-
-            <VCol
-              cols="12"
-              md="2"
-            >
-              <span class="text-subtitle-2 text-no-wrap">text-subtitle-2</span>
-            </VCol>
-            <VCol
-              cols="12"
-              md="10"
-              class="mb-6"
-            >
-              <p class="text-subtitle-2 mb-1">
-                Cupcake ipsum dolor sit amet fruitcake donut chocolate.
-              </p>
-              <span>font-size: 0.875rem / line-height: 1.375rem / font-weight: 500</span>
-            </VCol>
-
-            <VCol
-              cols="12"
-              md="2"
-            >
-              <span class="text-body-1 text-no-wrap">text-body-1</span>
-            </VCol>
-            <VCol
-              cols="12"
-              md="10"
-              class="mb-6"
-            >
-              <p class="text-body-1 mb-1">
-                Cupcake ipsum dolor sit amet fruitcake donut chocolate.
-              </p>
-              <span>font-size: 1rem / line-height: 1.5rem / font-weight: 400</span>
-            </VCol>
-
-            <VCol
-              cols="12"
-              md="2"
-            >
-              <span class="text-body-2 text-no-wrap">text-body-2</span>
-            </VCol>
-            <VCol
-              cols="12"
-              md="10"
-              class="mb-6"
-            >
-              <p class="text-body-2 mb-1">
-                Cupcake ipsum dolor sit amet fruitcake donut chocolate.
-              </p>
-              <span>font-size: 0.875rem / line-height: 1.25rem / font-weight: 400</span>
-            </VCol>
-
-            <VCol
-              cols="12"
-              md="2"
-            >
-              <span class="text-caption">text-caption</span>
-            </VCol>
-            <VCol
-              cols="12"
-              md="10"
-              class="mb-6"
-            >
-              <p class="text-caption mb-1">
-                Cupcake ipsum dolor sit amet fruitcake donut chocolate.
-              </p>
-              <span>font-size: 0.75rem / line-height: 1.25rem / font-weight: 400</span>
-            </VCol>
-
-            <VCol
-              cols="12"
-              md="2"
-            >
-              <span class="text-overline text-no-wrap">text-overline</span>
-            </VCol>
-            <VCol
-              cols="12"
-              md="10"
-              class="mb-6"
-            >
-              <p class="text-overline mb-1">
-                Cupcake ipsum dolor sit amet fruitcake donut chocolate.
-              </p>
-              <span>font-size: 0.75rem / line-height: 2rem / font-weight: 500</span>
-            </VCol>
-
-            <VCol
-              cols="12"
-              md="2"
-            >
-              <span class="text-button">text-button</span>
-            </VCol>
-            <VCol
-              cols="12"
-              md="10"
-              class="mb-6"
-            >
-              <p class="text-button mb-1">
-                Cupcake ipsum dolor sit amet fruitcake donut chocolate.
-              </p>
-              <span>font-size: 0.875rem / line-height: 2.25rem / font-weight: 500</span>
+            <VCol cols="6">
+              <input
+                id="start_date"
+                type="datetime-local"
+                class="form-control p-3 m-2"
+                v-model="schedule.start_date"
+                placeholder="Start Date"
+              />
+              <input
+                id="last_run_date"
+                type="datetime-local"
+                class="form-control p-3 m-2"
+                v-model="schedule.last_run_date"
+                placeholder="Last Run Date"
+              />
+              <input
+                id="next_run_date"
+                type="datetime-local"
+                class="form-control p-3 m-2"
+                v-model="schedule.next_run_date"
+                placeholder="Next Run Date"
+              />
+              <VCheckbox v-model="schedule.enabled" class="p-2" label="Enabled" />
             </VCol>
           </VRow>
-        </VCardText>
-      </VCard>
-    </VCol>
-  </VRow>
+          <VBtn type="submit" color="primary" class="p-2"> Save Schedule </VBtn>
+        </VForm>
+      </VCardText>
+    </VCard>
+  </VContainer>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const schedule = ref({
+  task_type: "backup",
+  schedule_type: "daily",
+  start_date: new Date(),
+  last_run_date: new Date(),
+  next_run_date: new Date(),
+  destination_path: "",
+  source_path: "",
+});
+
+const taskTypes = ["backup", "restore"];
+const scheduleTypes = ["daily", "weekly", "monthly"];
+
+const saveBackupSchedule = () => {
+  // Implement logic to save the backup schedule here
+};
+</script>

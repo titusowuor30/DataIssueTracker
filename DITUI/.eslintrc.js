@@ -9,8 +9,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:promise/recommended',
     'plugin:sonarjs/recommended',
-
-    // 'plugin:unicorn/recommended',
+    'plugin:unicorn/recommended',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
