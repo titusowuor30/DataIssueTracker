@@ -31,10 +31,10 @@ watch(() => route.path, () => {
 })
 
 const isVerticalNavScrolled = ref(false)
-const updateIsVerticalNavScrolled = val => isVerticalNavScrolled.value = val
+const updateIsVerticalNavScrolled = value => isVerticalNavScrolled.value = value
 
-const handleNavScroll = evt => {
-  isVerticalNavScrolled.value = evt.target.scrollTop > 0
+const handleNavScroll = event_ => {
+  isVerticalNavScrolled.value = event_.target.scrollTop > 0
 }
 </script>
 

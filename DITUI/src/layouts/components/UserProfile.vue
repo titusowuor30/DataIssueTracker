@@ -12,8 +12,8 @@ const logout = async () => {
   try {
     await store.dispatch("auth/logout")
     router.push("/login")
-  } catch (e) {
-    console.log(e)
+  } catch (error) {
+    console.log(error)
   }
 }
 </script>
@@ -80,7 +80,12 @@ const logout = async () => {
               />
             </template>
 
-            <VListItemTitle> Profile </VListItemTitle>
+            <VBtn
+              to="/account-settings"
+              class="btn btn-default"
+            >
+              Profile
+            </VBtn>
           </VListItem>
 
           <!-- 👉 Settings -->

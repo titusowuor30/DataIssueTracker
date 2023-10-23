@@ -3,12 +3,31 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import get_user_model
 from .models import Roles,PasswordPolicy,BackupSchedule
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.hashers import make_password
 
 
 User=get_user_model()
 
 # Register the CustomUser model with the CustomUserAdmin class
-admin.site.register(User)
+class CustomUserAdmin(UserAdmin):
+    list_display = ('email', 'username', 'role', 'is_staff', 'is_superuser')
+    search_fields = ('email', 'username')
+    list_filter = ('is_staff', 'is_superuser', 'role')
+    fieldsets = (
+        (None, {'fields': ('email', 'username', 'password')}),
+        ('Personal Info', {'fields': ('role', 'gender', 'profile_pic', 'phone', 'address', 'organisation', 'country', 'state', 'zip', 'timezone', 'facilities', 'fcm_token')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
+        ('Important Dates', {'fields': ('last_login',)}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'username', 'password1', 'password2', 'role', 'gender', 'profile_pic', 'phone', 'address', 'organisation', 'country', 'state', 'zip', 'timezone', 'facilities', 'fcm_token')}
+        ),
+    )
+
+admin.site.register(User,CustomUserAdmin)
 # Register the Roles model
 admin.site.register(Roles)
 

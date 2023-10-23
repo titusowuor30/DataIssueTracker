@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from .models import Roles
+from .models import Roles,PasswordPolicy
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -25,7 +25,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','username','email','first_name', 'last_name','password', 'role', 'phone','gender','fcm_token','organisation','facilities','address','country','state','zip','timezone']
+        fields = ['id','username','email','first_name', 'last_name','role', 'phone','gender','profile_pic','fcm_token','organisation','facilities','address','country','state','zip','timezone']
         depth = 2
 
     # Define a method to serialize the timezone field
@@ -84,3 +84,9 @@ class CustomUserSerializer(serializers.ModelSerializer):
         except Exception as e:
             print("send mail error:{}".format(e))
         return user
+
+
+class PasswordPolicySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PasswordPolicy
+        fields = '__all__'

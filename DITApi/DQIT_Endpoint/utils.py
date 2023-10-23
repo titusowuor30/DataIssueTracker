@@ -15,7 +15,7 @@ class DataImporter:
         if len(facilities) > 0:
             for _, row in df.iterrows():
                 facility=facilities.filter(facility_code=row['Facility']).first()
-                if facility is not None:
+                if facility != None:
                     date_str=str(str(row['Date of Entry']).split(' ')[0])
                     issues={
                         'patient_id':row['Patient ID'],
@@ -32,6 +32,8 @@ class DataImporter:
                         defaults=issues,
                         )
                     time.sleep(1)
+                else:
+                    continue #move to the next facility
             print(f"Data imported from {file_path} successfully.")
             new_file_name = file_path.replace('.xlsx', '_processed.xlsx') if 'xlsx' in file_path else file_path.replace('.csv',  '_processed.csv')
             os.rename(file_path, new_file_name)
@@ -69,7 +71,6 @@ class DataImporter:
         for df, file_path in self.generate_data_from_files():
             df.drop_duplicates(inplace=True)#drop duplicates
             df.dropna(subset=['Inconsistency'],inplace=True)#drop rows where inconsistency is null
-            print(df.shape)
             self.import_data_from_excel(file_path,facility_file_path,df)
 
 

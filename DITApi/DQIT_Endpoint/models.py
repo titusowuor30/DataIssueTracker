@@ -2,30 +2,6 @@ from django.db import models
 from tinymce.models import HTMLField
 from django.utils import timezone
 
-class DataQualityIssues(models.Model):
-    ACTIONS=(
-    ('Entry Corrected', 'Entry Corrected'),
-    ('Data Matches Source Document', 'Data Matches Source Document'),
-    ('Data Already Available', 'Data Already Available'),
-    ('No Data Needed', 'No Data Needed'),
-    ('Pending', 'Pending'),
-    )
-    patient_id = models.CharField(max_length=100)
-    facility = models.ForeignKey('Facilities',on_delete=models.CASCADE,related_name='issues')
-    date_of_entry = models.DateField(blank=True,null=True)
-    inconsistency = HTMLField()
-    action_taken = models.CharField(max_length=100,choices=ACTIONS,default='Pending')
-    date_action_taken = models.DateField(blank=True,null=True)
-
-    def __str__(self):
-        return self.facility.facility_code
-
-    class Meta:
-        db_table='data_issues'
-        managed=True
-        verbose_name_plural='Data Quality Issues'
-
-
 class Facilities(models.Model):
     facility_code=models.CharField(max_length=100)
     facility_name=models.CharField(max_length=100)
@@ -38,6 +14,29 @@ class Facilities(models.Model):
         db_table='Faclities'
         managed=True
         verbose_name_plural='Facilities'
+        
+class DataQualityIssues(models.Model):
+    ACTIONS=(
+    ('Entry Corrected', 'Entry Corrected'),
+    ('Data Matches Source Document', 'Data Matches Source Document'),
+    ('Data Already Available', 'Data Already Available'),
+    ('No Data Needed', 'No Data Needed'),
+    ('Pending', 'Pending'),
+    )
+    patient_id = models.CharField(max_length=100)
+    facility = models.ForeignKey(Facilities,on_delete=models.CASCADE,related_name='issues')
+    date_of_entry = models.DateField(blank=True,null=True)
+    inconsistency = HTMLField()
+    action_taken = models.CharField(max_length=100,choices=ACTIONS,default='Pending')
+    date_action_taken = models.DateField(blank=True,null=True)
+
+    def __str__(self):
+        return self.facility.facility_code
+
+    class Meta:
+        db_table='data_issues'
+        managed=True
+        verbose_name_plural='Data Quality Issues'
 
 
 class EmailSetup(models.Model):

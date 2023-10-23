@@ -6,11 +6,8 @@ const store = useStore()
 const user = ref(store.state.auth.user)
 const imgbaseUrl = ref(store.state.setup.baseUrl)
 const pic = ref("")
-if (user.value.profile_pic) {
-  pic.value = imgbaseUrl.value + user.value.profile_pic
-} else {
-  pic.value = avatar1
-}
+
+pic.value = imgbaseUrl.value + user.value.profile_pic
 
 console.log(pic.value)
 
@@ -42,12 +39,12 @@ const resetForm = () => {
 const changeAvatar = file => {
   const fileReader = new FileReader()
   const { files } = file.target
-  if (files && files.length) {
+  if (files && files.length > 0) {
     fileReader.readAsDataURL(files[0])
-    fileReader.onload = () => {
+    fileReader.addEventListener('load', () => {
       if (typeof fileReader.result === "string")
         accountDataLocal.value.avatarImg = fileReader.result
-    }
+    })
   }
 }
 
@@ -96,21 +93,6 @@ const timezones = [
   "(GMT+00:00) Edinburgh",
   "(GMT+00:00) Lisbon",
   "(GMT+00:00) London",
-]
-
-const currencies = [
-  "USD",
-  "EUR",
-  "GBP",
-  "AUD",
-  "BRL",
-  "CAD",
-  "CNY",
-  "CZK",
-  "DKK",
-  "HKD",
-  "HUF",
-  "INR",
 ]
 </script>
 

@@ -19,7 +19,7 @@ mobile_num_regex = RegexValidator(
     )
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, phone, password=None, **extra_fields):
+    def create_user(self, email, phone, password='@User123', **extra_fields):
         if not email:
             raise ValueError('The Email field must be set')
         email = self.normalize_email(email)
@@ -27,6 +27,17 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
+    
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+
+        return self.create_user(email, password, **extra_fields)
 
 class CustomUser(AbstractUser):
     GENDER = [("Male", "Male"), ("Female", "Female"), ("Other", "Other")]
@@ -46,6 +57,8 @@ class CustomUser(AbstractUser):
     fcm_token = models.TextField(default="None")  # For firebase notifications
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    ip_address=models.CharField(max_length=100,default="192.168.0.1")
+    device=models.CharField(max_length=100,default="Phone")
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
     objects=CustomUserManager()
@@ -54,7 +67,7 @@ class CustomUser(AbstractUser):
     def save(self, *args, **kwargs):
         if not self.username:
             self.username = slugify(self.email.split('@')[0])
-            self.password=self.make_password(self.password)
+            self.password=make_password(self.password)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -117,14 +130,20 @@ class BackupSchedule(models.Model):
         ('restore', 'Restore'),
     ]
 
+    DB_CHOICES = [
+        ('mysql', 'MySQL'),
+        ('psql', 'PostgresSQL'),
+    ]
+
     task_type = models.CharField(max_length=10, choices=TASK_CHOICES, default='backup')
+    db_type = models.CharField(max_length=10, choices=DB_CHOICES, default='psql')
     schedule_type = models.CharField(max_length=10, choices=SCHEDULE_CHOICES, default='daily')
     start_datetime = models.DateTimeField(default=timezone.now)
     last_run_datetime = models.DateTimeField(null=True, blank=True)
     next_run_datetime = models.DateTimeField(null=True, blank=True)
     enabled = models.BooleanField(default=True)
-    folder_path = models.CharField(max_length=255,default='E:\projects\DataIssueTracker\DITApi\media\backups')
-    mysql_cmd_path = models.CharField(max_length=255,default='C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump',help_text='For windows environment')
+    folder_path = models.CharField(max_length=255,default='E:\projects\DataIssueTracker\DITApi\backups',help_text="Backup folder path")
+    restore_file=models.CharField(max_length=255,blank=True,null=True,default='E:\projects\DataIssueTracker\DITApi\backups\backup_2023_10_23_15-53-15.sql',help_text="Restore file path")
 
     def __str__(self):
         return f'{self.get_task_type_display()} Schedule ({self.get_schedule_type_display()})'

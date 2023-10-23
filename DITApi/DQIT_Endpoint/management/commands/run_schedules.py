@@ -15,10 +15,19 @@ class Command(BaseCommand):
         current_time  = datetime.now()
         day_of_week = current_time .strftime('%a').lower()
         time_of_day = current_time .strftime('%H:%M:%S')
+        #database credentials
+        db_settings = settings.DATABASES['default']
+        db_user = db_settings['USER']
+        db_password = db_settings['PASSWORD']
+        db_name = db_settings['NAME']
+        db_host=db_settings['HOST']
+        db_port=db_settings['PORT']
         #run data sync
         self.run_datasync(current_time,day_of_week,time_of_day)
         # run backup
-        self.run_backup_database(current_time)
+        self.run_backup_database(current_time,db_user,db_password,db_name,db_host,db_port)
+        # run restore
+        self.run_restore_schedule(current_time,db_user,db_password,db_name,db_host,db_port)
 
     def run_datasync(self,current_time,day_of_week,time_of_day):
         try:
@@ -51,63 +60,102 @@ class Command(BaseCommand):
         except Exception as e:
             print(e)
 
+    def run_backup_database(self,current_time,db_user,db_password,db_name,db_host,db_port):
+        try:
+            schedule = BackupSchedule.objects.filter(task_type='backup',enabled=True).first()
 
-    def run_backup_database(self,current_time):
-        #try:
-           schedule = BackupSchedule.objects.first()
-
-           if not schedule.enabled:
-                print('Backup schedule is disabled.')
+            if not schedule.enabled:
+                    print('No active schedules found.')
+                    return
+           
+            ########################Backup database######################################
+            # Calculate the time difference between now and the next scheduled run
+            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/60
+            print(time_difference)
+            if abs(time_difference) >1:
+                print(f"Backup schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
                 return
+            print("Backing up database...")
 
-          # Calculate the time difference between now and the next scheduled run
-           time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()
+            # Get the task type (backup or restore)
+            task_type = schedule.task_type
 
-           if time_difference > 1:
-                print(f'Backup schedule will run on {timezone.make_naive(schedule.next_run_datetime)} {time_difference} seconds till then.')
+                # Set the path for the backup file
+            backup_dir = os.path.join(os.getcwd(), 'backups') #Change this path to your desired backup directory
+            if not os.path.exists(backup_dir):
+                    os.makedirs(backup_dir)
+
+            current_datetime = timezone.now()
+            backup_file_name = f"{task_type}_{current_datetime.strftime('%Y_%m_%d_%H-%M-%S')}.sql"
+            backup_file_path = os.path.join(backup_dir, backup_file_name)
+
+            if schedule.db_type=='mysql':
+                # Construct the mysqldump command
+                mysqldump_cmd = ['mysqldump',f'--host={db_host}',f'--port={db_port}',f'--user={db_user}',f'--password={db_password}',db_name]
+                # Run the mysqldump command
+                try:
+                    with open(backup_file_path, 'w') as backup_file:
+                        subprocess.check_call(mysqldump_cmd, stdout=backup_file)
+                    self.stdout.write(self.style.SUCCESS(f'Successfully backed up database to {backup_file_path}'))
+                except subprocess.CalledProcessError:
+                    self.stderr.write(self.style.ERROR('Failed to create a database backup'))
+            elif schedule.db_type == 'psql':
+                os.environ['PGPASSWORD'] = db_password#set the password
+                # Construct the psql dump command
+                psql_dump_cmd = ['pg_dump',f'--host={db_host}',f'--port={db_port}',f'--dbname={db_name}',f'--username={db_user}',f'--file={backup_file_path}',]
+                # Run the pg_dump command
+                try:
+                    subprocess.check_call(psql_dump_cmd)
+                    self.stdout.write(self.style.SUCCESS(f'Successfully backed up database to {backup_file_path}'))
+                except subprocess.CalledProcessError:
+                    self.stderr.write(self.style.ERROR('Failed to create a database backup'))
+                os.environ.pop('PGPASSWORD', None)#remove the password
+                    # Update the last_run_datetime and next_run_datetime in the schedule
+                schedule.last_run_datetime = current_datetime
+                schedule.start_datetime=current_datetime
+                schedule.save()
+            else:
+                print("Unknown database")
+        except Exception as e:
+            print(f'Error: {e}')
+
+    def run_restore_schedule(self,current_time,db_user,db_password,db_name,db_host,db_port):
+        try:
+            schedule = BackupSchedule.objects.filter(task_type='restore',enabled=True).first()
+            current_datetime = timezone.now()
+            #restore dir
+            restore_dir = os.path.join(os.getcwd(), 'backups')
+            #restore file
+            restore_file=os.path.join(restore_dir, schedule.restore_file)
+
+            if not schedule.enabled:
+                    print('No active schedules found.')
+                    return
+            
+            #####################Restore database############################
+            # Calculate the time difference between now and the next scheduled run
+            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/60
+            print(time_difference)
+            if abs(time_difference) >1:
+                print(f"Restore schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
                 return
-
-           # Database settings
-           db_settings = settings.DATABASES['default']
-           #print(db_settings)
-
-           # MySQL database credentials
-           db_user = db_settings['USER']
-           db_password = db_settings['PASSWORD']
-           db_name = db_settings['NAME']
-
-           # Get the task type (backup or restore)
-           task_type = schedule.task_type
-
-            # Set the path for the backup file
-           backup_dir = os.path.join(os.getcwd(), 'backups')  # Change this path to your desired backup directory
-           if not os.path.exists(schedule.folder_path):
-                os.makedirs(backup_dir)
-
-           current_datetime = timezone.now()
-           backup_file_name = f"{task_type}_{current_datetime.strftime('%Y_%m_%d_%H-%M-%S')}.sql"
-           backup_file_path = os.path.join(backup_dir, backup_file_name)
-
-            # Construct the mysqldump command
-           mysqldump_cmd = fr"{schedule.mysql_cmd_path} -u{db_user} -p{db_password} -B {db_name} > {backup_file_path}"
-
-           # Execute the mysqldump command
-           subprocess.run(mysqldump_cmd, shell=True)
-
-           # Update the last_run_datetime and next_run_datetime in the schedule
-           schedule.last_run_datetime = current_datetime
-           if schedule.schedule_type == 'daily':
-                schedule.next_run_datetime += timezone.timedelta(days=1)
-           elif schedule.schedule_type == 'weekly':
-                schedule.next_run_datetime += timezone.timedelta(weeks=1)
-           elif schedule.schedule_type == 'monthly':
-                schedule.next_run_datetime += timezone.timedelta(days=30)  # Approximate for a month
-           schedule.save()
-
-        # except BackupSchedule.DoesNotExist:
-        #     print('Backup schedule not found.')
-        # except subprocess.CalledProcessError as e:
-        #     print(f'Error during backup: {e}')
-        # except Exception as e:
-        #     print(f'Error: {e}')
-
+            print("Restore in progress...")
+            #restore db
+            if schedule.db_type=='psql':
+                restore_cmd=['psql',f'--host={db_host}',f'--port={db_port}',f'--dbname={db_name}',f'--username={db_user}',f'--file={restore_file}']
+                os.environ['PGPASSWORD'] = db_password#set the password
+                # Run the psql command
+                try:
+                    subprocess.check_call(restore_cmd)
+                    self.stdout.write(self.style.SUCCESS(f'Successfully restored database file {schedule.restore_file}'))
+                except subprocess.CalledProcessError:
+                    self.stderr.write(self.style.ERROR(f'Failed to resore database {db_name}'))
+                os.environ.pop('PGPASSWORD', None)#remove the password
+            elif schedule.db_type == 'mysql':
+                pass
+            # Update the last_run_datetime and next_run_datetime in the schedule
+            schedule.last_run_datetime = current_datetime
+            schedule.start_datetime=current_datetime
+            schedule.save()
+        except Exception as e:
+            print(f'Error: {e}')

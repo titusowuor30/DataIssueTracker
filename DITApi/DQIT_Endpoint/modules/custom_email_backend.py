@@ -18,13 +18,14 @@ class DQITSEmailBackend:
         try:
             domain = self.request.META['HTTP_HOST']
             protocol = 'https' if self.request.is_secure() else 'http'
-            site_login_url = str(protocol+'://'+str(domain))+"/login"
+            site_login_url = str(protocol+'://'+str(domain))+"/api/login"
             config = EmailSetup.objects.first()
             # print(imap_settings.email_id, imap_settings.email_password)
             backend = EmailBackend(host=config.email_host, port=config.email_port, username=config.support_reply_email,
                                 password=config.email_password, use_tls=config.use_tls, fail_silently=config.fail_silently)
             # replace &nbsp; with space
             message = re.sub(r'(?<!&nbsp;)&nbsp;', ' ', strip_tags(self.body))
+            message+f"<br/><br/><a href='{site_login_url}'>DQITS Portal</a>"
             if self.attachments:
                 email = EmailMessage(
                     subject=self.subject, body=message, from_email=config.support_reply_email, to=self.to, connection=backend)

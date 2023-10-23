@@ -174,7 +174,7 @@ const actions = reactive([
   "Pending",
 ])
 
-const perPageOptions = reactive([1, 5, 10, 20, 50, 100, 500, 100])
+const perPageOptions = reactive([1, 5, 10, 20, 50, 100, 500, 1000, 1500, 2000])
 
 const apiUrl = "data_issues"
 
@@ -232,11 +232,7 @@ const applyFilters = () => {
 }
 
 const selectAllRows = () => {
-  if (selectAll.value) {
-    selectedRows.value = filteredDataIssues.value.map(issue => issue.id)
-  } else {
-    selectedRows.value = []
-  }
+  selectedRows.value = selectAll.value ? filteredDataIssues.value.map(issue => issue.id) : []
 }
 
 watch(selectedRows, () => {
@@ -338,7 +334,7 @@ const performBulkAction = () => {
 }
 
 onMounted(() => {
-  setInterval(loadData, 10000)
+  setInterval(loadData, 10_000)
 })
 onUnmounted(() => {
   clearInterval(loadData)

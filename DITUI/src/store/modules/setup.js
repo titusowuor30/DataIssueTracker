@@ -1,13 +1,11 @@
 
 const state = {
-  baseUrl: 'http://localhost:8000',
+  baseUrl: 'http://localhost:8001',
 }
 
-const mutations = {
-}
+const mutations = {}
 
-const actions = {
-}
+const actions = {}
 
 export default {
   namespaced: true,

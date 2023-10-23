@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -49,14 +50,14 @@ INSTALLED_APPS = [
     #third pirty
     'django_countries',
     'timezone_field',
+    'user_agents',
     'tinymce',
     'widget_tweaks',
 ]
 
-
 AUTH_USER_MODEL = 'DQITAuth.CustomUser'
 SCHEDULER_API_ENABLED = True
-
+SITE_ID=1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,6 +67,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    #'django.contrib.sites.middleware.SiteMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'DQITAuth.middleware.TimezoneMiddleware',
 ]
@@ -90,7 +92,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DITApi.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -100,19 +101,29 @@ WSGI_APPLICATION = 'DITApi.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE':'django.db.backends.mysql', #'mysql.connector.django',
+#         'NAME': 'dqits',
+#         'USER': 'newuser',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',  # Usually 'localhost' or '127.0.0.1'
+#         'PORT': '3306',  # Default MySQL port is 3306
+#         # 'OPTIONS': {
+#         #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         #     'charset': 'utf8mb4',
+#         # },
+#         # 'CONN_MAX_AGE': 600,
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'dqits',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',  # Usually 'localhost' or '127.0.0.1'
-        'PORT': '3306',  # Default MySQL port is 3306
-        # 'OPTIONS': {
-        #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        #     'charset': 'utf8mb4',
-        # },
-        # 'CONN_MAX_AGE': 600,
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dqits',      # Replace with your PostgreSQL database name
+        'USER': 'postgres',    # Replace with your PostgreSQL username
+        'PASSWORD': 'postgres',  # Replace with your PostgreSQL password
+        'HOST': 'localhost',   # Use 'localhost' if your database is on the same machine
+        'PORT': '5432',        # Default PostgreSQL port
     }
 }
 
@@ -134,10 +145,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-    'DQITAuth.backends.PasswordPolicyBackend',  # Add your backend here
-    'django.contrib.auth.backends.ModelBackend',
-]
+# AUTHENTICATION_BACKENDS = [
+#     'DQITAuth.backends.PasswordPolicyBackend',  # Add your backend here
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
 
 
 # Internationalization
@@ -162,7 +173,6 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
 }
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = "/static/"
@@ -171,7 +181,6 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 MEDIA_URL = '/media/'  # This is just for url i.e https://l.me/media/l.jpg
 # This is the folder the image will be uploaded
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

@@ -2,8 +2,14 @@
 import illustrationDataQualityDark from "@images/cards/illustration-john-dark.png"
 import illustrationDataQualityLight from "@images/cards/illustration-john-light.png"
 import { useTheme } from "vuetify"
+import axios from "@/axiosConfig"
 
 const { global } = useTheme()
+const adminurl=ref(axios.defaults.baseURL)
+const isAdmin = ref(JSON.parse(localStorage.getItem("isAdmin")))
+
+adminurl.value=adminurl.value.replace("api", "admin")
+console.log(adminurl)
 
 const illustrationDataQuality = computed(() =>
   global.name.value === "dark"
@@ -36,11 +42,24 @@ const illustrationDataQuality = computed(() =>
           <br>
           <VBtn
             variant="tonal"
-            class="mt-4"
+            class="m-4 d-inline-block"
             size="small"
             to="/data-issues"
           >
             Get Started
+          </VBtn>
+          <VBtn
+            v-if="isAdmin"
+            variant="tonal"
+            class="m-4 d-inline-block m-2"
+            size="small"
+          >
+            <a
+              :href="adminurl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Legacy Admin UI</a>
           </VBtn>
         </VCardText>
       </VCol>

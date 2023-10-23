@@ -7,13 +7,37 @@ from rest_framework.decorators import api_view, permission_classes,authenticatio
 from rest_framework.authtoken.models import Token
 from rest_framework import viewsets
 from django.contrib.auth import authenticate, login
-from .models import CustomUser
+from .models import CustomUser,PasswordPolicy
 from DQIT_Endpoint.models import Facilities
-from .serializers import CustomUserSerializer
+from .serializers import CustomUserSerializer,PasswordPolicySerializer
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from rest_framework.pagination import LimitOffsetPagination
 from django.http import Http404
+import socket
+from DQIT_Endpoint.modules.custom_email_backend import DQITSEmailBackend
+from django.http import HttpResponse
+from django.http import JsonResponse
+from user_agents import parse
+import threading
+
+def get_client_info(request):
+    client_ip = request.META.get('REMOTE_ADDR', None)
+
+    # Parse the user-agent string to get device and OS information
+    user_agent = request.META.get('HTTP_USER_AGENT', None)
+    if user_agent:
+        user_agent_info = parse(user_agent)
+        device = user_agent_info.device.family
+        os = user_agent_info.os.family
+        if device =='Other':
+            device='Unknown Computer'
+    # Perform your authentication and login logic here
+
+    # Respond to the client or store the information as needed
+    response = {"ip:":client_ip,"device:":device,"os:": os}
+    return JsonResponse(response)
+
 
 class RegistrationAPIView(APIView):
     permission_classes = ()
@@ -33,12 +57,25 @@ class LoginAPIView(APIView):
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
+        print(email,password)
 
         user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)
             token, _ = Token.objects.get_or_create(user=user)
+
+            #Notify user 
+            clientinfo=get_client_info(request)
+            if (user.ip_address or user.device) not in get_client_info(request):
+               try:
+                    subject="New device just logged into your account"
+                    message=f"A new device just logged into your account<br/>Device:{clientinfo['device']}<br/>OS:{clientinfo['os']}<br/>IP Address:{clientinfo['ip']}"
+                    emailthread=threading.Thread(target=DQITSEmailBackend.send_email(request,subject,message,user.email,[]))
+                    emailthread.start()
+                    print("Email thread started!")
+               except Exception as e:
+                   print(e)
 
             # Fetch user's roles
             role = user.role.role_name if user.role else None
@@ -156,3 +193,24 @@ class CustomUserViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(user)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class PasswordPolicyView(APIView):
+    def get(self, request):
+        try:
+            policy = PasswordPolicy.objects.first()
+            serializer = PasswordPolicySerializer(policy)
+            return Response(serializer.data)
+        except PasswordPolicy.DoesNotExist:
+            return Response({"error": "Password policy settings not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    def put(self, request):
+        try:
+            policy = PasswordPolicy.objects.first()
+            serializer = PasswordPolicySerializer(policy, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except PasswordPolicy.DoesNotExist:
+            return Response({"error": "Password policy settings not found."}, status=status.HTTP_404_NOT_FOUND)
