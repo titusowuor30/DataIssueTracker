@@ -6,13 +6,18 @@ import {
   useTheme,
 } from 'vuetify'
 import { ref, onMounted } from 'vue'
-import axios from '@/axiosConfig'
+import axios from "@/axiosConfig"
+import { onUnmounted } from 'vue'
 
-const selectedYear = ref(new Date().getFullYear())
-const selectedAction = ref('')
+const currentYear = ref(new Date().getFullYear())
+const years = ref(Array.from({ length: currentYear.value - 2019 }, (_, index) => 2020 + index))
+const selectedYear = ref('All')
+const selectedAction = ref('All')
 const facilities=ref([])
-const facility = ref('')
-const insightsData = ref([])
+const facility = ref('All')
+const series = ref([])
+const convertion_ratio=ref(0)
+
 
 const fetchFacilities = async()=>{
   await axios.get(`facilities`)
@@ -29,53 +34,30 @@ const fetchFacilities = async()=>{
 const fetchInsightsData = async () => {
   await axios.get(`analytics/?year=${selectedYear.value}&action_taken=${selectedAction.value}&facility=${facility.value}`)
     .then(response=>{
-      console.log(response)
-      insightsData.value = response.data.analytics_whole_year.map(x=>x.count)
-      insightsData.value.unshift({ "name": selectedYear })
-      console.log(insightsData)
+      console.log(response.data['series'])
+      series.value=response.data['series']
+      convertion_ratio.value=response.data.conversion_ratio
+      console.log(series.value)
     })    
     .catch(error=> {
       console.log(error)
-      insightsData.value = []
+      series.value = []
     })
 }
 
 // Fetch insights data when the component is mounted
 onMounted(() => {
   fetchFacilities()
-  fetchInsightsData()
+  setInterval(fetchInsightsData, 8000)
+  years.value.unshift("All")
 })
 
+onUnmounted(()=>{
+  clearInterval(fetchInsightsData)
+})
   
 const vuetifyTheme = useTheme()
 const display = useDisplay()
-
-//const series = [
-//   {
-//     name: `${ new Date().getFullYear() - 1 }`,
-//     data: [
-//       18,
-//       7,
-//       15,
-//       29,
-//       18,
-//       12,
-//       9,
-//     ],
-//   },
-//   {
-//     name: `${ new Date().getFullYear() - 2 }`,
-//     data: [
-//       -13,
-//       -18,
-//       -9,
-//       -14,
-//       -5,
-//       -17,
-//       -15,
-//     ],
-//   },
-// ]
 
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
@@ -100,6 +82,10 @@ const chartOptions = computed(() => {
       colors: [
         `rgba(${ hexToRgb(String(currentTheme.primary)) }, 1)`,
         `rgba(${ hexToRgb(String(currentTheme.info)) }, 1)`,
+        `rgba(${ hexToRgb(String(currentTheme.warning)) }, 1)`,
+        `rgba(${ hexToRgb(String(currentTheme.success)) }, 1)`,
+        `rgba(${ hexToRgb(String(currentTheme.secondary)) }, 1)`,
+        `rgba(${ hexToRgb(String(currentTheme.error)) }, 1)`,
       ],
       legend: {
         offsetX: -10,
@@ -260,20 +246,20 @@ const chartOptions = computed(() => {
   }
 })
 
-// const balanceData = [
-//   {
-//     icon: 'bx-bar-chart',
-//     amount: '32.5k',
-//     year: '2023',
-//     color: 'primary',
-//   },
-//   {
-//     icon: 'bx-line-chart',
-//     amount: '$41.2k',
-//     year: '2022',
-//     color: 'info',
-//   },
-// ]
+const balanceData = [
+  {
+    icon: 'bx-bar-chart',
+    amount: `1236`,
+    year: new Date().getFullYear(),
+    color: 'primary',
+  },
+  {
+    icon: 'bx-line-chart',
+    amount: '2345',
+    year: new Date().getFullYear()-1,
+    color: 'info',
+  },
+]
 </script>
 
 <template>
@@ -284,7 +270,7 @@ const chartOptions = computed(() => {
         sm="7"
         xl="8"
         :class="$vuetify.display.smAndUp ? 'border-e' : 'border-b'"
-      >
+      >{{ year1 }}
         <VCardItem class="pb-0">
           <VCardTitle>Data Quality Issues</VCardTitle>
 
@@ -311,32 +297,61 @@ const chartOptions = computed(() => {
         xl="4"
       >
         <VCardText class="text-center">
-          <VBtn
-            size="small"
-            variant="tonal"
-            append-icon="bx-chevron-down"
+          <!-- Add a filter section to select year, action, and month -->
+          <VCol
+            cols="12"
             class="mt-4"
           >
-            2023
-            <VMenu activator="parent">
-              <VList>
-                <VListItem
-                  v-for="(item, index) in ['2023', '2022', '2021','2020','2019']"
-                  :key="index"
-                  :value="item"
+            <VForm>
+              <VRow
+                align="center"
+                class="py-2"
+              >
+                <VCol
+                  cols="12"
+                  sm="4"
                 >
-                  <VListItemTitle>{{ item }}</VListItemTitle>
-                </VListItem>
-              </VList>
-            </VMenu>
-          </VBtn>
+                  <VSelect
+                    v-model="selectedYear"
+                    label="Year"
+                    :items="years"
+                    @change="fetchInsightsData"
+                  />
+                </VCol>
+                <VCol
+                  cols="12"
+                  sm="4"
+                >
+                  <VSelect
+                    v-model="selectedAction"
+                    label="Action Taken"
+                    :items="['All','Entry Corrected', 'Data Matches Source Document', 'Data Already Available', 'No Data Needed', 'Pending']"
+                    @change="fetchInsightsData"
+                  />
+                </VCol>
+                <VCol
+                  cols="12"
+                  sm="4"
+                >
+                  <VSelect
+                    v-model="facility"
+                    label="Facility"
+                    :items="facilities"
+                  >
+                    @change="fetchInsightsData"
+                    />
+                  </VSelect>
+                </VCol>
+              </VRow>
+            </VForm>
+          </VCol>
 
           <!-- radial chart -->
           <VueApexCharts
             type="radialBar"
             :height="250"
             :options="chartOptions.radial"
-            :series="[42.5]"
+            :series="[Number(convertion_ratio)]"
             class="mt-6"
           />
           <div class="d-flex align-center justify-center gap-x-8 gap-y-4 flex-wrap">
@@ -361,120 +376,6 @@ const chartOptions = computed(() => {
               </div>
             </div>
           </div>
-          <div
-            v-if="insightsData"
-            class="d-flex align-center justify-center gap-x-8 gap-y-4 flex-wrap"
-          >
-            <div
-              v-for="data in insightsData"
-              :key="data.year"
-              class="d-flex align-center gap-3"
-            >
-              <VAvatar
-                icon="bar-chart"
-                :color="data.color"
-                size="38"
-                rounded
-                variant="tonal"
-              />
-
-              <div class="text-start">
-                <span class="text-sm">{{ data.year }}</span>
-                <h6 class="text-base font-weight-medium">
-                  {{ data.value }}
-                </h6>
-              </div>
-            </div>
-          </div>
-
-          <!-- Add a filter section to select year, action, and month -->
-          <VCol
-            cols="12"
-            class="mt-4"
-          >
-            <VForm>
-              <VRow
-                align="center"
-                class="py-2"
-              >
-                <VCol
-                  cols="12"
-                  sm="4"
-                >
-                  <VSelect
-                    v-model="selectedYear"
-                    label="Year"
-                    :items="[2023, 2022, 2021]"
-                    @change="fetchInsightsData"
-                  />
-                </VCol>
-                <VCol
-                  cols="12"
-                  sm="4"
-                >
-                  <VSelect
-                    v-model="selectedAction"
-                    label="Action Taken"
-                    :items="['Entry Corrected', 'Data Matches Source Document', 'Data Already Available', 'No Data Needed', 'Pending']"
-                    @change="fetchInsightsData"
-                  />
-                </VCol>
-                <VCol
-                  cols="12"
-                  sm="4"
-                >
-                  <VSelect
-                    v-model="facility"
-                    label="Facility"
-                    :items="facilities"
-                  >
-                    @change="fetchInsightsData"
-                    />
-                  </VSelect>
-                </VCol>
-              </VRow>
-            </VForm>
-          </VCol>
-
-          <!-- Add VueApexCharts components for displaying insights -->
-          <VRow no-gutters>
-            <VCol
-              cols="12"
-              sm="7"
-              xl="8"
-              :class="$vuetify.display.smAndUp ? 'border-e' : 'border-b'"
-            >
-              <VCardItem class="pb-0">
-                <VCardTitle>Data Quality Issues</VCardTitle>
-              </VCardItem>
-
-              <!-- Bar chart -->
-              <VueApexCharts
-                id="bar-chart"
-                type="bar"
-                :height="336"
-                :options="chartOptions.bar"
-                :series="insightsData ? insightsData.barChart : []"
-              />
-            </VCol>
-
-            <VCol
-              cols="12"
-              sm="5"
-              xl="4"
-            >
-              <VCardText class="text-center">
-                <!-- Radial chart -->
-                <VueApexCharts
-                  type="radialBar"
-                  :height="250"
-                  :options="chartOptions.radial"
-                  :series="insightsData ? insightsData.radialChart : []"
-                  class="mt-6"
-                />
-              </VCardText>
-            </VCol>
-          </VRow>
         </VCardText>
       </VCol>
     </VRow>

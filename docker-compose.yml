@@ -1,0 +1,15 @@
+version: '3'
+services:
+  ditapi:
+    image: ditapi:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./static:/app/static
+      - ./backups:/app/backups
+      - ./media:/app/media
+    command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000
+  ditui:
+    image: ditui:latest
+    ports:
+      - "8080:8080"

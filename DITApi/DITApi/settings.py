@@ -118,12 +118,12 @@ WSGI_APPLICATION = 'DITApi.wsgi.application'
 # }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dqits',      # Replace with your PostgreSQL database name
-        'USER': 'postgres',    # Replace with your PostgreSQL username
-        'PASSWORD': 'postgres',  # Replace with your PostgreSQL password
-        'HOST': 'localhost',   # Use 'localhost' if your database is on the same machine
-        'PORT': '5432',        # Default PostgreSQL port
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': os.environ.get('DB_HOST','localhost'),
+        'PORT': os.environ.get('DB_PORT','3306'),
+        'NAME': os.environ.get('DB_NAME','dqits'),
+        'USER': os.environ.get('DB_USER','dqitsuser'),
+        'PASSWORD': os.environ.get('DB_PASSWORD','DQITs@123'),
     }
 }
 
