@@ -1,15 +1,30 @@
 version: '3'
 services:
+  dqitsdb:
+    container_name: dqitsdb
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=dqitsuser
+      - MYSQL_PASSWORD=DQITs@123
+      - MYSQL_DATABASE=dqits
+    image: mysql:8.0
+    ports:
+      - "3309:3306"
   ditapi:
     image: ditapi:latest
     ports:
-      - "8000:8000"
+      - "8001:8000"
+    depends_on:
+      - dqitsdb
     volumes:
-      - ./static:/app/static
-      - ./backups:/app/backups
-      - ./media:/app/media
+      - /home/titusdev/projects/DataIssueTracker/DITApi/static:/app/static
+      - /home/titusdev/projects/DataIssueTracker/DITApi/backups:/app/backups
+      - /home/titusdev/projects/DataIssueTracker/DITApi/media:/app/media
+      - /home/titusdev/projects/DataIssueTracker/DITApi/media:/app/media/facility data issues
     command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000
   ditui:
     image: ditui:latest
     ports:
-      - "8080:8080"
+      - "3000:80"
+    depends_on:
+      - ditapi

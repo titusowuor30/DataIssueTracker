@@ -1,12 +1,17 @@
 # Use an official Python runtime as a parent image
 FROM python:3.10
 
+# Update the package list and install system dependencies
+RUN apt-get update && apt-get install -y \
+    default-libmysqlclient-dev \
+    && rm -rf /var/lib/apt/lists/*
+    
 # Set environment variables
 ENV DB_HOST=192.168.211.10
-ENV DB_PORT=5432
+ENV DB_PORT=3306
 ENV DB_NAME=dqits
-ENV DB_USER=postgres
-ENV DB_PASSWORD=postgres
+ENV DB_USER=dqitsuser
+ENV DB_PASSWORD=DQITs@123
 
 ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE DITApi.settings
@@ -17,11 +22,16 @@ WORKDIR /app
 # Copy the requirements file into the container
 COPY requirements.txt /app/
 
+#COPY wait-for.py /bin/
+
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
 # Copy the current directory contents into the container at /app
 COPY . /app/
+
+#collect static
+RUN python manage.py collectstatic --noinput
 
 # Expose the port that the application will run on
 EXPOSE 8000

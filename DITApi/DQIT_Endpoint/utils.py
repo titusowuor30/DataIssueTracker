@@ -29,7 +29,6 @@ class DataImporter:
                         patient_id=row['Patient ID'],
                         date_of_entry=pd.to_datetime(str(date_str), format='%Y-%m-%d').date(),
                         inconsistency=row['Inconsistency'],
-                        action_taken='Pending',
                         defaults=issues,
                         )
                     time.sleep(1)
