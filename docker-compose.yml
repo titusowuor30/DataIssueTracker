@@ -1,15 +1,5 @@
 version: '3'
 services:
-  dqitsdb:
-    container_name: dqitsdb
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=dqitsuser
-      - MYSQL_PASSWORD=DQITs@123
-      - MYSQL_DATABASE=dqits
-    image: mysql:8.0
-    ports:
-      - "3309:3306"
   ditapi:
     container_name: ditapi
     environment:
@@ -21,8 +11,6 @@ services:
     image: ditapi:latest
     ports:
       - "8001:8000"
-    depends_on:
-      - dqitsdb
     volumes:
       - /home/titusdev/projects/DataIssueTracker/DITApi/static:/app/static
       - /home/titusdev/projects/DataIssueTracker/DITApi/backups:/app/backups
