@@ -8,7 +8,7 @@ services:
       - DB_PASSWORD=DQITs@123
       - DB_NAME=dqits
       - DB_HOST=192.168.251.10
-    image: ditapi:latest
+    image: titusdev/ditapi:latest
     ports:
       - "8001:8000"
     volumes:
@@ -18,7 +18,8 @@ services:
       - /home/titusdev/projects/DataIssueTracker/facility data issues:/app/facility data issues
     command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000
   ditui:
-    image: ditui:latest
+    container_name: ditui
+    image: titusdev/ditui:latest
     ports:
       - "3000:80"
     depends_on:
