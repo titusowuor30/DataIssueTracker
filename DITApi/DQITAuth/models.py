@@ -13,6 +13,7 @@ from DQIT_Endpoint.models import Facilities
 from django.utils import timezone
 from django_countries.fields import CountryField
 from timezone_field import TimeZoneField
+from tinymce.models import HTMLField
 
 mobile_num_regex = RegexValidator(
         regex=r"^(?:\+254|0)[17]\d{8}$", message="Entered mobile number isn't in a right format!"
@@ -172,3 +173,12 @@ class Roles(models.Model):
         verbose_name_plural='Roles'
 
 
+class AccountRequest(models.Model):
+    username = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    account_information=HTMLField()
+    request_date = models.DateTimeField(auto_now_add=True)
+    is_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.username

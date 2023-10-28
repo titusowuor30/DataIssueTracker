@@ -5,9 +5,8 @@ import {
   useDisplay,
   useTheme,
 } from 'vuetify'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import axios from "@/axiosConfig"
-import { onUnmounted } from 'vue'
 
 const currentYear = ref(new Date().getFullYear())
 const years = ref(Array.from({ length: currentYear.value - 2019 }, (_, index) => 2020 + index))
@@ -22,7 +21,9 @@ const convertion_ratio=ref(0)
 const fetchFacilities = async()=>{
   await axios.get(`facilities`)
     .then(response=>{
-      facilities.value = response.data['results'].map(x=>x.facility_name)
+      facilities.value = response.data['results'].sort((a, b) => a.facility_name.localeCompare(b.facility_name)).map(x=>x.facility_name)
+      facilities.value.unshift("All")
+      facilities.value
     })
     .catch(error=>{
       console.log(error)
@@ -48,7 +49,7 @@ const fetchInsightsData = async () => {
 // Fetch insights data when the component is mounted
 onMounted(() => {
   fetchFacilities()
-  setInterval(fetchInsightsData, 8000)
+  setInterval(fetchInsightsData, 6000)
   years.value.unshift("All")
 })
 
@@ -270,7 +271,8 @@ const balanceData = [
         sm="7"
         xl="8"
         :class="$vuetify.display.smAndUp ? 'border-e' : 'border-b'"
-      >{{ year1 }}
+      >
+        {{ year1 }}
         <VCardItem class="pb-0">
           <VCardTitle>Data Quality Issues</VCardTitle>
 

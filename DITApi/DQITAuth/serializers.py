@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from .models import Roles,PasswordPolicy
+from .models import Roles,PasswordPolicy,AccountRequest
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -89,4 +89,10 @@ class CustomUserSerializer(serializers.ModelSerializer):
 class PasswordPolicySerializer(serializers.ModelSerializer):
     class Meta:
         model = PasswordPolicy
+        fields = '__all__'
+
+
+class AccountRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AccountRequest
         fields = '__all__'

@@ -7,6 +7,7 @@ from datetime import datetime, time, timedelta
 import subprocess
 from django.conf import settings
 import os
+import threading
 
 class Command(BaseCommand):
     help = 'Import data from Excel and CSV files in a folder using DataImporter according to schedule'
@@ -31,6 +32,10 @@ class Command(BaseCommand):
 
     def run_datasync(self,current_time,day_of_week,time_of_day):
         try:
+            # for thread in threading.enumerate():
+            #     print("Thread Name: {}".format(thread.name),"ID: {}".format(thread.ident),"Is Daemon: {}".format(thread.daemon),"Thread Is Alive: {}".format(thread.is_alive()))
+            #     print("Thread Is Current Thread: {}".format(thread == threading.current_thread()))
+            #     print()
             # Get active backup schedules for the current day and time
             next_run_schedule  = DataSyncSettings.objects.filter(
                 day_of_week=day_of_week,

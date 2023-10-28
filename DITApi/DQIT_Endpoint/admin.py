@@ -3,9 +3,9 @@ from .models import DataQualityIssues, Facilities, EmailSetup, DataSyncSettings
 
 @admin.register(DataQualityIssues)
 class DataQualityIssuesAdmin(admin.ModelAdmin):
-    list_display = ('patient_id', 'facility','date_of_entry','inconsistency', 'action_taken', 'date_action_taken',)
-    list_filter = ('facility','date_of_entry','action_taken', 'date_action_taken')
-    search_fields = ('patient_id', 'facility', 'date_of_entry', 'inconsistency', 'action_taken', 'date_action_taken')
+    list_display = ('patient_id','facility','date_of_entry','inconsistency', 'action_taken', 'date_action_taken',)
+    list_filter = ('facility__country','facility','date_of_entry','action_taken', 'date_action_taken')
+    search_fields = ('patient_id','facility__country','facility', 'date_of_entry', 'inconsistency', 'action_taken', 'date_action_taken')
 
 @admin.register(Facilities)
 class FacilitiesAdmin(admin.ModelAdmin):

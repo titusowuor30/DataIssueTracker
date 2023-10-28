@@ -38,7 +38,11 @@ class DataQualityIssuesEndpoints(APIView):
         query_params = request.query_params
         patient_id = query_params.get('patient_id',None)
         date_of_entry = query_params.get('date_of_entry',None)
+        print(type(date_of_entry))
         inconsistency = query_params.get('inconsistency',None)
+        country = query_params.get('country',None)
+        facility = query_params.get('facility',None)
+
 
         issues = DataQualityIssues.objects.filter(facility__in=request.user.facilities.all()) if request.user.role.role_name !='Admin' else DataQualityIssues.objects.all()
 
@@ -48,6 +52,10 @@ class DataQualityIssuesEndpoints(APIView):
             issues = issues.filter(date_of_entry=date_of_entry)
         if inconsistency:
             issues = issues.filter(inconsistency__icontains=inconsistency)
+        if facility and facility !='All':
+            issues = issues.filter(facility__facility_name=facility)
+        if country and country !='All':
+            issues = issues.filter(facility__country=country)
 
         paginator = LimitOffsetPagination()
         paginator.default_limit = 100

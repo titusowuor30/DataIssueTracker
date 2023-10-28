@@ -1,22 +1,40 @@
 <script setup>
 import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
 import logo from '@images/icons/logo/triangle-dark.png'
+import axios from  "@/axiosConfig"
+import Swal from "sweetalert2"
 
 const form = ref({
   username: '',
   email: '',
-  password: '',
+  account_information: '',
   privacyPolicies: false,
 })
 
 const isPasswordVisible = ref(false)
+
+const submitRequest = async() =>{
+  await axios.post('account-requests/', form.value)
+    .then(response=>{
+      console.log(response)
+      Swal.fire({
+        icon: "success",
+        title: "success!",
+        html: "<p>Request submitted successfully<br/>Someone from DQITs Team will get back to you soon!</p>",
+        timer: 3000,
+      }).finally(() => {
+        Swal.close()
+      })
+    })
+
+}
 </script>
 
 <template>
   <div class="auth-wrapper d-flex align-center justify-center pa-4">
     <VCard
       class="auth-card pa-4 pt-7"
-      max-width="448"
+      max-width="600"
     >
       <VCardItem class="justify-center">
         <template #prepend>
@@ -69,13 +87,11 @@ const isPasswordVisible = ref(false)
 
             <!-- password -->
             <VCol cols="12">
-              <VTextField
-                v-model="form.password"
-                label="Password"
-                placeholder="············"
-                :type="isPasswordVisible ? 'text' : 'password'"
-                :append-inner-icon="isPasswordVisible ? 'bx-hide' : 'bx-show'"
-                @click:append-inner="isPasswordVisible = !isPasswordVisible"
+              <VTextarea
+                v-model="form.account_information"
+                label="Account Information"
+                placeholder="Provide info about your account e.g timezone, phone,first name, last name, username..."
+                type="text"
               />
               <div class="d-flex align-center mt-1 mb-4">
                 <VCheckbox
@@ -97,7 +113,7 @@ const isPasswordVisible = ref(false)
 
               <VBtn
                 block
-                type="submit"
+                @click="submitRequest"
               >
                 Request Account
               </VBtn>

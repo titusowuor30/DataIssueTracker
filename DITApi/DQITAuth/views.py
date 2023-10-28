@@ -7,9 +7,9 @@ from rest_framework.decorators import api_view, permission_classes,authenticatio
 from rest_framework.authtoken.models import Token
 from rest_framework import viewsets
 from django.contrib.auth import authenticate, login
-from .models import CustomUser,PasswordPolicy
+from .models import CustomUser,PasswordPolicy,AccountRequest
 from DQIT_Endpoint.models import Facilities
-from .serializers import CustomUserSerializer,PasswordPolicySerializer
+from .serializers import CustomUserSerializer,PasswordPolicySerializer,AccountRequestSerializer
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from rest_framework.pagination import LimitOffsetPagination
@@ -20,6 +20,8 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from user_agents import parse
 import threading
+from .models import Roles
+import json
 
 def get_client_info(request):
     client_ip = request.META.get('REMOTE_ADDR', None)
@@ -57,7 +59,6 @@ class LoginAPIView(APIView):
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
-        print(email,password)
 
         user = authenticate(request, email=email, password=password)
 
@@ -66,13 +67,18 @@ class LoginAPIView(APIView):
             token, _ = Token.objects.get_or_create(user=user)
 
             #Notify user 
-            clientinfo=get_client_info(request)
-            if (user.ip_address or user.device) not in get_client_info(request):
+            res=get_client_info(request)
+            content=res.content
+            clientdata=list(json.loads(content.decode('utf-8')).values())
+            print("client data",clientdata)
+            if (user.ip_address not in clientdata) or (user.device not in clientdata):
                try:
+                    print("Processing login mail")
                     subject="New device just logged into your account"
-                    message=f"A new device just logged into your account<br/>Device:{clientinfo['device']}<br/>OS:{clientinfo['os']}<br/>IP Address:{clientinfo['ip']}"
-                    emailthread=threading.Thread(target=DQITSEmailBackend.send_email(request,subject,message,user.email,[]))
-                    emailthread.start()
+                    message=f"A new device just logged into your account<br/>\n\nDevice name:{clientdata[1]}<br/>\nDevice OS:{clientdata[2]}<br/>\nIP Address:{clientdata[0]}"
+                    # emailthread=threading.Thread(target=DQITSEmailBackend(request=request,subject=subject,body=message,to=["titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+                    # emailthread.daemon=True
+                    #emailthread.start()
                     print("Email thread started!")
                except Exception as e:
                    print(e)
@@ -140,7 +146,30 @@ class UserApiView(APIView):
     def put(self, request, pk, format=None):
         user = self.get_object(pk)
         if user:
-            user.username=request.data['username']
+            print(request.data.get('first_name'))
+            user.username = request.data.get('username',None)
+            user.email = request.data.get('email', None)
+            user.first_name = request.data.get('first_name', None)
+            user.last_name = request.data.get('last_name', None)
+            
+            # Assuming 'role' is a ForeignKey relationship
+            role_data = request.data.get('role',user.role)
+            if role_data:
+                role=Roles.objects.get(role_name=role_data)
+                user.role = role
+
+            print(request.data.get('phone'))
+            
+            user.phone = request.data.get('phone', None)
+            user.gender = request.data.get('gender', None)
+            user.profile_pic = request.data.get('profile_pic', None)
+            user.fcm_token = request.data.get('fcm_token', user.fcm_token)
+            user.organisation = request.data.get('organisation', user.organisation)
+            user.address = request.data.get('address', user.address)
+            user.country = request.data.get('country', user.country)
+            user.state = request.data.get('state', user.state)
+            user.zip = request.data.get('zip', user.zip)
+            user.timezone = request.data.get('timezone', user.timezone)
             user.save()
             return Response('Success!')
         return Response('Error updating issue', status=status.HTTP_400_BAD_REQUEST)
@@ -214,3 +243,20 @@ class PasswordPolicyView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except PasswordPolicy.DoesNotExist:
             return Response({"error": "Password policy settings not found."}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+class AccountRequestView(APIView):
+    def get(self, request):
+        # Retrieve and list all account requests
+        account_requests = AccountRequest.objects.all()
+        serializer = AccountRequestSerializer(account_requests, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        # Create a new account request
+        serializer = AccountRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

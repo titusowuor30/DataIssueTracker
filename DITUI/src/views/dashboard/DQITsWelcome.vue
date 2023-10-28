@@ -49,7 +49,6 @@ const illustrationDataQuality = computed(() =>
             Get Started
           </VBtn>
           <VBtn
-            v-if="isAdmin"
             variant="tonal"
             class="m-4 d-inline-block m-2"
             size="small"

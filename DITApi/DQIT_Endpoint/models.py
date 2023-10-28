@@ -43,9 +43,9 @@ class EmailSetup(models.Model):
     support_reply_email_name = models.CharField(
         max_length=255, default='DQITs Center', blank=True, null=True)
     support_reply_email = models.EmailField(
-        max_length=255, default='titusowuor30@gmail.com', blank=True, null=True)
+        max_length=255, default='info@bengohub.co.ke', blank=True, null=True)
     email_password = models.CharField(
-        max_length=255, default='xdofqrtncuimlewm', blank=True, null=True)
+        max_length=255, default='T*%mw+t8h~IZY&*2', blank=True, null=True)
     email_port = models.IntegerField(default=587, blank=True, null=True)
     email_backed = models.CharField(
         max_length=100, default='smtp', blank=True, null=True)

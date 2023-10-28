@@ -26,7 +26,7 @@
               @input="applyFilters"
             />
           </VCol>
-          <VCol cols="3">
+          <VCol cols="2">
             <div class="select-per-page">
               <VSelect
                 v-model="perPage"
@@ -36,8 +36,28 @@
               />
             </div>
           </VCol>
+          <VCol cols="2">
+            <div class="select-per-page">
+              <VSelect
+                v-model="facility"
+                :items="facilities"
+                label="Select Facility"
+                @click="loadData"
+              />
+            </div>
+          </VCol>
+          <VCol cols="2">
+            <div class="select-per-page">
+              <VSelect
+                v-model="country"
+                :items="countries"
+                label="Select Country"
+                @click="loadData"
+              />
+            </div>
+          </VCol>
           <VCol
-            cols="4"
+            cols="2"
             class="text-right"
           >
             <CSVExport
@@ -176,23 +196,100 @@ const actions = reactive([
 
 const perPageOptions = reactive([1, 5, 10, 20, 50, 100, 500, 1000, 1500, 2000])
 
-const apiUrl = "data_issues"
+const apiUrl = "data_issues/"
 
 // Filters
 const searchText = ref("")
+const country = ref("All")
+const facility = ref("All")
+const facilities=ref([])
 const filteredDataIssues = ref([])
 const selectedRows = ref([])
 const selectAll = ref(false)
+
+const countries=ref([
+  "All",
+  "Algeria",
+  "Angola",
+  "Benin",
+  "Botswana",
+  "Burkina Faso",
+  "Burundi",
+  "Cabo Verde",
+  "Cameroon",
+  "Central African Republic",
+  "Chad",
+  "Comoros",
+  "Congo (Brazzaville)",
+  "Congo (Kinshasa)",
+  "Cote d'Ivoire",
+  "Djibouti",
+  "Egypt",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Eswatini",
+  "Ethiopia",
+  "Gabon",
+  "Gambia",
+  "Ghana",
+  "Guinea",
+  "Guinea-Bissau",
+  "Kenya",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Madagascar",
+  "Malawi",
+  "Mali",
+  "Mauritania",
+  "Mauritius",
+  "Morocco",
+  "Mozambique",
+  "Namibia",
+  "Niger",
+  "Nigeria",
+  "Rwanda",
+  "Sao Tome and Principe",
+  "Senegal",
+  "Seychelles",
+  "Sierra Leone",
+  "Somalia",
+  "South Africa",
+  "South Sudan",
+  "Sudan",
+  "Tanzania",
+  "Togo",
+  "Tunisia",
+  "Uganda",
+  "Zambia",
+  "Zimbabwe",
+])
 
 const updatePage = page => {
   currentPage.value = page
   loadData()
 }
 
+const fetchFacilities = async()=>{
+  await axios.get(`facilities`)
+    .then(response=>{
+      facilities.value = response.data['results'].sort((a, b) => a.facility_name.localeCompare(b.facility_name)).map(x=>x.facility_name)
+      facilities.value.unshift("All")
+      facilities.value
+    })
+    .catch(error=>{
+      console.log(error)
+      facilities.value = []
+    })
+}
+
 const loadData = () => {
   axios
     .get(apiUrl, {
       params: {
+        patient_id: searchText.value,
+        facility: facility.value,
+        country: country.value,
         limit: perPage.value,
         offset: (currentPage.value - 1) * perPage.value,
       },
@@ -334,6 +431,7 @@ const performBulkAction = () => {
 }
 
 onMounted(() => {
+  fetchFacilities()
   setInterval(loadData, 10_000)
 })
 onUnmounted(() => {

@@ -1,57 +1,19 @@
 <script setup>
 import avatar1 from "@images/avatars/avatar-1.png"
 import { useStore } from "vuex"
+import axios from "@/axiosConfig"
+import Swal from "sweetalert2"
+
 
 const store = useStore()
 const user = ref(store.state.auth.user)
 const imgbaseUrl = ref(store.state.setup.baseUrl)
 const pic = ref("")
+const refInputEl = ref(undefined)
 
 pic.value = imgbaseUrl.value + user.value.profile_pic
 
-console.log(pic.value)
-
-const accountData = {
-  avatarImg: pic.value,
-  firstName: user.value.first_name ? user.value.first_name : "john",
-  lastName: user.value.last_name ? user.value.last_name : "Doe",
-  email: user.value.email ? user.value.email : "johnDoe@example.com",
-  org: "DQITs",
-  phone: user.value.phone ? user.value.phone : "+1 (917) 543-9876",
-  address: user.value.address ? user.value.address : "123 Main St, Nairobi, NY 10001",
-  state: user.value.state ? user.value.state : "Nairobi",
-  zip: user.value.zip ? user.value.zip : "001",
-  country: user.value.country ? user.value.country : "Kenya",
-  language: user.value.language ? user.value.language : "English",
-  timezone: user.value.timezone
-    ? user.value.timezone
-    : "(GMT-11:00) International Date Line West",
-}
-
-const refInputEl = ref()
-const accountDataLocal = ref(structuredClone(accountData))
-const isAccountDeactivated = ref(false)
-
-const resetForm = () => {
-  accountDataLocal.value = structuredClone(accountData)
-}
-
-const changeAvatar = file => {
-  const fileReader = new FileReader()
-  const { files } = file.target
-  if (files && files.length > 0) {
-    fileReader.readAsDataURL(files[0])
-    fileReader.addEventListener('load', () => {
-      if (typeof fileReader.result === "string")
-        accountDataLocal.value.avatarImg = fileReader.result
-    })
-  }
-}
-
-// reset avatar image
-const resetAvatar = () => {
-  accountDataLocal.value.avatarImg = accountData.avatarImg
-}
+console.log(user)
 
 const timezones = [
   "(GMT-11:00) International Date Line West",
@@ -94,6 +56,77 @@ const timezones = [
   "(GMT+00:00) Lisbon",
   "(GMT+00:00) London",
 ]
+
+const accountData = {
+  id: user.value.id,
+  username: user.value.username || user.value.email,
+  email: user.value.email || "johnDoe@example.com",
+  first_name: user.value.first_name || "john",
+  last_name: user.value.last_name || "Doe",
+  role: user.value.role,
+  phone: user.value.phone || "+254 (743) 793-901",
+  gender: "Other",
+  profile_pic: user.value.profile_pic,
+  organisation: "DQITs",
+  fcm_token: "",
+  address: user.value.address || "123 Main St, Nairobi, NY 10001",
+  state: user.value.state || "Nairobi",
+  zip: user.value.zip || "001",
+  country: user.value.country || "Kenya",
+  language: user.value.language || "English",
+  timezone: user.value.timezone || "(GMT-11:00) International Date Line West",
+}
+
+const accountDataLocal = ref(structuredClone(accountData))
+
+console.log(accountData)
+
+const isAccountDeactivated = ref(false)
+
+const resetForm = () => {
+  accountDataLocal.value = structuredClone(accountData)
+}
+
+const changeAvatar = file => {
+  const fileReader = new FileReader()
+  const { files } = file.target
+  if (files && files.length > 0) {
+    fileReader.readAsDataURL(files[0])
+    fileReader.addEventListener('load', () => {
+      if (typeof fileReader.result === "string")
+        console.log(fileReader.result)//accountDataLocal.value.profile_pic = fileReader.result
+    })
+  }
+}
+
+// reset avatar image
+const resetAvatar = () => {
+  accountDataLocal.value.profile_pic = accountData.profile_pic
+}
+
+const updateuser=()=>{
+  axios.put(`usersapi/${user.value.id}/`, accountData).then(response=>{
+    console.log(response.data)
+    Swal.fire({
+      icon: "success",
+      title: "success!",
+      html: "Process completed successfully",
+      timer: 3000,
+    }).finally(() => {
+      Swal.close()
+    })
+  }).catch(error=>{
+    console.log(error)
+    Swal.fire({
+      icon: "error",
+      title: "Error!",
+      html: error,
+      timer: 5000,
+    }).finally(() => {
+      Swal.close()
+    })
+  })
+}
 </script>
 
 <template>
@@ -106,7 +139,7 @@ const timezones = [
             rounded="sm"
             size="150"
             class="me-6"
-            :image="accountDataLocal.avatarImg"
+            :image="accountDataLocal.profile_pic"
           />
 
           <!-- 👉 Upload Photo -->
@@ -164,7 +197,7 @@ const timezones = [
                 cols="12"
               >
                 <VTextField
-                  v-model="accountDataLocal.firstName"
+                  v-model="accountDataLocal.first_name"
                   placeholder="John"
                   label="First Name"
                 />
@@ -176,7 +209,7 @@ const timezones = [
                 cols="12"
               >
                 <VTextField
-                  v-model="accountDataLocal.lastName"
+                  v-model="accountDataLocal.last_name"
                   placeholder="Doe"
                   label="Last Name"
                 />
@@ -300,8 +333,9 @@ const timezones = [
                 cols="12"
                 class="d-flex flex-wrap gap-4"
               >
-                <VBtn>Save changes</VBtn>
-
+                <VBtn @click="updateuser">
+                  Save changes
+                </VBtn>
                 <VBtn
                   color="secondary"
                   variant="tonal"

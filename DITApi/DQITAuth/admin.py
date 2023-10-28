@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import get_user_model
-from .models import Roles,PasswordPolicy,BackupSchedule
+from .models import Roles,PasswordPolicy,BackupSchedule,AccountRequest
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.hashers import make_password
 
@@ -17,7 +16,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'username', 'password')}),
         ('Personal Info', {'fields': ('role', 'gender', 'profile_pic', 'phone', 'address', 'organisation', 'country', 'state', 'zip', 'timezone', 'facilities', 'fcm_token')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
+        ('Permissions', {'fields': ('user_permissions','groups','is_active', 'is_staff', 'is_superuser')}),
         ('Important Dates', {'fields': ('last_login',)}),
     )
     add_fieldsets = (
@@ -26,6 +25,17 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'username', 'password1', 'password2', 'role', 'gender', 'profile_pic', 'phone', 'address', 'organisation', 'country', 'state', 'zip', 'timezone', 'facilities', 'fcm_token')}
         ),
     )
+
+    #filter by facilities assigned if role not superuser
+    def get_queryset(self, request):
+        qs = super().get_queryset(request).first()
+
+        # Check if the user is a superuser
+        if request.user.is_superuser:
+            return qs  # Superusers can see all facilities
+
+        # Filter the queryset to only show facilities assigned to the user
+        return qs.filter(facilities__in=request.user.facilities.all())
 
 admin.site.register(User,CustomUserAdmin)
 # Register the Roles model
@@ -39,6 +49,14 @@ class BackupScheduleAdmin(admin.ModelAdmin):
 
 # Register the BackupSchedule model with the admin site
 admin.site.register(BackupSchedule, BackupScheduleAdmin)
+
+class AccountRequestAdmin(admin.ModelAdmin):
+    list_display = ('email', 'username', 'request_date', 'is_approved')
+    list_filter = ('email', 'username', 'request_date', 'is_approved')
+    search_fields = ('email', 'username', 'request_date', 'is_approved')
+
+# Register the BackupSchedule model with the admin site
+admin.site.register(AccountRequest, AccountRequestAdmin)
 
 @admin.register(PasswordPolicy)
 class PasswordPolicyAdmin(admin.ModelAdmin):
