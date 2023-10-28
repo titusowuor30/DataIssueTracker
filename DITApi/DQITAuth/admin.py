@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import get_user_model
-from .models import Roles,PasswordPolicy,BackupSchedule,AccountRequest
+from .models import Roles,PasswordPolicy,BackupSchedule,AccountRequest,CustomUser
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.hashers import make_password
 
@@ -28,7 +28,7 @@ class CustomUserAdmin(UserAdmin):
 
     #filter by facilities assigned if role not superuser
     def get_queryset(self, request):
-        qs = super().get_queryset(request).first()
+        qs = super().get_queryset(request)
 
         # Check if the user is a superuser
         if request.user.is_superuser:
@@ -37,7 +37,7 @@ class CustomUserAdmin(UserAdmin):
         # Filter the queryset to only show facilities assigned to the user
         return qs.filter(facilities__in=request.user.facilities.all())
 
-admin.site.register(User,CustomUserAdmin)
+admin.site.register(CustomUser,CustomUserAdmin)
 # Register the Roles model
 admin.site.register(Roles)
 

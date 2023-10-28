@@ -11,6 +11,13 @@ services:
     ports:
       - "3309:3306"
   ditapi:
+    container_name: ditapi
+    environment:
+      - DB_ROOT_PASSWORD=root
+      - DB_USER=dqitsuser
+      - DB_PASSWORD=DQITs@123
+      - DB_NAME=dqits
+      - DB_HOST=192.168.251.10
     image: ditapi:latest
     ports:
       - "8001:8000"
@@ -20,7 +27,7 @@ services:
       - /home/titusdev/projects/DataIssueTracker/DITApi/static:/app/static
       - /home/titusdev/projects/DataIssueTracker/DITApi/backups:/app/backups
       - /home/titusdev/projects/DataIssueTracker/DITApi/media:/app/media
-      - /home/titusdev/projects/DataIssueTracker/DITApi/media:/app/media/facility data issues
+      - /home/titusdev/projects/DataIssueTracker/facility data issues:/app/facility data issues
     command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000
   ditui:
     image: ditui:latest

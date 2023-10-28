@@ -38,7 +38,6 @@ class DataQualityIssuesEndpoints(APIView):
         query_params = request.query_params
         patient_id = query_params.get('patient_id',None)
         date_of_entry = query_params.get('date_of_entry',None)
-        print(type(date_of_entry))
         inconsistency = query_params.get('inconsistency',None)
         country = query_params.get('country',None)
         facility = query_params.get('facility',None)

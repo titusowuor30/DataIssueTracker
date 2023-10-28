@@ -41,9 +41,9 @@ class DataImporter:
         if len(facilities) > 0:
             for _, row in df.iterrows():
                 facility=facilities.filter(facility_code=row['Facility']).first()
-                user_facility=facility
-                faclity_user=user_facility.customuser_set.first() 
                 if facility != None:
+                    user_facility=facility
+                    faclity_user=user_facility.customuser_set.first() 
                     date_str=str(str(row['Date of Entry']).split(' ')[0])
                     issues={
                         'patient_id':row['Patient ID'],
