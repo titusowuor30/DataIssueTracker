@@ -1,5 +1,6 @@
 version: '3'
 services:
+<<<<<<< HEAD
   # ditapi:
   #   container_name: ditapi
   #   environment:
@@ -18,6 +19,26 @@ services:
   #     - /home/titusdev/projects/DataIssueTracker/DITApi/backups:/app/backups
   #     - /home/titusdev/projects/DataIssueTracker/facility data issues:/app/facility data issues
   #   command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000 -w 4 --timeout 120
+=======
+  ditapi:
+    container_name: ditapi
+    environment:
+      - DB_ROOT_PASSWORD=root
+      - DB_USER=dqitsuser
+      - DB_PASSWORD=DQITs@123
+      - DB_NAME=dqits
+      - DB_HOST=146.190.61.0
+    image: titusdev/ditapi:latest
+    mem_limit: 8000M
+    cpus: 0.5
+    restart: unless-stopped
+    ports:
+      - "8001:8000"
+    volumes:
+      - /home/tech/backups:/app/backups
+      - /home/tech/dataissues:/app/facility data issues
+    command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000 -w 4 --timeout 120
+>>>>>>> 54a7065 (live u[pdates)
   ditui:
     container_name: ditui
     environment:
