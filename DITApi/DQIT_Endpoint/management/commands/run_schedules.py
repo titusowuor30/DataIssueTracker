@@ -8,6 +8,8 @@ import subprocess
 from django.conf import settings
 import os
 import threading
+import logging
+logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     help = 'Import data from Excel and CSV files in a folder using DataImporter according to schedule'
@@ -44,7 +46,7 @@ class Command(BaseCommand):
             ).order_by('time_of_day').first()
 
             if next_run_schedule:
-                print(f"Data sync will run on {next_run_schedule.day_of_week} at {next_run_schedule.time_of_day} +1hr(s)")
+                logger.info(f"Data sync will run on {next_run_schedule.day_of_week} at {next_run_schedule.time_of_day} +1hr(s)")
                 # Assuming scheduled_time is a datetime.time object
                 scheduled_time =next_run_schedule.time_of_day  # Replace with your scheduled time
 
@@ -55,31 +57,30 @@ class Command(BaseCommand):
                 scheduled_time_plus_1hrs = scheduled_datetime + timedelta(hours=1)
 
                 if current_time >= scheduled_datetime and current_time <= scheduled_time_plus_1hrs:
-                    print("Data sync active...")
+                    logger.info("Data sync active...")
                     data_importer = DataImporter(next_run_schedule.data_issues_folder_url)
-                    # Run the data importer periodically (e.g., every 1 min)
                     data_importer.check_for_new_files(facility_file_path=next_run_schedule.faclity_list_csv_path)
             else:
-                print(f"No data sync shedule found on {day_of_week} at {time_of_day}")
+                logger.error(f"No data sync shedule found on {day_of_week} at {time_of_day}")
         except Exception as e:
-            print(e)
+            logger.error(e)
 
     def run_backup_database(self,current_time,db_user,db_password,db_name,db_host,db_port):
         try:
             schedule = BackupSchedule.objects.filter(task_type='backup',enabled=True).first()
 
             if not schedule.enabled:
-                    print('No active schedules found.')
+                    logger.info('No active schedules found.')
                     return
            
             ########################Backup database######################################
             # Calculate the time difference between now and the next scheduled run
             time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/3600
-            print(time_difference)
+            logger.info(time_difference)
             if abs(time_difference) >1:
-                print(f"Backup schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
+                logger.info(f"Backup schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
                 return
-            print("Backing up database...")
+            logger.info("Backing up database...")
 
             # Get the task type (backup or restore)
             task_type = schedule.task_type
@@ -119,9 +120,9 @@ class Command(BaseCommand):
                 schedule.start_datetime=current_datetime
                 schedule.save()
             else:
-                print("Unknown database")
+                logger.warning("Unknown database")
         except Exception as e:
-            print(f'Error: {e}')
+            logger.error(f'Error: {e}')
 
     def run_restore_schedule(self,current_time,db_user,db_password,db_name,db_host,db_port):
         try:
@@ -133,17 +134,17 @@ class Command(BaseCommand):
             restore_file=os.path.join(restore_dir, schedule.restore_file)
 
             if not schedule.enabled:
-                    print('No active schedules found.')
+                    logger.info('No active schedules found.')
                     return
             
             #####################Restore database############################
             # Calculate the time difference between now and the next scheduled run
             time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/3600 # in hrs
-            print(time_difference)
+            logger.info(time_difference)
             if abs(time_difference) >1:
-                print(f"Restore schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
+                logger.info(f"Restore schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
                 return
-            print("Restore in progress...")
+            logger.info("Restore in progress...")
             #restore db
             if schedule.db_type=='psql':
                 restore_cmd=['psql',f'--host={db_host}',f'--port={db_port}',f'--dbname={db_name}',f'--username={db_user}',f'--file={restore_file}']
@@ -162,4 +163,4 @@ class Command(BaseCommand):
             schedule.start_datetime=current_datetime
             schedule.save()
         except Exception as e:
-            print(f'Error: {e}')
+            logger.error(f'Error: {e}')
