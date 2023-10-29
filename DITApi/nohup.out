@@ -1197,3 +1197,10 @@ django.db.utils.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't
 [2023-10-29 16:00:34 +0000] [109366] [ERROR] Worker (pid:109508) exited with code 1.
 [2023-10-29 16:00:34 +0000] [109924] [INFO] Booting worker with pid: 109924
 Method Not Allowed: /api/sync_data/
+[2023-10-29 19:21:23 +0300] [109924] [INFO] Parent changed, shutting down: <Worker 109924>
+[2023-10-29 19:21:23 +0300] [109924] [INFO] Worker exiting (pid: 109924)
+[2023-10-29 16:22:57 +0000] [110582] [INFO] Starting gunicorn 21.2.0
+[2023-10-29 16:22:57 +0000] [110582] [INFO] Listening at: http://0.0.0.0:8000 (110582)
+[2023-10-29 16:22:57 +0000] [110582] [INFO] Using worker: sync
+[2023-10-29 16:22:57 +0000] [110583] [INFO] Booting worker with pid: 110583
+Method Not Allowed: /api/sync_data/

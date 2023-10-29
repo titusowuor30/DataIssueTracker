@@ -608,3 +608,22 @@ Next wakeup is due at 2023-10-29 20:00:36.441188+03:00 (in 3599.994321 seconds)
 Successfully imported extension module "markdown.extensions.toc".
 Successfully loaded extension "markdown.extensions.toc.TocExtension".
 Method Not Allowed: /api/sync_data/
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 20:23:12.103429+03:00 (in 3599.987419 seconds)
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Method Not Allowed: /api/sync_data/
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
