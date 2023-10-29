@@ -1,5 +1,8 @@
 from django.urls import path
-from .views import DataQualityIssuesEndpoints,FacilitiesEndpoints,EmailSetupEndpoints,DataSyncSetupEndpoints
+from .views import (
+    DataQualityIssuesEndpoints,FacilitiesEndpoints,
+    EmailSetupEndpoints,DataSyncSetupEndpoints,
+    SyncDataView)
 from .modules.stats import DataIssuesStats
 from .modules.insights import DataQualityIssuesAnalyticsView
 urlpatterns = [
@@ -18,4 +21,5 @@ urlpatterns = [
     path('data_issue_stats/', DataIssuesStats.as_view(), name='data-issue-stats'),
     #insights
     path('analytics/', DataQualityIssuesAnalyticsView.as_view(), name='insights'),
+    path('sync_data/', SyncDataView.as_view(), name='sync_data'),
 ]

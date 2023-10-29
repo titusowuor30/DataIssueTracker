@@ -30,18 +30,8 @@ const fetchData = () => {
     })
 }
 
-watch(all_issues, fetchData)
-watch(pending_count, fetchData)
-watch(matching_count, fetchData)
-watch(corrected_count, fetchData)
-watch(no_data_count, fetchData)
-watch(available_count, fetchData)
-
 onMounted(() => {
-  setInterval(fetchData, 6000)
-})
-onUnmounted(() => {
-  clearInterval(fetchData)
+  fetchData()
 })
 </script>
 

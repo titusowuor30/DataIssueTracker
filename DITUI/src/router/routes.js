@@ -27,10 +27,16 @@ const routes= [
         component: () => import('@/pages/data/dataSync.vue'),
         meta: { requiresAuth: true },
       },
-         {
+      {
         path: 'users',
         name: 'users',
         component: () => import('@/views/pages/authentication/users.vue'),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'system-logs',
+        name: 'systemlogs',
+        component: () => import('@/views/pages/authentication/system-logs.vue'),
         meta: { requiresAuth: true },
       },
       {

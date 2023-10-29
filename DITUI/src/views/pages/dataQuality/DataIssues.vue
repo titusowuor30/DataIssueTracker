@@ -31,10 +31,7 @@ watch(perPage, fetchData)
 watch(search, fetchData)
 
 onMounted(() => {
-  setInterval(fetchData, 10000)
-})
-onUnmounted(() => {
-  clearInterval(fetchData)
+  fetchData()
 })
 </script>
 
@@ -81,9 +78,12 @@ onUnmounted(() => {
         </td>
         <td />
       </tr>
-      <p class="text-muted px-2">
-        No history yet!
-      </p>
     </tbody>
+    <p
+      v-if="data.length === 0"
+      class="text-muted px-2"
+    >
+      No history yet!
+    </p>
   </VTable>
 </template>

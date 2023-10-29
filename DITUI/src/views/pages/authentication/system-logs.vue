@@ -19,8 +19,8 @@
           <VCol cols="3">
             <VTextField
               v-model="searchText"
-              placeholder="Filter by Patient ID, Date, or Status"
-              label="Filter"
+              placeholder="Search Patient ID, Date, or Status"
+              label="Search"
               outlined
               dense
               @input="applyFilters"
@@ -32,32 +32,12 @@
                 v-model="perPage"
                 :items="perPageOptions"
                 label="Records Per Page"
-                @update:model-value="loadData"
-              />
-            </div>
-          </VCol>
-          <VCol cols="2">
-            <div class="select-per-page">
-              <VSelect
-                v-model="facility"
-                :items="facilities"
-                label="Select Facility"
-                @update:model-value="loadData"
-              />
-            </div>
-          </VCol>
-          <VCol cols="2">
-            <div class="select-per-page">
-              <VSelect
-                v-model="country"
-                :items="countries"
-                label="Select Country"
-                @update:model-value="loadData"
+                @click="loadData"
               />
             </div>
           </VCol>
           <VCol
-            cols="2"
+            cols="4"
             class="text-right"
           >
             <CSVExport
@@ -73,33 +53,9 @@
             />
           </VCol>
         </VRow>
-          <VCard class="px-2 py-2">
-          <VRow>
-            <VCol cols="3">
-              <div class="select-action">
-                <VSelect
-                  v-model="action"
-                  :items="actions"
-                  label="Select Action"
-                />
-              </div>
-            </VCol>
-            <VCol cols="3">
-              <VBtn
-                color="primary"
-                class="px-2 py-2"
-                outlined
-                @click="updateDataIssues"
-              >
-                <span v-if="selectedRows.length > 1">Apply Bulk Action</span>
-                <span v-else>Apply Action</span>
-              </VBtn>
-            </VCol>
-          </VRow>
-      </VCard>
       </VCardTitle>
 
-      <table class="data-issues-table">
+      <table class="data-logs-table">
         <thead>
           <tr>
             <th>
@@ -110,45 +66,42 @@
               >
             </th>
             <th>ID</th>
-            <th>Country</th>
-            <th>Facility</th>
-            <th>Patient ID</th>
-            <th>Date of Entry</th>
-            <th>Inconsistency</th>
-            <th>Action Taken</th>
+            <th>User</th>
+            <th>Timestamp</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="issue in filteredDataIssues"
-            :key="issue.id"
+            v-for="log in filtereduserlogs"
+            :key="log.id"
           >
             <td>
               <input
                 v-model="selectedRows"
                 type="checkbox"
-                :value="issue.id"
+                :value="log.id"
               >
             </td>
-            <td>{{ issue.id }}</td>
-            <td>{{ issue.country }}</td>
-            <td>{{ issue.facility_name }}</td>
-            <td>{{ issue.patient_id }}</td>
-            <td>{{ issue.date_of_entry }}</td>
-            <td>{{ issue.inconsistency }}</td>
-            <td>{{ issue.action_taken }}</td>
+            <td>{{ log.id }}</td>
+            <td>{{ log.user.email }}</td>
+            <td>{{ log.timestamp }}</td>
+            <td>{{ log.action }}</td>
           </tr>
         </tbody>
       </table>
       <p
-        v-if="filteredDataIssues.length === 0"
+        v-if="filtereduserlogs.length === 0"
         class="text-muted px-2"
       >
         No data found!
       </p>
       <VCard class="px-2 py-2">
         <VRow>
-          <VCol cols="3">
+          <VCol 
+            v-if="isAdmin" 
+            cols="3"
+          >
             <div class="select-action">
               <VSelect
                 v-model="action"
@@ -159,10 +112,11 @@
           </VCol>
           <VCol cols="3">
             <VBtn
+              v-if="isAdmin"
               color="primary"
               class="px-2 py-2"
               outlined
-              @click="updateDataIssues"
+              @click="updateuserlogs"
             >
               <span v-if="selectedRows.length > 1">Apply Bulk Action</span>
               <span v-else>Apply Action</span>
@@ -188,164 +142,70 @@ import { exportCSV } from "@/components/report/exportUtils"
 import CSVExport from "@/pages/report/CSVExport.vue"
 import Swal from "sweetalert2"
 import { onMounted, reactive, ref, watch } from "vue"
+import { useStore } from "vuex"
 
+const store = useStore()
 const currentPage = ref(1)
 const perPage = ref(10) // Adjust as needed
 const totalItems = ref(0)
-const dataIssues = ref([])
-const action = ref("Pending")
+const userlogs = ref([])
+const user = ref(store.state.auth.user)
+const isAdmin=ref(JSON.parse(localStorage.getItem("isAdmin")))
+const action = ref("Delete")
 
 //reports
 const exportData = ref([])
 
 const rptheaders = [
   "ID",
-  "Country",
-  "Facility",
-  "Patient ID",
-  "Date of Entry",
-  "Inconsistency",
-  "Action Taken",
+  "User",
+  "Timestamp",
+  "Action",
 ]
 
-const exportcsvFileName = ref("data_issues.csv")
+const exportcsvFileName = ref(`${user.value.username}_logs.csv`)
 
 const actions = reactive([
-  "Entry Corrected",
-  "Data Matches Source Document",
-  "Data Already Available",
-  "No Data Needed",
-  "Pending",
+  "Delete",
 ])
 
 const perPageOptions = reactive([1, 5, 10, 20, 50, 100, 500, 1000, 1500, 2000])
 
-const apiUrl = "data_issues/"
+const apiUrl = "user-logs/"
 
 // Filters
 const searchText = ref("")
-const country = ref("All")
-const facility = ref("All")
-const facilities=ref([])
-const filteredDataIssues = ref([])
+const timestamp = ref()
+const filtereduserlogs = ref([])
 const selectedRows = ref([])
 const selectAll = ref(false)
 
-const countries=ref([
-  "All",
-  "Algeria",
-  "Angola",
-  "Benin",
-  "Botswana",
-  "Burkina Faso",
-  "Burundi",
-  "Cabo Verde",
-  "Cameroon",
-  "Central African Republic",
-  "Chad",
-  "Comoros",
-  "Congo (Brazzaville)",
-  "Congo (Kinshasa)",
-  "Cote d'Ivoire",
-  "Djibouti",
-  "Egypt",
-  "Equatorial Guinea",
-  "Eritrea",
-  "Eswatini",
-  "Ethiopia",
-  "Gabon",
-  "Gambia",
-  "Ghana",
-  "Guinea",
-  "Guinea-Bissau",
-  "Kenya",
-  "Lesotho",
-  "Liberia",
-  "Libya",
-  "Madagascar",
-  "Malawi",
-  "Mali",
-  "Mauritania",
-  "Mauritius",
-  "Morocco",
-  "Mozambique",
-  "Namibia",
-  "Niger",
-  "Nigeria",
-  "Rwanda",
-  "Sao Tome and Principe",
-  "Senegal",
-  "Seychelles",
-  "Sierra Leone",
-  "Somalia",
-  "South Africa",
-  "South Sudan",
-  "Sudan",
-  "Tanzania",
-  "Togo",
-  "Tunisia",
-  "Uganda",
-  "Zambia",
-  "Zimbabwe",
-])
 
 const updatePage = page => {
   currentPage.value = page
   loadData()
 }
 
-const fetchFacilities = async()=>{
-  await axios.get(`facilities`)
-    .then(response=>{
-      facilities.value = response.data['results'].sort((a, b) => a.facility_name.localeCompare(b.facility_name)).map(x=>x.facility_name)
-      facilities.value.unshift("All")
-      facilities.value
-    })
-    .catch(error=>{
-      console.log(error)
-      facilities.value = []
-    })
-}
-
-const saveuserLogs=action=>{
-  axios
-    .post('user-logs/', {
-      action: action,
-      command: "create",
-    })
-    .then(response => {
-      console.log(response.data)
-    })
-    .catch(error=>{
-      console.log(error)
-    })
-}
-
 const loadData = () => {
   axios
     .get(apiUrl, {
       params: {
-        patient_id: searchText.value,
-        facility: facility.value,
-        country: country.value,
+        action: searchText.value,
+        timestamp: timestamp.value,
         limit: perPage.value,
         offset: (currentPage.value - 1) * perPage.value,
       },
     })
     .then(response => {
-      dataIssues.value = response.data.results
+      userlogs.value = response.data.results
       totalItems.value = response.data.count
-      exportData.value = dataIssues.value.map(issue => [
-        issue.id,
-        issue.country,
-        issue.facility_name,
-        issue.patient_id,
-        issue.date_of_entry,
-        issue.inconsistency,
-        issue.action_taken,
+      exportData.value = userlogs.value.map(log => [
+        log.id,
+        log.user.email,
+        log.timestamp,
+        log.action,
       ]) //map data as a list
       exportData.value.unshift(rptheaders) //add headers as first row
-      console.log(exportData.value)
       applyFilters()
     })
     .catch(error => {
@@ -354,24 +214,24 @@ const loadData = () => {
 }
 
 const applyFilters = () => {
-  filteredDataIssues.value = dataIssues.value.filter(issue => {
+  filtereduserlogs.value = userlogs.value.filter(log => {
     const searchTextLower = searchText.value.toLowerCase()
 
     return (
-      issue.patient_id.toLowerCase().includes(searchTextLower) ||
-      issue.date_of_entry.includes(searchTextLower) ||
-      issue.inconsistency.toLowerCase().includes(searchTextLower) ||
-      issue.action_taken.toLowerCase().includes(searchTextLower)
+      log.id.toString().includes(searchTextLower) ||
+      log.action.includes(searchTextLower) ||
+      log.timestamp.toString().includes(searchTextLower) ||
+      log.user.email.toLowerCase().includes(searchTextLower)
     )
   })
 }
 
 const selectAllRows = () => {
-  selectedRows.value = selectAll.value ? filteredDataIssues.value.map(issue => issue.id) : []
+  selectedRows.value = selectAll.value ? filtereduserlogs.value.map(log => log.id) : []
 }
 
 watch(selectedRows, () => {
-  selectAll.value = selectedRows.value.length === filteredDataIssues.value.length
+  selectAll.value = selectedRows.value.length === filtereduserlogs.value.length
 })
 
 const handleCSVExport = ({ filename, data }) => {
@@ -383,9 +243,9 @@ const exportPDF = () => {
   // Add code to export data to PDF
 }
 
-const updateDataIssues = () => {
+const updateuserlogs = () => {
   if (selectedRows.value.length === 0) {
-    return Swal.fire("No data to process!", "Please select at least one issue!", "info")
+    return Swal.fire("No data to process!", "Please select at least one log!", "info")
   } else if (selectedRows.value.length === 1) {
     updateSingele()
   } else {
@@ -397,7 +257,7 @@ const updateSingele = () => {
   const data_id = selectedRows.value[0]
 
   const data = {
-    action: action.value,
+    command: action.value,
   }
 
   Swal.fire({
@@ -411,10 +271,9 @@ const updateSingele = () => {
     },
   })
   axios
-    .put("data_issues/" + data_id + "/", data)
+    .delete("user-logs/" + data_id + "/")
     .then(response => {
       console.log(response)
-      saveuserLogs(`Issue #${data_id} updated with - ${action.value}`)
       Swal.fire({
         icon: "success",
         title: "success!",
@@ -435,7 +294,7 @@ const updateSingele = () => {
 const performBulkAction = () => {
   const data = {
     data_ids: selectedRows.value,
-    action: action.value,
+    command: action.value,
   }
 
   Swal.fire({
@@ -449,10 +308,9 @@ const performBulkAction = () => {
     },
   })
   axios
-    .post("data_issues/", data)
+    .post("user-logs/", data)
     .then(response => {
       console.log(response)
-      saveuserLogs(`Bulk issues #ids${selectedRows.value} updated with - ${action.value}`)
       Swal.fire({
         icon: "success",
         title: "success!",
@@ -471,7 +329,6 @@ const performBulkAction = () => {
 }
 
 onMounted(() => {
-  fetchFacilities()
   loadData()
 })
 </script>
@@ -503,19 +360,19 @@ onMounted(() => {
   margin-inline-start: 10px;
 }
 
-.data-issues-table {
+.data-logs-table {
   border-collapse: collapse;
   inline-size: 100%;
 }
 
-.data-issues-table th,
-.data-issues-table td {
+.data-logs-table th,
+.data-logs-table td {
   padding: 8px;
   border: 1px solid #ddd;
   text-align: start;
 }
 
-.data-issues-table th {
+.data-logs-table th {
   background-color: #f2f2f2;
 }
 

@@ -1,5 +1,18 @@
 <template>
-  <VContainer>
+  <VContainer class="bg-primary">
+    <VRow class="bg-secondary p-2">
+      <VCol cols="6">
+        <VBtn
+          class="mdi-sync"
+          @click="syncData"
+        >
+          Sync Data
+        </VBtn>
+      </VCol>
+      <VCol cols="6">
+        <p class="p-2">{{ sync_status }}</p>
+      </VCol>
+    </VRow>
     <VCard>
       <VCardTitle>Manage Data Sync Schedule</VCardTitle>
       <VCardText>
@@ -26,25 +39,25 @@
             <VCol cols="6">
               <input
                 id="start_date"
+                v-model="schedule.start_date"
                 type="datetime-local"
                 class="form-control p-3 m-2"
-                v-model="schedule.start_date"
                 placeholder="Start Date"
-              />
+              >
               <input
                 id="last_run_date"
+                v-model="schedule.last_run_date"
                 type="datetime-local"
                 class="form-control p-3 m-2"
-                v-model="schedule.last_run_date"
                 placeholder="Last Run Date"
-              />
+              >
               <input
                 id="next_run_date"
+                v-model="schedule.next_run_date"
                 type="datetime-local"
                 class="form-control p-3 m-2"
-                v-model="schedule.next_run_date"
                 placeholder="Next Run Date"
-              />
+              >
               <VCheckbox v-model="schedule.enabled" class="p-2" label="Enabled" />
             </VCol>
           </VRow>
@@ -57,6 +70,7 @@
 
 <script setup>
 import { ref } from "vue";
+import axios from "@/axiosConfig";
 
 const schedule = ref({
   task_type: "backup",
@@ -66,12 +80,22 @@ const schedule = ref({
   next_run_date: new Date(),
   destination_path: "",
   source_path: "",
-});
+})
+const sync_status=ref("")
 
 const taskTypes = ["backup", "restore"];
 const scheduleTypes = ["daily", "weekly", "monthly"];
 
 const saveBackupSchedule = () => {
   // Implement logic to save the backup schedule here
-};
+}
+
+const syncData=()=>{
+  axios.post('sync_data/')
+    .then(response=>{
+      sync_status.value=response.data
+    }).catch(error=>{
+      sync_status.value=error
+    })
+}
 </script>

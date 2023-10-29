@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import LimitOffsetPagination
 from django.http import Http404
 from .models import DataQualityIssues,Facilities,EmailSetup,DataSyncSettings
+from .utils import DataImporter
 from django.db.models import Q
 from .serializers import DataQualityIssuesSerializer,FacilitiesSerializer,EmailSetupSerializer,DataSyncSettingsSerializer
 
@@ -196,3 +197,16 @@ class DataSyncSetupEndpoints(APIView):
         setup = self.get_object()
         setup.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class SyncDataView(APIView):
+    def post(self,request,*args,**kwargs):
+        try:
+            print("Data sync active...")
+            data_sync=DataSyncSettings.objects.first()
+            data_importer = DataImporter(data_sync.data_issues_folder_url)
+            # Run the data importer periodically (e.g., every 1 min)
+            data_importer.check_for_new_files(facility_file_path=data_sync.faclity_list_csv_path)
+        except Exception as e:
+            Response(f'An error occured! {str(e)}')
+            print(e)
+        return Response('Data sync running...')

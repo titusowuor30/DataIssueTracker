@@ -2,14 +2,15 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import api_view, permission_classes,authentication_classes
 from rest_framework.authtoken.models import Token
 from rest_framework import viewsets
 from django.contrib.auth import authenticate, login
-from .models import CustomUser,PasswordPolicy,AccountRequest
+from .models import CustomUser,PasswordPolicy,AccountRequest,UserLog
 from DQIT_Endpoint.models import Facilities
-from .serializers import CustomUserSerializer,PasswordPolicySerializer,AccountRequestSerializer
+from .serializers import CustomUserSerializer,PasswordPolicySerializer,AccountRequestSerializer,UserLogSerializer
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from rest_framework.pagination import LimitOffsetPagination
@@ -260,3 +261,60 @@ class AccountRequestView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserLogAPIs(APIView):
+    def process_issues(self, data):
+        for id in data:
+            yield id  # Yield the processed ID, for memory effieciency in case of big data
+
+    def post(self, request, format=None):
+        data=request.data
+        if data['command'] == 'create':
+            log = UserLog(user=request.user,action=data['action'])
+            log.save()
+        else:
+            ids = request.data['data_ids']
+            processed_ids=self.process_issues(ids)
+            #print(list(processed_ids))
+            for id in processed_ids:
+                log = self.get_object(id)
+                log.delete()
+        return Response('success!', status=status.HTTP_201_CREATED)
+
+    def get_object(self, pk):
+        try:
+            return UserLog.objects.get(pk=pk)
+        except UserLogSerializer.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk=None, format=None):
+        if pk:
+            log=self.get_object(pk)
+            serializer = UserLogSerializer(log)
+            return Response(serializer.data)
+
+        query_params = request.query_params
+        user = query_params.get('user',None)
+        action = query_params.get('action',None)
+        timestamp = query_params.get('timestamp',None)
+
+        logs = UserLog.objects.filter(user=request.user) if request.user.role.role_name !='Admin' else UserLog.objects.all()
+
+        if user:
+            logs = logs.filter(user=user)
+        if action:
+            logs = logs.filter(action=action)
+        if timestamp:
+            logs = logs.filter(timestamp=timestamp)
+
+        paginator = LimitOffsetPagination()
+        paginator.default_limit = 100
+        result_page = paginator.paginate_queryset(logs, request)
+        serializer = UserLogSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
+
+    def delete(self, request, pk, format=None):
+        log = self.get_object(pk)
+        log.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

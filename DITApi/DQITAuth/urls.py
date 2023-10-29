@@ -1,6 +1,11 @@
 # urls.py
 from django.urls import path,include
-from .views import RegistrationAPIView, LoginAPIView, UserApiView,CustomUserViewSet,get_client_info,PasswordPolicyView,AccountRequestView
+from .views import (
+    RegistrationAPIView, 
+    LoginAPIView, UserApiView,
+    CustomUserViewSet,get_client_info,
+    PasswordPolicyView,AccountRequestView,
+    UserLogAPIs)
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -14,5 +19,7 @@ urlpatterns = [
     path('user/clientinfo/', get_client_info, name='userinfo'),
     path('password-policy/', PasswordPolicyView.as_view(), name='password-policy'),
     path('account-requests/', AccountRequestView.as_view(), name='account-requests'),
+    path('user-logs/', UserLogAPIs.as_view(), name='user-logs'),
+    path('user-logs/<int:pk>/', UserLogAPIs.as_view(), name='user-logs'),
     path('', include(router.urls)),
 ]

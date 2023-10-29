@@ -86,3 +86,4 @@ class DataSyncSettings(models.Model):
         verbose_name_plural='Data Sync Settings'
 
 
+

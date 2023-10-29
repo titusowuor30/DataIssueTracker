@@ -108,6 +108,14 @@ const upgradeBanner = computed(() => {
             to: '/dbbackup',
           }"
         />
+        <VerticalNavLink
+        v-show="isAdmin"
+        :item="{
+          title: 'System Logs',
+          icon: 'mdi-account-tag',
+          to: '/system-logs',
+        }"
+      />
       </div>
 
       <!-- 👉 User Interface -->
@@ -124,20 +132,10 @@ const upgradeBanner = computed(() => {
         }"
       />
       <VerticalNavLink
-        v-show="isAdmin"
         :item="{
           title: 'Data Sync',
           icon: 'bx-sync',
           to: '/data-sync',
-        }"
-      />
-
-      <VerticalNavLink
-        v-show="isAdmin"
-        :item="{
-          title: 'System Settings',
-          icon: 'mdi-cog',
-          to: '/form-layouts',
         }"
       />
     </template>

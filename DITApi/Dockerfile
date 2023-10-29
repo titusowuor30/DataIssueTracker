@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
     
 # Set environment variables
+ENV DEBUG=False
 ENV DB_HOST=192.168.211.10
 ENV DB_PORT=3306
 ENV DB_NAME=dqits

@@ -1,65 +1,54 @@
 <script setup>
 import chart from '@images/avatars/avatar-1.png'
+import { onMounted } from 'vue'
+import axios from "@/axiosConfig"
+import { useStore } from "vuex"
 
-const logs = [
-  {
-    user: 'John Doe',
-    issueType: 'Data Inaccuracy',
-    description: 'Inaccurate customer records',
-    color: 'error',
-    timestamp: '2023-10-01 09:15:00',
-  },
-  {
-    user: 'John Doe',
-    issueType: 'Data Duplication',
-    description: 'Duplicate entries in the database',
-    color: 'error',
-    timestamp: '2023-10-02 14:30:00',
-  },
-  {
-    user: 'John Doe',
-    issueType: 'Data Integrity',
-    description: 'Data integrity violation detected',
-    color: 'error',
-    timestamp: '2023-10-03 11:45:00',
-  },
-  {
-    user: 'John Doe',
-    issueType: 'Data Completeness',
-    description: 'Incomplete data in customer profiles',
-    color: 'error',
-    timestamp: '2023-10-04 16:20:00',
-  },
-  {
-    user: 'John Doe',
-    issueType: 'Data Consistency',
-    description: 'Inconsistent data across systems',
-    color: 'error',
-    timestamp: '2023-10-05 08:50:00',
-  },
-]
+const store = useStore()
+
+const imgbaseUrl = ref(store.state.setup.baseUrl)
+const logs = ref([])
 
 const moreList = [
   {
-    title: 'Share',
-    value: 'Share',
-  },
-  {
-    title: 'Refresh',
-    value: 'Refresh',
-  },
-  {
-    title: 'Update',
-    value: 'Update',
+    title: 'View All',
+    value: '/system-logs',
   },
 ]
+
+
+const loadData = () => {
+  axios
+    .get('user-logs', {
+      params: {
+        limit: 4,
+        offset: 0,
+      },
+    })
+    .then(response => {
+      logs.value = response.data.results
+    })
+    .catch(error => {
+      console.error("Error loading data:", error)
+    })
+}
+
+onMounted(()=>{
+  loadData()
+})
 </script>
 
 <template>
-  <VCard title="DQITs Logs">
+  <VCard
+    title="Recent Actions"
+    class="overflow-auto"
+    >
     <template #append>
       <div class="me-n3 mt-n2">
-        <MoreBtn :menu-list="moreList" />
+        <VBtn
+          text="View All"
+          to="/system-logs"
+        />
       </div>
     </template>
 
@@ -67,23 +56,24 @@ const moreList = [
       <VList class="card-list">
         <VListItem
           v-for="item in logs"
-          :key="item.timestamp"
+          :key="item.id"
         >
           <template #prepend>
             <VAvatar
               rounded
               variant="tonal"
               :color="item.color"
-              :image="chart"
+              :image="imgbaseUrl+item.user.profile_pic"
               class="me-3"
             />
           </template>
 
           <VListItemSubtitle class="text-disabled mb-1">
-            {{ item.user }} - {{ item.timestamp }}
+            {{ item.user.email }}
+            <small>{{ item.timestamp.toLocaleString() }}</small>
           </VListItemSubtitle>
           <VListItemTitle>
-            {{ item.description }}
+            {{ item.action }}
           </VListItemTitle>
 
           <template #append>
@@ -92,11 +82,14 @@ const moreList = [
                 class="me-1"
                 color="warning"
               >
-                {{ item.issueType }}
+                {{ item.title }}
               </VChip>
             </VListItemAction>
           </template>
         </VListItem>
+        <p v-if="logs.length === 0">
+          No Recent actions yet!
+        </p>
       </VList>
     </VCardText>
   </VCard>

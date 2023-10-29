@@ -37,7 +37,7 @@ const logout = async () => {
       <!-- SECTION Menu -->
       <VMenu
         activator="parent"
-        width="230"
+        width="280"
         location="bottom end"
         offset="14px"
       >
@@ -64,7 +64,7 @@ const logout = async () => {
             </template>
 
             <VListItemTitle class="font-weight-semibold">
-              {{ user.first_name }} {{ user.last_name }}
+             {{ user.email }} 
             </VListItemTitle>
             <VListItemSubtitle>{{ user.role }}</VListItemSubtitle>
           </VListItem>

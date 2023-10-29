@@ -19,7 +19,7 @@ class DataQualityIssuesAnalyticsView(generics.ListAPIView):
 
 
         # Prepare a base queryset for the selected year
-        base_queryset = DataQualityIssues.objects.filter(date_of_entry__isnull=False)
+        base_queryset = DataQualityIssues.objects.filter(date_of_entry__isnull=False,facility__in=request.user.facilities.all()) if request.user.role.role_name !='Admin' else DataQualityIssues.objects.filter(date_of_entry__isnull=False)
         if facility and facility !='All':
             base_queryset = base_queryset.filter(facility=facility)
         if selected_action and selected_action !='All':

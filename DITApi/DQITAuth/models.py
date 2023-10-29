@@ -182,3 +182,12 @@ class AccountRequest(models.Model):
 
     def __str__(self):
         return self.username
+
+
+class UserLog(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    action = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.user.username} - { self.action}"

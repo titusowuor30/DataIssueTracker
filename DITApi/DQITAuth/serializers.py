@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from .models import Roles,PasswordPolicy,AccountRequest
+from .models import Roles,PasswordPolicy,AccountRequest,UserLog
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -96,3 +96,15 @@ class AccountRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = AccountRequest
         fields = '__all__'
+
+# logs user serializer
+class LogsUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id','email','profile_pic',]
+class UserLogSerializer(serializers.ModelSerializer):
+    user = LogsUserSerializer()  # Use the custom UserSerializer
+    class Meta:
+        model = UserLog
+        fields = '__all__'
+        depth=2

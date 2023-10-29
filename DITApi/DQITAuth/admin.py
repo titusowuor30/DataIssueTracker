@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import get_user_model
-from .models import Roles,PasswordPolicy,BackupSchedule,AccountRequest,CustomUser
+from .models import (
+    Roles,PasswordPolicy,BackupSchedule,
+    AccountRequest,CustomUser,UserLog)
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.hashers import make_password
 
@@ -41,6 +43,13 @@ admin.site.register(CustomUser,CustomUserAdmin)
 # Register the Roles model
 admin.site.register(Roles)
 
+class UserLogsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'timestamp', 'action')
+    list_filter = ('id', 'user', 'timestamp', 'action')
+    search_fields = ('id', 'user', 'timestamp', 'action')
+
+# Register the BackupSchedule model with the admin site
+admin.site.register(UserLog, UserLogsAdmin)
 
 class BackupScheduleAdmin(admin.ModelAdmin):
     list_display = ('task_type', 'schedule_type', 'start_datetime', 'next_run_datetime', 'enabled')

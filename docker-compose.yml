@@ -9,14 +9,15 @@ services:
       - DB_NAME=dqits
       - DB_HOST=192.168.251.10
     image: titusdev/ditapi:latest
+    mem_limit: 8000M
+    cpus: 0.5
+    restart: unless-stopped
     ports:
       - "8001:8000"
     volumes:
-      - /home/titusdev/projects/DataIssueTracker/DITApi/static:/app/static
       - /home/titusdev/projects/DataIssueTracker/DITApi/backups:/app/backups
-      - /home/titusdev/projects/DataIssueTracker/DITApi/media:/app/media
       - /home/titusdev/projects/DataIssueTracker/facility data issues:/app/facility data issues
-    command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000 -w 4 --timeout 120
   ditui:
     container_name: ditui
     image: titusdev/ditui:latest

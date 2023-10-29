@@ -35,10 +35,8 @@ const fetchFacilities = async()=>{
 const fetchInsightsData = async () => {
   await axios.get(`analytics/?year=${selectedYear.value}&action_taken=${selectedAction.value}&facility=${facility.value}`)
     .then(response=>{
-      console.log(response.data['series'])
       series.value=response.data['series']
       convertion_ratio.value=response.data.conversion_ratio
-      console.log(series.value)
     })    
     .catch(error=> {
       console.log(error)
@@ -49,12 +47,8 @@ const fetchInsightsData = async () => {
 // Fetch insights data when the component is mounted
 onMounted(() => {
   fetchFacilities()
-  setInterval(fetchInsightsData, 6000)
+  fetchInsightsData()
   years.value.unshift("All")
-})
-
-onUnmounted(()=>{
-  clearInterval(fetchInsightsData)
 })
   
 const vuetifyTheme = useTheme()
@@ -317,7 +311,7 @@ const balanceData = [
                     v-model="selectedYear"
                     label="Year"
                     :items="years"
-                    @change="fetchInsightsData"
+                    @update:model-value="fetchInsightsData"
                   />
                 </VCol>
                 <VCol
@@ -328,7 +322,7 @@ const balanceData = [
                     v-model="selectedAction"
                     label="Action Taken"
                     :items="['All','Entry Corrected', 'Data Matches Source Document', 'Data Already Available', 'No Data Needed', 'Pending']"
-                    @change="fetchInsightsData"
+                    @update:model-value="fetchInsightsData"
                   />
                 </VCol>
                 <VCol
@@ -339,10 +333,8 @@ const balanceData = [
                     v-model="facility"
                     label="Facility"
                     :items="facilities"
-                  >
-                    @change="fetchInsightsData"
-                    />
-                  </VSelect>
+                    @update:model-value="fetchInsightsData"
+                  />
                 </VCol>
               </VRow>
             </VForm>

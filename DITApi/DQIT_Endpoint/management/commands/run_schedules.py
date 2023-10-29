@@ -44,7 +44,7 @@ class Command(BaseCommand):
             ).order_by('time_of_day').first()
 
             if next_run_schedule:
-                print(f"Data sync will run on {next_run_schedule.day_of_week} at {next_run_schedule.time_of_day} +2min")
+                print(f"Data sync will run on {next_run_schedule.day_of_week} at {next_run_schedule.time_of_day} +1hr(s)")
                 # Assuming scheduled_time is a datetime.time object
                 scheduled_time =next_run_schedule.time_of_day  # Replace with your scheduled time
 
@@ -52,14 +52,13 @@ class Command(BaseCommand):
                 scheduled_datetime = datetime.combine(datetime.today(), scheduled_time)
 
                 # Add a timedelta of 5 minutes
-                scheduled_time_plus_2min = scheduled_datetime + timedelta(minutes=2)
+                scheduled_time_plus_1hrs = scheduled_datetime + timedelta(hours=1)
 
-                if current_time >= scheduled_datetime and current_time <= scheduled_time_plus_2min:
+                if current_time >= scheduled_datetime and current_time <= scheduled_time_plus_1hrs:
                     print("Data sync active...")
-                    sync_setup=DataSyncSettings.objects.first()
-                    data_importer = DataImporter(sync_setup.data_issues_folder_url)
+                    data_importer = DataImporter(next_run_schedule.data_issues_folder_url)
                     # Run the data importer periodically (e.g., every 1 min)
-                    data_importer.check_for_new_files(facility_file_path=sync_setup.faclity_list_csv_path)
+                    data_importer.check_for_new_files(facility_file_path=next_run_schedule.faclity_list_csv_path)
             else:
                 print(f"No data sync shedule found on {day_of_week} at {time_of_day}")
         except Exception as e:
@@ -75,7 +74,7 @@ class Command(BaseCommand):
            
             ########################Backup database######################################
             # Calculate the time difference between now and the next scheduled run
-            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/60
+            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/3600
             print(time_difference)
             if abs(time_difference) >1:
                 print(f"Backup schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
@@ -139,7 +138,7 @@ class Command(BaseCommand):
             
             #####################Restore database############################
             # Calculate the time difference between now and the next scheduled run
-            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/60
+            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/3600 # in hrs
             print(time_difference)
             if abs(time_difference) >1:
                 print(f"Restore schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
