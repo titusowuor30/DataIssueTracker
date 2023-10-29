@@ -689,3 +689,511 @@ IndentationError: expected an indented block after 'except' statement on line 84
 [2023-10-29 15:10:31 +0000] [108696] [ERROR] Connection in use: ('0.0.0.0', 8000)
 [2023-10-29 15:10:31 +0000] [108696] [ERROR] Retrying in 1 second.
 [2023-10-29 15:10:32 +0000] [108696] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2023-10-29 15:26:59 +0000] [108997] [INFO] Starting gunicorn 21.2.0
+[2023-10-29 15:26:59 +0000] [108997] [INFO] Listening at: http://0.0.0.0:8000 (108997)
+[2023-10-29 15:26:59 +0000] [108997] [INFO] Using worker: sync
+[2023-10-29 15:26:59 +0000] [108998] [INFO] Booting worker with pid: 108998
+Method Not Allowed: /api/sync_data/
+[2023-10-29 15:28:56 +0000] [109076] [INFO] Starting gunicorn 21.2.0
+[2023-10-29 15:28:56 +0000] [109076] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:28:56 +0000] [109076] [ERROR] Retrying in 1 second.
+[2023-10-29 15:28:57 +0000] [109076] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:28:57 +0000] [109076] [ERROR] Retrying in 1 second.
+[2023-10-29 15:28:58 +0000] [109076] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:28:58 +0000] [109076] [ERROR] Retrying in 1 second.
+[2023-10-29 15:28:59 +0000] [109076] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:28:59 +0000] [109076] [ERROR] Retrying in 1 second.
+[2023-10-29 15:29:00 +0000] [109076] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:29:00 +0000] [109076] [ERROR] Retrying in 1 second.
+[2023-10-29 15:29:01 +0000] [109076] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2023-10-29 15:31:22 +0000] [109106] [INFO] Starting gunicorn 21.2.0
+[2023-10-29 15:31:22 +0000] [109106] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:31:22 +0000] [109106] [ERROR] Retrying in 1 second.
+[2023-10-29 15:31:23 +0000] [109106] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:31:23 +0000] [109106] [ERROR] Retrying in 1 second.
+[2023-10-29 15:31:24 +0000] [109106] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:31:24 +0000] [109106] [ERROR] Retrying in 1 second.
+[2023-10-29 15:31:25 +0000] [109106] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:31:25 +0000] [109106] [ERROR] Retrying in 1 second.
+[2023-10-29 15:31:26 +0000] [109106] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:31:26 +0000] [109106] [ERROR] Retrying in 1 second.
+[2023-10-29 15:31:27 +0000] [109106] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2023-10-29 15:37:51 +0000] [109175] [INFO] Starting gunicorn 21.2.0
+[2023-10-29 15:37:51 +0000] [109175] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:37:51 +0000] [109175] [ERROR] Retrying in 1 second.
+[2023-10-29 15:37:52 +0000] [109175] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:37:52 +0000] [109175] [ERROR] Retrying in 1 second.
+[2023-10-29 15:37:53 +0000] [109175] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:37:53 +0000] [109175] [ERROR] Retrying in 1 second.
+[2023-10-29 15:37:54 +0000] [109175] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:37:54 +0000] [109175] [ERROR] Retrying in 1 second.
+[2023-10-29 15:37:55 +0000] [109175] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:37:55 +0000] [109175] [ERROR] Retrying in 1 second.
+[2023-10-29 15:37:56 +0000] [109175] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2023-10-29 15:40:45 +0000] [109264] [INFO] Starting gunicorn 21.2.0
+[2023-10-29 15:40:45 +0000] [109264] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:40:45 +0000] [109264] [ERROR] Retrying in 1 second.
+[2023-10-29 15:40:46 +0000] [109264] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:40:46 +0000] [109264] [ERROR] Retrying in 1 second.
+[2023-10-29 15:40:47 +0000] [109264] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:40:47 +0000] [109264] [ERROR] Retrying in 1 second.
+[2023-10-29 15:40:48 +0000] [109264] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:40:48 +0000] [109264] [ERROR] Retrying in 1 second.
+[2023-10-29 15:40:49 +0000] [109264] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2023-10-29 15:40:49 +0000] [109264] [ERROR] Retrying in 1 second.
+[2023-10-29 15:40:50 +0000] [109264] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2023-10-29 15:43:05 +0000] [109314] [INFO] Starting gunicorn 21.2.0
+[2023-10-29 15:43:05 +0000] [109314] [INFO] Listening at: http://0.0.0.0:8000 (109314)
+[2023-10-29 15:43:05 +0000] [109314] [INFO] Using worker: sync
+[2023-10-29 15:43:05 +0000] [109315] [INFO] Booting worker with pid: 109315
+Method Not Allowed: /api/sync_data/
+[2023-10-29 15:43:58 +0000] [109314] [INFO] Handling signal: int
+[2023-10-29 18:43:58 +0300] [109315] [INFO] Worker exiting (pid: 109315)
+[2023-10-29 15:43:59 +0000] [109314] [INFO] Shutting down: Master
+[2023-10-29 15:45:59 +0000] [109366] [INFO] Starting gunicorn 21.2.0
+[2023-10-29 15:45:59 +0000] [109366] [INFO] Listening at: http://0.0.0.0:8000 (109366)
+[2023-10-29 15:45:59 +0000] [109366] [INFO] Using worker: sync
+[2023-10-29 15:45:59 +0000] [109367] [INFO] Booting worker with pid: 109367
+Method Not Allowed: /api/sync_data/
+[2023-10-29 15:46:58 +0000] [109366] [CRITICAL] WORKER TIMEOUT (pid:109367)
+[2023-10-29 18:46:58 +0300] [109367] [INFO] Worker exiting (pid: 109367)
+[2023-10-29 15:46:59 +0000] [109366] [ERROR] Worker (pid:109367) exited with code 1
+[2023-10-29 15:46:59 +0000] [109366] [ERROR] Worker (pid:109367) exited with code 1.
+[2023-10-29 15:46:59 +0000] [109376] [INFO] Booting worker with pid: 109376
+Method Not Allowed: /api/sync_data/
+[2023-10-29 15:48:35 +0000] [109366] [CRITICAL] WORKER TIMEOUT (pid:109376)
+[2023-10-29 18:48:35 +0300] [109376] [INFO] Worker exiting (pid: 109376)
+[2023-10-29 15:48:36 +0000] [109366] [ERROR] Worker (pid:109376) exited with code 1
+[2023-10-29 15:48:36 +0000] [109366] [ERROR] Worker (pid:109376) exited with code 1.
+[2023-10-29 15:48:36 +0000] [109419] [INFO] Booting worker with pid: 109419
+Method Not Allowed: /api/sync_data/
+Unauthorized: /api/analytics/
+Unauthorized: /api/data_issue_stats/
+Unauthorized: /api/data_issues/
+Unauthorized: /api/user-logs/
+Unauthorized: /api/facilities/
+Internal Server Error: /api/user-logs/
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/DITApi/DQITAuth/views.py", line 312, in get
+    result_page = paginator.paginate_queryset(logs, request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 387, in paginate_queryset
+    self.count = self.get_count(queryset)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 525, in get_count
+    return queryset.count()
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+[2023-10-29 15:55:08 +0000] [109366] [CRITICAL] WORKER TIMEOUT (pid:109419)
+[2023-10-29 18:55:08 +0300] [109419] [INFO] Worker exiting (pid: 109419)
+[2023-10-29 15:55:09 +0000] [109366] [ERROR] Worker (pid:109419) exited with code 1
+[2023-10-29 15:55:09 +0000] [109366] [ERROR] Worker (pid:109419) exited with code 1.
+[2023-10-29 15:55:09 +0000] [109487] [INFO] Booting worker with pid: 109487
+[2023-10-29 15:56:18 +0000] [109366] [CRITICAL] WORKER TIMEOUT (pid:109487)
+[2023-10-29 18:56:18 +0300] [109487] [INFO] Worker exiting (pid: 109487)
+[2023-10-29 15:56:18 +0000] [109366] [ERROR] Worker (pid:109487) exited with code 1
+[2023-10-29 15:56:18 +0000] [109366] [ERROR] Worker (pid:109487) exited with code 1.
+[2023-10-29 15:56:18 +0000] [109508] [INFO] Booting worker with pid: 109508
+Method Not Allowed: /api/sync_data/
+Internal Server Error: /api/user-logs/
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/DITApi/DQITAuth/views.py", line 312, in get
+    result_page = paginator.paginate_queryset(logs, request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 387, in paginate_queryset
+    self.count = self.get_count(queryset)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 525, in get_count
+    return queryset.count()
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+Internal Server Error: /api/user-logs/
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/DITApi/DQITAuth/views.py", line 312, in get
+    result_page = paginator.paginate_queryset(logs, request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 387, in paginate_queryset
+    self.count = self.get_count(queryset)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 525, in get_count
+    return queryset.count()
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+Internal Server Error: /api/user-logs/
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/DITApi/DQITAuth/views.py", line 312, in get
+    result_page = paginator.paginate_queryset(logs, request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 387, in paginate_queryset
+    self.count = self.get_count(queryset)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 525, in get_count
+    return queryset.count()
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+Internal Server Error: /api/user-logs/
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/DITApi/DQITAuth/views.py", line 312, in get
+    result_page = paginator.paginate_queryset(logs, request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 387, in paginate_queryset
+    self.count = self.get_count(queryset)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 525, in get_count
+    return queryset.count()
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+Internal Server Error: /api/user-logs/
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/tech/DataIssueTracker/DITApi/DQITAuth/views.py", line 312, in get
+    result_page = paginator.paginate_queryset(logs, request)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 387, in paginate_queryset
+    self.count = self.get_count(queryset)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/rest_framework/pagination.py", line 525, in get_count
+    return queryset.count()
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/tech/DataIssueTracker/env/lib/python3.10/site-packages/MySQLdb/connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'dqits.DQITAuth_userlog' doesn't exist")
+[2023-10-29 16:00:34 +0000] [109366] [CRITICAL] WORKER TIMEOUT (pid:109508)
+[2023-10-29 19:00:34 +0300] [109508] [INFO] Worker exiting (pid: 109508)
+[2023-10-29 16:00:34 +0000] [109366] [ERROR] Worker (pid:109508) exited with code 1
+[2023-10-29 16:00:34 +0000] [109366] [ERROR] Worker (pid:109508) exited with code 1.
+[2023-10-29 16:00:34 +0000] [109924] [INFO] Booting worker with pid: 109924
+Method Not Allowed: /api/sync_data/
