@@ -330,6 +330,7 @@ const performBulkAction = () => {
 
 onMounted(() => {
   loadData()
+  console.log(store.state.setup.baseUrl)
 })
 </script>
 
