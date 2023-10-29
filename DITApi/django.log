@@ -1,0 +1,111 @@
+Watching for file changes with StatReloader
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 19:08:12.359946+03:00 (in 3599.993661 seconds)
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Method Not Allowed: /api/sync_data/
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Method Not Allowed: /api/login/
+Processing login mail
+Email thread started!
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Not Found: /api/data/
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Method Not Allowed: /api/sync_data/
+Data sync active...
+[Errno 2] No such file or directory: '/app/facility data issues'
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Method Not Allowed: /api/sync_data/
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Data sync active...
+[Errno 2] No such file or directory: 'E:/projects/DataIssueTracker/DITApi/media/facility data issues'
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Data sync active...
+All files processed
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+/home/titusdev/projects/DataIssueTracker/DITApi/DQITAuth/views.py changed, reloading.
+Watching for file changes with StatReloader
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 19:19:30.162336+03:00 (in 3599.998630 seconds)
+/home/titusdev/projects/DataIssueTracker/DITApi/DQIT_Endpoint/views.py changed, reloading.
+Watching for file changes with StatReloader
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 19:20:03.037067+03:00 (in 3599.999096 seconds)
+/home/titusdev/projects/DataIssueTracker/DITApi/DQIT_Endpoint/views.py changed, reloading.
+Watching for file changes with StatReloader
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 19:20:17.567423+03:00 (in 3599.998832 seconds)
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Data sync active...
+All files processed
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+/home/titusdev/projects/DataIssueTracker/DITApi/DQIT_Endpoint/utils.py changed, reloading.
+Watching for file changes with StatReloader
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 19:22:07.527670+03:00 (in 3599.998870 seconds)
+/home/titusdev/projects/DataIssueTracker/DITApi/DQIT_Endpoint/utils.py changed, reloading.
+Watching for file changes with StatReloader
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 19:22:17.295277+03:00 (in 3599.993706 seconds)
+/home/titusdev/projects/DataIssueTracker/DITApi/DQIT_Endpoint/utils.py changed, reloading.
+Watching for file changes with StatReloader
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 19:22:23.594591+03:00 (in 3599.993593 seconds)
+/home/titusdev/projects/DataIssueTracker/DITApi/DQIT_Endpoint/utils.py changed, reloading.
+Watching for file changes with StatReloader
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 19:22:31.055539+03:00 (in 3599.993775 seconds)
