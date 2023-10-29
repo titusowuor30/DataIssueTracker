@@ -17,7 +17,7 @@ class DataQualityIssuesEndpoints(APIView):
     def post(self, request, format=None):
         ids = request.data['data_ids']
         processed_ids=self.process_issues(ids)
-        #print(list(processed_ids))
+        ##print(list(processed_ids))
         for id in processed_ids:
             issue = self.get_object(id)
             issue.action_taken =request.data['action']
@@ -201,12 +201,12 @@ class DataSyncSetupEndpoints(APIView):
 class SyncDataView(APIView):
     def post(self,request,*args,**kwargs):
         try:
-            print("Data sync active...")
+            #print("Data sync active...")
             data_sync=DataSyncSettings.objects.first()
             data_importer = DataImporter(data_sync.data_issues_folder_url)
             # Run the data importer periodically (e.g., every 1 min)
             data_importer.check_for_new_files(facility_file_path=data_sync.faclity_list_csv_path)
         except Exception as e:
             Response(f'An error occured! {str(e)}')
-            print(e)
+            #print(e)
         return Response('Data sync running...')
