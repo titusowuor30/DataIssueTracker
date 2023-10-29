@@ -1381,3 +1381,127 @@ Not Found: /api/null
 Not Found: /api//media/profiles/logo.png
 Not Found: /api//media/profiles/logo.png
 Not Found: /api/media/profiles/logo.png
+[2023-10-29 17:23:32 +0000] [110582] [INFO] Handling signal: hup
+[2023-10-29 17:23:32 +0000] [110582] [INFO] Hang up: Master
+[2023-10-29 20:23:32 +0300] [111132] [INFO] Worker exiting (pid: 111132)
+[2023-10-29 17:23:32 +0000] [112134] [INFO] Booting worker with pid: 112134
+[2023-10-29 17:23:32 +0000] [110582] [ERROR] Worker (pid:111132) was sent SIGTERM!
+[2023-10-29 17:31:09 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:112134)
+[2023-10-29 20:31:09 +0300] [112134] [INFO] Worker exiting (pid: 112134)
+[2023-10-29 17:31:10 +0000] [110582] [ERROR] Worker (pid:112134) exited with code 1
+[2023-10-29 17:31:10 +0000] [110582] [ERROR] Worker (pid:112134) exited with code 1.
+[2023-10-29 17:31:10 +0000] [112523] [INFO] Booting worker with pid: 112523
+Not Found: /api/media/profiles/logo.png
+Forbidden: /api/sync_data/
+Method Not Allowed: /api/sync_data/
+[2023-10-29 17:51:27 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:112523)
+[2023-10-29 20:51:27 +0300] [112523] [INFO] Worker exiting (pid: 112523)
+[2023-10-29 17:51:28 +0000] [110582] [ERROR] Worker (pid:112523) exited with code 1
+[2023-10-29 17:51:28 +0000] [110582] [ERROR] Worker (pid:112523) exited with code 1.
+[2023-10-29 17:51:28 +0000] [112960] [INFO] Booting worker with pid: 112960
+[2023-10-29 17:51:59 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:112960)
+[2023-10-29 20:51:59 +0300] [112960] [INFO] Worker exiting (pid: 112960)
+[2023-10-29 17:51:59 +0000] [110582] [ERROR] Worker (pid:112960) exited with code 1
+[2023-10-29 17:51:59 +0000] [110582] [ERROR] Worker (pid:112960) exited with code 1.
+[2023-10-29 17:51:59 +0000] [112964] [INFO] Booting worker with pid: 112964
+Method Not Allowed: /api/sync_data/
+Method Not Allowed: /api/sync_data/
+[2023-10-29 17:53:31 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:112964)
+[2023-10-29 20:53:31 +0300] [112964] [INFO] Worker exiting (pid: 112964)
+[2023-10-29 17:53:32 +0000] [110582] [ERROR] Worker (pid:112964) exited with code 1
+[2023-10-29 17:53:32 +0000] [110582] [ERROR] Worker (pid:112964) exited with code 1.
+[2023-10-29 17:53:32 +0000] [112979] [INFO] Booting worker with pid: 112979
+Method Not Allowed: /api/sync_data/
+[2023-10-29 17:59:07 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:112979)
+[2023-10-29 20:59:07 +0300] [112979] [INFO] Worker exiting (pid: 112979)
+[2023-10-29 17:59:08 +0000] [110582] [ERROR] Worker (pid:112979) exited with code 1
+[2023-10-29 17:59:08 +0000] [110582] [ERROR] Worker (pid:112979) exited with code 1.
+[2023-10-29 17:59:08 +0000] [113052] [INFO] Booting worker with pid: 113052
+Unauthorized: /api/sync_data/
+Unauthorized: /api/sync_data/
+[2023-10-29 18:06:47 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113052)
+[2023-10-29 21:06:47 +0300] [113052] [INFO] Worker exiting (pid: 113052)
+[2023-10-29 18:06:48 +0000] [110582] [ERROR] Worker (pid:113052) exited with code 1
+[2023-10-29 18:06:48 +0000] [110582] [ERROR] Worker (pid:113052) exited with code 1.
+[2023-10-29 18:06:48 +0000] [113123] [INFO] Booting worker with pid: 113123
+[2023-10-29 18:25:09 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113123)
+[2023-10-29 21:25:09 +0300] [113123] [INFO] Worker exiting (pid: 113123)
+[2023-10-29 18:25:09 +0000] [110582] [ERROR] Worker (pid:113123) exited with code 1
+[2023-10-29 18:25:09 +0000] [110582] [ERROR] Worker (pid:113123) exited with code 1.
+[2023-10-29 18:25:09 +0000] [113296] [INFO] Booting worker with pid: 113296
+[2023-10-29 18:25:41 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113296)
+[2023-10-29 21:25:41 +0300] [113296] [INFO] Worker exiting (pid: 113296)
+[2023-10-29 18:25:41 +0000] [110582] [ERROR] Worker (pid:113296) exited with code 1
+[2023-10-29 18:25:41 +0000] [110582] [ERROR] Worker (pid:113296) exited with code 1.
+[2023-10-29 18:25:41 +0000] [113299] [INFO] Booting worker with pid: 113299
+[2023-10-29 18:34:32 +0000] [110582] [INFO] Handling signal: hup
+[2023-10-29 18:34:32 +0000] [110582] [INFO] Hang up: Master
+[2023-10-29 18:34:32 +0000] [110582] [ERROR] Worker (pid:113299) was sent SIGHUP!
+[2023-10-29 18:34:32 +0000] [113433] [INFO] Booting worker with pid: 113433
+Unauthorized: /api/analytics/
+[2023-10-29 18:38:25 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113433)
+[2023-10-29 21:38:25 +0300] [113433] [INFO] Worker exiting (pid: 113433)
+[2023-10-29 18:38:25 +0000] [110582] [ERROR] Worker (pid:113433) exited with code 1
+[2023-10-29 18:38:25 +0000] [110582] [ERROR] Worker (pid:113433) exited with code 1.
+[2023-10-29 18:38:25 +0000] [113480] [INFO] Booting worker with pid: 113480
+Unauthorized: /api/data_issues/
+Unauthorized: /api/data_issue_stats/
+Unauthorized: /api/facilities/
+Unauthorized: /api/user-logs/
+Unauthorized: /api/usersapi/
+Unauthorized: /api/facilities/
+Unauthorized: /api/data_issues/
+Unauthorized: /api/user-logs/
+Unauthorized: /api/data_issues/
+Unauthorized: /api/facilities/
+Unauthorized: /api/usersapi/
+[2023-10-29 18:39:45 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113480)
+[2023-10-29 21:39:45 +0300] [113480] [INFO] Worker exiting (pid: 113480)
+[2023-10-29 18:39:45 +0000] [110582] [ERROR] Worker (pid:113480) exited with code 1
+[2023-10-29 18:39:45 +0000] [110582] [ERROR] Worker (pid:113480) exited with code 1.
+[2023-10-29 18:39:45 +0000] [113552] [INFO] Booting worker with pid: 113552
+Unauthorized: /api/data_issue_stats/
+Unauthorized: /api/analytics/
+Unauthorized: /api/data_issues/
+Unauthorized: /api/user-logs/
+Unauthorized: /api/facilities/
+[2023-10-29 18:41:02 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113552)
+[2023-10-29 21:41:02 +0300] [113552] [INFO] Worker exiting (pid: 113552)
+[2023-10-29 18:41:03 +0000] [110582] [ERROR] Worker (pid:113552) exited with code 1
+[2023-10-29 18:41:03 +0000] [110582] [ERROR] Worker (pid:113552) exited with code 1.
+[2023-10-29 18:41:03 +0000] [113574] [INFO] Booting worker with pid: 113574
+[2023-10-29 18:41:50 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113574)
+[2023-10-29 21:41:50 +0300] [113574] [INFO] Worker exiting (pid: 113574)
+[2023-10-29 18:41:50 +0000] [110582] [ERROR] Worker (pid:113574) exited with code 1
+[2023-10-29 18:41:50 +0000] [110582] [ERROR] Worker (pid:113574) exited with code 1.
+[2023-10-29 18:41:50 +0000] [113590] [INFO] Booting worker with pid: 113590
+[2023-10-29 18:44:02 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113590)
+[2023-10-29 21:44:02 +0300] [113590] [INFO] Worker exiting (pid: 113590)
+[2023-10-29 18:44:03 +0000] [110582] [ERROR] Worker (pid:113590) exited with code 1
+[2023-10-29 18:44:03 +0000] [110582] [ERROR] Worker (pid:113590) exited with code 1.
+[2023-10-29 18:44:03 +0000] [113629] [INFO] Booting worker with pid: 113629
+[2023-10-29 18:44:34 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113629)
+[2023-10-29 21:44:34 +0300] [113629] [INFO] Worker exiting (pid: 113629)
+[2023-10-29 18:44:34 +0000] [110582] [ERROR] Worker (pid:113629) exited with code 1
+[2023-10-29 18:44:34 +0000] [110582] [ERROR] Worker (pid:113629) exited with code 1.
+[2023-10-29 18:44:34 +0000] [113647] [INFO] Booting worker with pid: 113647
+[2023-10-29 18:56:15 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113647)
+[2023-10-29 21:56:15 +0300] [113647] [INFO] Worker exiting (pid: 113647)
+[2023-10-29 18:56:16 +0000] [110582] [ERROR] Worker (pid:113647) exited with code 1
+[2023-10-29 18:56:16 +0000] [110582] [ERROR] Worker (pid:113647) exited with code 1.
+[2023-10-29 18:56:16 +0000] [113904] [INFO] Booting worker with pid: 113904
+[2023-10-29 18:56:50 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113904)
+[2023-10-29 21:56:50 +0300] [113904] [INFO] Worker exiting (pid: 113904)
+[2023-10-29 18:56:50 +0000] [110582] [ERROR] Worker (pid:113904) exited with code 1
+[2023-10-29 18:56:50 +0000] [110582] [ERROR] Worker (pid:113904) exited with code 1.
+[2023-10-29 18:56:50 +0000] [113927] [INFO] Booting worker with pid: 113927
+[2023-10-29 18:58:01 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113927)
+[2023-10-29 21:58:01 +0300] [113927] [INFO] Worker exiting (pid: 113927)
+[2023-10-29 18:58:02 +0000] [110582] [ERROR] Worker (pid:113927) exited with code 1
+[2023-10-29 18:58:02 +0000] [110582] [ERROR] Worker (pid:113927) exited with code 1.
+[2023-10-29 18:58:02 +0000] [113981] [INFO] Booting worker with pid: 113981
+[2023-10-29 18:59:10 +0000] [110582] [CRITICAL] WORKER TIMEOUT (pid:113981)
+[2023-10-29 21:59:10 +0300] [113981] [INFO] Worker exiting (pid: 113981)
+[2023-10-29 18:59:10 +0000] [110582] [ERROR] Worker (pid:113981) exited with code 1
+[2023-10-29 18:59:10 +0000] [110582] [ERROR] Worker (pid:113981) exited with code 1.
+[2023-10-29 18:59:10 +0000] [114005] [INFO] Booting worker with pid: 114005
