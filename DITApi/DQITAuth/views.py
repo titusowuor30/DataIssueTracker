@@ -74,15 +74,15 @@ class LoginAPIView(APIView):
             #print("client data",clientdata)
             if (user.ip_address not in clientdata) or (user.device not in clientdata):
                try:
-                    #print("Processing login mail")
+                    print("Processing login mail")
                     subject="New device just logged into your account"
                     message=f"A new device just logged into your account<br/>\n\nDevice name:{clientdata[1]}<br/>\nDevice OS:{clientdata[2]}<br/>\nIP Address:{clientdata[0]}"
                     # emailthread=threading.Thread(target=DQITSEmailBackend(request=request,subject=subject,body=message,to=["titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
                     # emailthread.daemon=True
                     #emailthread.start()
-                    #print("Email thread started!")
+                    print("Email thread started!")
                except Exception as e:
-                   #print(e)
+                   print(e)
 
             # Fetch user's roles
             role = user.role.role_name if user.role else None
@@ -105,7 +105,7 @@ class UserApiView(APIView):
     def post(self, request, format=None):
         ids = request.data['data_ids']
         processed_ids=self.process_issues(ids)
-        ##print(list(processed_ids))
+        #print(list(processed_ids))
         for id in processed_ids:
             issue = self.get_object(id)
             issue.action_taken =request.data['action']
@@ -147,7 +147,7 @@ class UserApiView(APIView):
     def put(self, request, pk, format=None):
         user = self.get_object(pk)
         if user:
-            #print(request.data.get('first_name'))
+            print(request.data.get('first_name'))
             user.username = request.data.get('username',None)
             user.email = request.data.get('email', None)
             user.first_name = request.data.get('first_name', None)
@@ -159,7 +159,7 @@ class UserApiView(APIView):
                 role=Roles.objects.get(role_name=role_data)
                 user.role = role
 
-            #print(request.data.get('phone'))
+            print(request.data.get('phone'))
             
             user.phone = request.data.get('phone', None)
             user.gender = request.data.get('gender', None)
@@ -276,7 +276,7 @@ class UserLogAPIs(APIView):
         else:
             ids = request.data['data_ids']
             processed_ids=self.process_issues(ids)
-            ##print(list(processed_ids))
+            #print(list(processed_ids))
             for id in processed_ids:
                 log = self.get_object(id)
                 log.delete()
