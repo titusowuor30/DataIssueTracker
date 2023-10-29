@@ -1,7 +1,9 @@
+import axios from "@/axiosConfig"
 
 const state = {
-  baseUrl: 'http://localhost:8001',
+  baseUrl: axios.defaults.baseURL.replace("/api/", ""),
 }
+
 
 const mutations = {}
 
