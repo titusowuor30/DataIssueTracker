@@ -7,6 +7,8 @@ from .models import DataQualityIssues,Facilities,EmailSetup,DataSyncSettings
 from .utils import DataImporter
 from django.db.models import Q
 from .serializers import DataQualityIssuesSerializer,FacilitiesSerializer,EmailSetupSerializer,DataSyncSettingsSerializer
+import logging
+logger = logging.getLogger(__name__)
 
 class DataQualityIssuesEndpoints(APIView):
 
@@ -201,12 +203,11 @@ class DataSyncSetupEndpoints(APIView):
 class SyncDataView(APIView):
     def post(self,request,*args,**kwargs):
         try:
-            #print("Data sync active...")
+            logger.info("Data sync active...")
             data_sync=DataSyncSettings.objects.first()
             data_importer = DataImporter(data_sync.data_issues_folder_url)
-            # Run the data importer periodically (e.g., every 1 min)
             data_importer.check_for_new_files(facility_file_path=data_sync.faclity_list_csv_path)
         except Exception as e:
-            Response(f'An error occured! {str(e)}')
-            #print(e)
+           logger.error(e)
+           return Response(f'An error occured! {str(e)}')
         return Response('Data sync running...')

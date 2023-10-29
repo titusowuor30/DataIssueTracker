@@ -72,6 +72,22 @@ MIDDLEWARE = [
     'DQITAuth.middleware.TimezoneMiddleware',
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',  # Adjust the log level as needed
+            'class': 'logging.FileHandler',
+            'filename': 'django.log',  # Specify the log file path
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'DEBUG',  # Adjust the log level as needed
+    },
+}
+
 ROOT_URLCONF = 'DITApi.urls'
 
 TEMPLATES = [

@@ -23,6 +23,8 @@ from user_agents import parse
 import threading
 from .models import Roles
 import json
+import logging
+logger = logging.getLogger(__name__)
 
 def get_client_info(request):
     client_ip = request.META.get('REMOTE_ADDR', None)
@@ -74,15 +76,15 @@ class LoginAPIView(APIView):
             #print("client data",clientdata)
             if (user.ip_address not in clientdata) or (user.device not in clientdata):
                try:
-                    print("Processing login mail")
+                    logger.debug("Processing login mail")
                     subject="New device just logged into your account"
                     message=f"A new device just logged into your account<br/>\n\nDevice name:{clientdata[1]}<br/>\nDevice OS:{clientdata[2]}<br/>\nIP Address:{clientdata[0]}"
                     # emailthread=threading.Thread(target=DQITSEmailBackend(request=request,subject=subject,body=message,to=["titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
                     # emailthread.daemon=True
                     #emailthread.start()
-                    print("Email thread started!")
+                    logger.info("Email thread started!")
                except Exception as e:
-                   print(e)
+                   logger.debug(e)
 
             # Fetch user's roles
             role = user.role.role_name if user.role else None
@@ -147,7 +149,6 @@ class UserApiView(APIView):
     def put(self, request, pk, format=None):
         user = self.get_object(pk)
         if user:
-            print(request.data.get('first_name'))
             user.username = request.data.get('username',None)
             user.email = request.data.get('email', None)
             user.first_name = request.data.get('first_name', None)
@@ -158,8 +159,6 @@ class UserApiView(APIView):
             if role_data:
                 role=Roles.objects.get(role_name=role_data)
                 user.role = role
-
-            print(request.data.get('phone'))
             
             user.phone = request.data.get('phone', None)
             user.gender = request.data.get('gender', None)
