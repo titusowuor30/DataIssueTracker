@@ -175,7 +175,7 @@ tinymce.addI18n('it_IT',{
 "Page break": "Interruzione di pagina",
 "Paste as text": "Incolla senza formattazioni",
 "Preview": "Anteprima",
-"Print...": "Stampa...",
+"print...": "Stampa...",
 "Save": "Salva",
 "Find": "Trova",
 "Replace with": "Sostituisci con",

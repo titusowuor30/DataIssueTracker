@@ -179,7 +179,7 @@ tinymce.addI18n('sl',{
 "Page break": "Prelom strani",
 "Paste as text": "Vnesi kot besedilo",
 "Preview": "Predogled",
-"Print...": "Natisni ...",
+"print...": "Natisni ...",
 "Save": "Shrani",
 "Find": "Najdi",
 "Replace with": "Zamenjaj z",

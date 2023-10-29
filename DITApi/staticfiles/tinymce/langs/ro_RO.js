@@ -175,7 +175,7 @@ tinymce.addI18n('ro_RO',{
 "Page break": "\u00centrerupere de pagin\u0103",
 "Paste as text": "Lipire ca text",
 "Preview": "Previzualizare",
-"Print...": "Tip\u0103rire\u2026",
+"print...": "Tip\u0103rire\u2026",
 "Save": "Salvare",
 "Find": "G\u0103sire",
 "Replace with": "\u00cenlocuire cu",

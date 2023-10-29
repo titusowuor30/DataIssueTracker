@@ -62,18 +62,18 @@ class DataImporter:
                     time.sleep(1)
                 else:
                     continue #move to the next facility
-            print(f"Data imported from {file_path} successfully.")
+            #print(f"Data imported from {file_path} successfully.")
             #Notify user 
             # try:
-            #     print("Processing login mail")
+            #     #print("Processing login mail")
             #     subject="New device just logged into your account"
             #     message=f"Dear {self.request.user.username},\n<br/>New data quality issues for facility {user_facility.facility_name} have been uploaded into the DQITs portal, please login and check!"
             #     emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email if faclity_user else "titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
             #     emailthread.daemon=True
             #     emailthread.start()
-            #     print("Email thread started!")
+            #     #print("Email thread started!")
             # except Exception as e:
-            #     print(e)
+            #     #print(e)
             new_file_name = file_path.replace('.xlsx', '_processed.xlsx') if 'xlsx' in file_path else file_path.replace('.csv',  '_processed.csv')
             os.rename(file_path, new_file_name)
         else:
@@ -89,8 +89,8 @@ class DataImporter:
                     facility_code=row['ID'],
                     defaults=data
                     )
-            print(f"Facilities imported successfully.")
-        #     print(f"Error importing data from {file_path}: {str(e)}")
+            #print(f"Facilities imported successfully.")
+        #     #print(f"Error importing data from {file_path}: {str(e)}")
 
     def generate_data_from_files(self):
         for filename in os.listdir(self.data_folder):

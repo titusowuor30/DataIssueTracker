@@ -179,7 +179,7 @@ tinymce.addI18n('nl_BE',{
 "Page break": "Pagina-einde",
 "Paste as text": "Plakken als tekst",
 "Preview": "Voorbeeld",
-"Print...": "Afdrukken...",
+"print...": "Afdrukken...",
 "Save": "Opslaan",
 "Find": "Zoeken",
 "Replace with": "Vervangen door",

@@ -135,7 +135,7 @@ tinymce.addI18n('sq',{
 "Page break": "Page break",
 "Paste as text": "Paste as text",
 "Preview": "Preview",
-"Print": "Print",
+"print": "print",
 "Save": "Save",
 "Could not find the specified string.": "Could not find the specified string.",
 "Replace": "Replace",

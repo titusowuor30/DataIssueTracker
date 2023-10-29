@@ -1,29 +1,29 @@
 version: '3'
 services:
-  ditapi:
-    container_name: ditapi
-    environment:
-      - DB_ROOT_PASSWORD=root
-      - DB_USER=dqitsuser
-      - DB_PASSWORD=DQITs@123
-      - DB_NAME=dqits
-      - DB_HOST=192.168.251.10
-    image: titusdev/ditapi:latest
-    mem_limit: 8000M
-    cpus: 0.5
-    restart: unless-stopped
-    ports:
-      - "8001:8000"
-    volumes:
-      - /home/titusdev/projects/DataIssueTracker/DITApi/backups:/app/backups
-      - /home/titusdev/projects/DataIssueTracker/facility data issues:/app/facility data issues
-    command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000 -w 4 --timeout 120
+  # ditapi:
+  #   container_name: ditapi
+  #   environment:
+  #     - DB_ROOT_PASSWORD=root
+  #     - DB_USER=dqitsuser
+  #     - DB_PASSWORD=DQITs@123
+  #     - DB_NAME=dqits
+  #     - DB_HOST=192.168.251.10
+  #   image: titusdev/ditapi:latest
+  #   mem_limit: 8000M
+  #   cpus: 0.5
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8001:8000"
+  #   volumes:
+  #     - /home/titusdev/projects/DataIssueTracker/DITApi/backups:/app/backups
+  #     - /home/titusdev/projects/DataIssueTracker/facility data issues:/app/facility data issues
+  #   command: gunicorn DITApi.wsgi:application --bind 0.0.0.0:8000 -w 4 --timeout 120
   ditui:
     container_name: ditui
     environment:
-      - VUE_APP_BASE_URL='http://localhost:8001/api/'
-    image: titusdev/ditui:latest
+      - VUE_APP_BASE_URL='http://146.190.61.0:8000/api/'
+    image: ditui:latest
     ports:
       - "3000:80"
-    depends_on:
-      - ditapi
+    # depends_on:
+    #   - ditapi
