@@ -74,19 +74,37 @@ MIDDLEWARE = [
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '{message}',
+            'style': '{',
+        },
+    },
     'handlers': {
-        'file': {
-            'level': 'DEBUG',  # Adjust the log level as needed
-            'class': 'logging.FileHandler',
-            'filename': 'django.log',  # Specify the log file path
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
         },
     },
     'root': {
-        'handlers': ['file'],
-        'level': 'DEBUG',  # Adjust the log level as needed
+        'handlers': ['console'],
+        'level': 'DEBUG',  # Adjust this level to control the log verbosity.
+    },
+    'loggers': {
+        'ditapi_logger': {
+            'handlers': ['console'],
+            'level': 'DEBUG',  # Adjust this level to control the Django-specific log verbosity.
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',  # Adjust this level to control the Django-specific log verbosity.
+            'propagate': False,
+        },
     },
 }
+
 
 ROOT_URLCONF = 'DITApi.urls'
 

@@ -8,8 +8,7 @@ from .utils import DataImporter
 from django.db.models import Q
 from .serializers import DataQualityIssuesSerializer,FacilitiesSerializer,EmailSetupSerializer,DataSyncSettingsSerializer
 import logging
-logger = logging.getLogger(__name__)
-
+logger = logging.getLogger('ditapi_logger')
 class DataQualityIssuesEndpoints(APIView):
 
     def process_issues(self, data):

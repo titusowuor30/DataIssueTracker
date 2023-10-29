@@ -892,6 +892,7 @@ Not Found: /api//media/profiles/logo.png
 Not Found: /api/media/profiles/logo.png
 Processing login mail
 Email thread started!
+<<<<<<< HEAD
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
@@ -986,39 +987,61 @@ Scheduler started
 Looking for jobs to run
 Next wakeup is due at 2023-10-29 22:00:42.266155+03:00 (in 3599.991473 seconds)
 avatar field must be an ImageField/URLField on the user model, or a callable
+=======
+>>>>>>> refs/remotes/origin/master
 Watching for file changes with StatReloader
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
 Next wakeup is due at 2023-10-29 22:02:41.367897+03:00 (in 3599.976615 seconds)
+=======
+Next wakeup is due at 2023-10-29 22:10:32.220257+03:00 (in 3599.999148 seconds)
+>>>>>>> refs/remotes/origin/master
 Watching for file changes with StatReloader
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
 Next wakeup is due at 2023-10-29 22:02:58.634353+03:00 (in 3599.987805 seconds)
 Unauthorized: /api/sync_data/
 Unauthorized: /api/sync_data/
 avatar field must be an ImageField/URLField on the user model, or a callable
 Data sync active...
+=======
+Next wakeup is due at 2023-10-29 22:10:55.880942+03:00 (in 3599.993673 seconds)
+Watching for file changes with StatReloader
+>>>>>>> refs/remotes/origin/master
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
 Data sync active...
 Next wakeup is due at 2023-10-29 22:24:39.733488+03:00 (in 3599.997572 seconds)
+=======
+Next wakeup is due at 2023-10-29 22:12:00.319655+03:00 (in 3599.999123 seconds)
+Watching for file changes with StatReloader
+>>>>>>> refs/remotes/origin/master
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
 Next wakeup is due at 2023-10-29 22:27:20.996114+03:00 (in 3599.993958 seconds)
 avatar field must be an ImageField/URLField on the user model, or a callable
 avatar field must be an ImageField/URLField on the user model, or a callable
+=======
+Next wakeup is due at 2023-10-29 22:12:50.645293+03:00 (in 3599.993629 seconds)
+Watching for file changes with StatReloader
+>>>>>>> refs/remotes/origin/master
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
 Next wakeup is due at 2023-10-29 22:37:11.140402+03:00 (in 3599.992724 seconds)
 Processing login mail
 Email thread started!
@@ -1102,3 +1125,89 @@ avatar field must be an ImageField/URLField on the user model, or a callable
 avatar field must be an ImageField/URLField on the user model, or a callable
 avatar field must be an ImageField/URLField on the user model, or a callable
 avatar field must be an ImageField/URLField on the user model, or a callable
+=======
+Next wakeup is due at 2023-10-29 22:13:16.828031+03:00 (in 3599.993766 seconds)
+Not Found: /
+Not Found: /favicon.ico
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+/home/titusdev/projects/DataIssueTracker/DITApi/DITApi/settings.py changed, reloading.
+>>>>>>> refs/remotes/origin/master

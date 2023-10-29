@@ -9,7 +9,7 @@ from django.conf import settings
 import os
 import threading
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('ditapi_logger')
 
 class Command(BaseCommand):
     help = 'Import data from Excel and CSV files in a folder using DataImporter according to schedule'
@@ -46,7 +46,7 @@ class Command(BaseCommand):
             ).order_by('time_of_day').first()
 
             if next_run_schedule:
-                logger.info(f"Data sync will run on {next_run_schedule.day_of_week} at {next_run_schedule.time_of_day} +1hr(s)")
+                logger.info(f"Data sync will run on {next_run_schedule.day_of_week} at {next_run_schedule.time_of_day} +2min(s)")
                 # Assuming scheduled_time is a datetime.time object
                 scheduled_time =next_run_schedule.time_of_day  # Replace with your scheduled time
 
@@ -54,7 +54,7 @@ class Command(BaseCommand):
                 scheduled_datetime = datetime.combine(datetime.today(), scheduled_time)
 
                 # Add a timedelta of 5 minutes
-                scheduled_time_plus_1hrs = scheduled_datetime + timedelta(hours=1)
+                scheduled_time_plus_1hrs = scheduled_datetime + timedelta(minutes=2)
 
                 if current_time >= scheduled_datetime and current_time <= scheduled_time_plus_1hrs:
                     logger.info("Data sync active...")
@@ -75,7 +75,7 @@ class Command(BaseCommand):
            
             ########################Backup database######################################
             # Calculate the time difference between now and the next scheduled run
-            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/3600
+            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/60
             logger.info(time_difference)
             if abs(time_difference) >1:
                 logger.info(f"Backup schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
@@ -139,7 +139,7 @@ class Command(BaseCommand):
             
             #####################Restore database############################
             # Calculate the time difference between now and the next scheduled run
-            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/3600 # in hrs
+            time_difference = (timezone.make_naive(schedule.next_run_datetime) - current_time).total_seconds()/60 # in mins
             logger.info(time_difference)
             if abs(time_difference) >1:
                 logger.info(f"Restore schedule will run on {timezone.make_naive(schedule.next_run_datetime)}")
