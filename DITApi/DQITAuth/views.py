@@ -24,8 +24,7 @@ import threading
 from .models import Roles
 import json
 import logging
-logger = logging.getLogger(__name__)
-
+logger = logging.getLogger('ditapi_logger')
 def get_client_info(request):
     client_ip = request.META.get('REMOTE_ADDR', None)
 
