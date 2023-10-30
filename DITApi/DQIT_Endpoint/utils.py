@@ -97,30 +97,55 @@ class DataImporter:
             logger.error(f"Error importing data from {file_path}: {str(e)}")
 
     def generate_data_from_files(self):
-        for filename in os.listdir(self.data_folder):
-            if filename.endswith('.xlsx') and 'processed' not in filename:
-                file_path = os.path.join(self.data_folder, filename)
-                yield pd.read_excel(file_path),file_path
-                time.sleep(1)
-            else:
-                if filename.endswith('.csv') and 'processed' not in filename:
+        try:
+            for filename in os.listdir(self.data_folder):
+                if filename.endswith('.xlsx') and 'processed' not in filename:
                     file_path = os.path.join(self.data_folder, filename)
-                    yield pd.read_csv(file_path),file_path
+                    yield pd.read_excel(file_path),file_path
                     time.sleep(1)
-        else:
-            logger.info('All files processed')
+                else:
+                    if filename.endswith('.csv') and 'processed' not in filename:
+                        file_path = os.path.join(self.data_folder, filename)
+                        yield pd.read_csv(file_path),file_path
+                        time.sleep(1)
+            else:
+                logger.info('All files processed')
+        except Exception as e:
+            logger.error(f"{e}")
 
     def check_for_new_files(self,facility_file_path):
-        for df, file_path in self.generate_data_from_files():
-            df.drop_duplicates(inplace=True)#drop duplicates
-            #remove NATypes(Not-a-Timezone value)
-            na_columns = df.columns[df.isna().any()].tolist()#nat col values
-            logger.warning(f"NATypes found -> count:{na_columns.count()}")
-            #df['Date of Entry'] = df['Date of Entry'].fillna(pd.Timestamp('today'))# fill with current timestamp
-            logger.info(f"dropping rows with NATypes")
-            df.dropna(subset=['Inconsistency','Date of Entry'],inplace=True)#drop rows where inconsistency is null
-            logger.info("rows dropped!")
-            self.import_data_from_excel(file_path,facility_file_path,df)
-    
+        try:
+            for df, file_path in self.generate_data_from_files():
+                df.drop_duplicates(inplace=True)#drop duplicates
+                #remove NATypes(Not-a-Timezone value)
+                na_columns = df.columns[df.isna().any()].tolist()#nat col values
+                na_count=df[na_columns].isna().sum()
+                logger.warning(f"NATypes found -> count:{na_count}")
+                #df['Date of Entry'] = df['Date of Entry'].fillna(pd.Timestamp('today'))# fill with current timestamp
+                logger.info(f"dropping rows with NATypes")
+                df.dropna(subset=['Inconsistency','Date of Entry'],inplace=True)#drop rows where inconsistency is null
+                logger.info("rows dropped!")
+                self.import_data_from_excel(file_path,facility_file_path,df)
+            else:
+                logger.info('All files processed')
+        except Exception as e:
+            logger.error(f"{e}")
+
+    def check_for_new_files(self,facility_file_path):
+        try:
+            for df, file_path in self.generate_data_from_files():
+                df.drop_duplicates(inplace=True)#drop duplicates
+                #remove NATypes(Not-a-Timezone value)
+                na_columns = df.columns[df.isna().any()].tolist()#nat col values
+                na_count=df[na_columns].isna().sum()
+                logger.warning(f"NATypes found -> count:{na_count}")
+                #df['Date of Entry'] = df['Date of Entry'].fillna(pd.Timestamp('today'))# fill with current timestamp
+                logger.info(f"dropping rows with NATypes")
+                df.dropna(subset=['Inconsistency','Date of Entry'],inplace=True)#drop rows where inconsistency is null
+                logger.info("rows dropped!")
+                self.import_data_from_excel(file_path,facility_file_path,df)
+        except Exception as e:
+            logger.error(f"{e}")
+        
 
 
