@@ -892,35 +892,240 @@ Not Found: /api//media/profiles/logo.png
 Not Found: /api/media/profiles/logo.png
 Processing login mail
 Email thread started!
+<<<<<<< HEAD
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 21:29:16.432482+03:00 (in 3599.991699 seconds)
+Processing login mail
+Email thread started!
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 21:31:12.168284+03:00 (in 3599.993443 seconds)
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+Not Found: /api/media/profiles/logo.png
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+Forbidden: /api/sync_data/
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Method Not Allowed: /api/sync_data/
+Data sync active...
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 21:51:29.679592+03:00 (in 3599.995965 seconds)
+Data sync active...
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 21:52:01.385359+03:00 (in 3599.990475 seconds)
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Method Not Allowed: /api/sync_data/
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Method Not Allowed: /api/sync_data/
+Data sync active...
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 21:53:33.698981+03:00 (in 3599.991896 seconds)
+Successfully imported extension module "markdown.extensions.toc".
+Successfully loaded extension "markdown.extensions.toc.TocExtension".
+Method Not Allowed: /api/sync_data/
+Processing login mail
+Email thread started!
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+Data sync active...
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 22:00:42.266155+03:00 (in 3599.991473 seconds)
+avatar field must be an ImageField/URLField on the user model, or a callable
+=======
+>>>>>>> refs/remotes/origin/master
 Watching for file changes with StatReloader
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
+Next wakeup is due at 2023-10-29 22:02:41.367897+03:00 (in 3599.976615 seconds)
+=======
 Next wakeup is due at 2023-10-29 22:10:32.220257+03:00 (in 3599.999148 seconds)
+>>>>>>> refs/remotes/origin/master
 Watching for file changes with StatReloader
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
+Next wakeup is due at 2023-10-29 22:02:58.634353+03:00 (in 3599.987805 seconds)
+Unauthorized: /api/sync_data/
+Unauthorized: /api/sync_data/
+avatar field must be an ImageField/URLField on the user model, or a callable
+Data sync active...
+=======
 Next wakeup is due at 2023-10-29 22:10:55.880942+03:00 (in 3599.993673 seconds)
 Watching for file changes with StatReloader
+>>>>>>> refs/remotes/origin/master
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
+Data sync active...
+Next wakeup is due at 2023-10-29 22:24:39.733488+03:00 (in 3599.997572 seconds)
+=======
 Next wakeup is due at 2023-10-29 22:12:00.319655+03:00 (in 3599.999123 seconds)
 Watching for file changes with StatReloader
+>>>>>>> refs/remotes/origin/master
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
+Next wakeup is due at 2023-10-29 22:27:20.996114+03:00 (in 3599.993958 seconds)
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+=======
 Next wakeup is due at 2023-10-29 22:12:50.645293+03:00 (in 3599.993629 seconds)
 Watching for file changes with StatReloader
+>>>>>>> refs/remotes/origin/master
 Adding job tentatively -- it will be properly scheduled when the scheduler starts
 Added job "Command.handle" to job store "default"
 Scheduler started
 Looking for jobs to run
+<<<<<<< HEAD
+Next wakeup is due at 2023-10-29 22:37:11.140402+03:00 (in 3599.992724 seconds)
+Processing login mail
+Email thread started!
+Processing login mail
+Email thread started!
+Processing login mail
+Email thread started!
+Unauthorized: /api/analytics/
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 22:38:27.302455+03:00 (in 3599.994036 seconds)
+Unauthorized: /api/data_issues/
+Unauthorized: /api/data_issue_stats/
+Unauthorized: /api/facilities/
+Unauthorized: /api/user-logs/
+Unauthorized: /api/usersapi/
+Unauthorized: /api/facilities/
+Unauthorized: /api/data_issues/
+Unauthorized: /api/user-logs/
+Unauthorized: /api/data_issues/
+Unauthorized: /api/facilities/
+Unauthorized: /api/usersapi/
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 22:40:32.052855+03:00 (in 3599.993445 seconds)
+Unauthorized: /api/data_issue_stats/
+Unauthorized: /api/analytics/
+Unauthorized: /api/data_issues/
+Unauthorized: /api/user-logs/
+Unauthorized: /api/facilities/
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 22:41:05.128983+03:00 (in 3599.989146 seconds)
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 22:41:52.420470+03:00 (in 3599.993616 seconds)
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 22:55:46.099013+03:00 (in 3599.990550 seconds)
+Data sync active...
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 22:56:18.418822+03:00 (in 3599.994875 seconds)
+avatar field must be an ImageField/URLField on the user model, or a callable
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 22:56:55.027257+03:00 (in 3599.993744 seconds)
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-29 22:59:12.106426+03:00 (in 3599.993329 seconds)
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+avatar field must be an ImageField/URLField on the user model, or a callable
+=======
 Next wakeup is due at 2023-10-29 22:13:16.828031+03:00 (in 3599.993766 seconds)
 Not Found: /
 Not Found: /favicon.ico
@@ -1005,3 +1210,4 @@ avatar field must be an ImageField/URLField on the user model, or a callable
 Couldnt reverse DQIT_Endpoint
 avatar field must be an ImageField/URLField on the user model, or a callable
 /home/titusdev/projects/DataIssueTracker/DITApi/DITApi/settings.py changed, reloading.
+>>>>>>> refs/remotes/origin/master
