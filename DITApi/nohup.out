@@ -8512,3 +8512,665 @@ Data sync will run on mon at 07:06:00 +2min(s)
 Backup schedule will run on 2023-10-30 21:27:37.684482
 Error: 'NoneType' object has no attribute 'restore_file'
 Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 07:47:36 EAT)" executed successfully
+[2023-10-30 15:50:17 +0000] [159082] [INFO] Starting gunicorn 21.2.0
+[2023-10-30 15:50:17 +0000] [159082] [INFO] Listening at: http://0.0.0.0:8000 (159082)
+[2023-10-30 15:50:17 +0000] [159082] [INFO] Using worker: sync
+[2023-10-30 15:50:17 +0000] [159083] [INFO] Booting worker with pid: 159083
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:50:49.377539+03:00 (in 29.990550 seconds)
+Looking for jobs to run
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:50:49 EAT)" (scheduled at 2023-10-30 18:50:49.377539+03:00)
+Next wakeup is due at 2023-10-30 18:51:19.377539+03:00 (in 29.998353 seconds)
+No data sync shedule found on mon at 18:50:49
+156.80508643333332
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:51:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:51:49.377539+03:00 (in 29.995615 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:51:49 EAT)" (scheduled at 2023-10-30 18:51:19.377539+03:00)
+No data sync shedule found on mon at 18:51:19
+156.30502919999998
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:51:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:52:19.377539+03:00 (in 29.998675 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:52:19 EAT)" (scheduled at 2023-10-30 18:51:49.377539+03:00)
+No data sync shedule found on mon at 18:51:49
+155.80508743333334
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:52:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:52:49.377539+03:00 (in 29.999091 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:52:49 EAT)" (scheduled at 2023-10-30 18:52:19.377539+03:00)
+No data sync shedule found on mon at 18:52:19
+155.30509203333335
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:52:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:53:19.377539+03:00 (in 29.998967 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:53:19 EAT)" (scheduled at 2023-10-30 18:52:49.377539+03:00)
+No data sync shedule found on mon at 18:52:49
+154.8050919
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:53:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:53:49.377539+03:00 (in 29.998711 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:53:49 EAT)" (scheduled at 2023-10-30 18:53:19.377539+03:00)
+No data sync shedule found on mon at 18:53:19
+154.3050828
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:53:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:54:19.377539+03:00 (in 29.998822 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:54:19 EAT)" (scheduled at 2023-10-30 18:53:49.377539+03:00)
+No data sync shedule found on mon at 18:53:49
+153.80508865
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:54:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:54:49.377539+03:00 (in 29.998993 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:54:49 EAT)" (scheduled at 2023-10-30 18:54:19.377539+03:00)
+No data sync shedule found on mon at 18:54:19
+153.30509171666665
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:54:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:55:19.377539+03:00 (in 29.998882 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:55:19 EAT)" (scheduled at 2023-10-30 18:54:49.377539+03:00)
+No data sync shedule found on mon at 18:54:49
+152.80508781666668
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:55:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:55:49.377539+03:00 (in 29.998915 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:55:49 EAT)" (scheduled at 2023-10-30 18:55:19.377539+03:00)
+No data sync shedule found on mon at 18:55:19
+152.30509028333333
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:55:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:56:19.377539+03:00 (in 29.998821 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:56:19 EAT)" (scheduled at 2023-10-30 18:55:49.377539+03:00)
+No data sync shedule found on mon at 18:55:49
+151.80508460000001
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:56:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:56:49.377539+03:00 (in 29.998828 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:56:49 EAT)" (scheduled at 2023-10-30 18:56:19.377539+03:00)
+No data sync shedule found on mon at 18:56:19
+151.30508828333333
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:56:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:57:19.377539+03:00 (in 29.998900 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:57:19 EAT)" (scheduled at 2023-10-30 18:56:49.377539+03:00)
+No data sync shedule found on mon at 18:56:49
+150.80509033333334
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:57:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:57:49.377539+03:00 (in 29.998990 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:57:49 EAT)" (scheduled at 2023-10-30 18:57:19.377539+03:00)
+No data sync shedule found on mon at 18:57:19
+150.30509146666665
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:57:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:58:19.377539+03:00 (in 29.998993 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:58:19 EAT)" (scheduled at 2023-10-30 18:57:49.377539+03:00)
+No data sync shedule found on mon at 18:57:49
+149.80509106666665
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:58:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:58:49.377539+03:00 (in 29.999071 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:58:49 EAT)" (scheduled at 2023-10-30 18:58:19.377539+03:00)
+No data sync shedule found on mon at 18:58:19
+149.30509425
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:58:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:59:19.377539+03:00 (in 29.999019 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:59:19 EAT)" (scheduled at 2023-10-30 18:58:49.377539+03:00)
+No data sync shedule found on mon at 18:58:49
+148.80508996666669
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:59:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 18:59:49.377539+03:00 (in 29.998590 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:59:49 EAT)" (scheduled at 2023-10-30 18:59:19.377539+03:00)
+No data sync shedule found on mon at 18:59:19
+148.30508258333333
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 18:59:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:00:19.377539+03:00 (in 29.998772 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:00:19 EAT)" (scheduled at 2023-10-30 18:59:49.377539+03:00)
+No data sync shedule found on mon at 18:59:49
+147.80508985
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:00:19 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:00:49.377539+03:00 (in 29.998886 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:00:49 EAT)" (scheduled at 2023-10-30 19:00:19.377539+03:00)
+No data sync shedule found on mon at 19:00:19
+147.3050883
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:00:49 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:01:19.377539+03:00 (in 29.998721 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:01:19 EAT)" (scheduled at 2023-10-30 19:00:49.377539+03:00)
+No data sync shedule found on mon at 19:00:49
+146.80508390000003
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:01:19 EAT)" executed successfully
+[2023-10-30 16:00:50 +0000] [159082] [CRITICAL] WORKER TIMEOUT (pid:159083)
+[2023-10-30 16:00:51 +0000] [159082] [ERROR] Worker (pid:159083) exited with code 1
+[2023-10-30 16:00:51 +0000] [159082] [ERROR] Worker (pid:159083) exited with code 1.
+[2023-10-30 16:00:51 +0000] [159310] [INFO] Booting worker with pid: 159310
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:01:48.394663+03:00 (in 29.989032 seconds)
+Looking for jobs to run
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:01:48 EAT)" (scheduled at 2023-10-30 19:01:48.394663+03:00)
+Next wakeup is due at 2023-10-30 19:02:18.394663+03:00 (in 29.998372 seconds)
+No data sync shedule found on mon at 19:01:48
+145.82146795
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:02:18 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:02:48.394663+03:00 (in 29.994271 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:02:48 EAT)" (scheduled at 2023-10-30 19:02:18.394663+03:00)
+No data sync shedule found on mon at 19:02:18
+145.32139443333332
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:02:48 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:03:18.394663+03:00 (in 29.999031 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:03:18 EAT)" (scheduled at 2023-10-30 19:02:48.394663+03:00)
+No data sync shedule found on mon at 19:02:48
+144.82147013333332
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:03:18 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:03:48.394663+03:00 (in 29.999189 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:03:48 EAT)" (scheduled at 2023-10-30 19:03:18.394663+03:00)
+No data sync shedule found on mon at 19:03:18
+144.32147665
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:03:48 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:04:18.394663+03:00 (in 29.998849 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:04:18 EAT)" (scheduled at 2023-10-30 19:03:48.394663+03:00)
+No data sync shedule found on mon at 19:03:48
+143.8214722
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:04:18 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:04:48.394663+03:00 (in 29.999045 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:04:48 EAT)" (scheduled at 2023-10-30 19:04:18.394663+03:00)
+No data sync shedule found on mon at 19:04:18
+143.32147225
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:04:48 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:05:18.394663+03:00 (in 29.998962 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:05:18 EAT)" (scheduled at 2023-10-30 19:04:48.394663+03:00)
+No data sync shedule found on mon at 19:04:48
+142.82147346666667
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:05:18 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:05:48.394663+03:00 (in 29.998934 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:05:48 EAT)" (scheduled at 2023-10-30 19:05:18.394663+03:00)
+No data sync shedule found on mon at 19:05:18
+142.32147206666664
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:05:48 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:06:18.394663+03:00 (in 29.999066 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:06:18 EAT)" (scheduled at 2023-10-30 19:05:48.394663+03:00)
+No data sync shedule found on mon at 19:05:48
+141.82147525
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:06:18 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:06:48.394663+03:00 (in 29.998985 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:06:48 EAT)" (scheduled at 2023-10-30 19:06:18.394663+03:00)
+No data sync shedule found on mon at 19:06:18
+141.3214710833333
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:06:48 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:07:18.394663+03:00 (in 29.999023 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:07:18 EAT)" (scheduled at 2023-10-30 19:06:48.394663+03:00)
+No data sync shedule found on mon at 19:06:48
+140.82147546666664
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:07:18 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:07:48.394663+03:00 (in 29.999072 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:07:48 EAT)" (scheduled at 2023-10-30 19:07:18.394663+03:00)
+No data sync shedule found on mon at 19:07:18
+140.32147448333333
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:07:48 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:08:18.394663+03:00 (in 29.998946 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:08:18 EAT)" (scheduled at 2023-10-30 19:07:48.394663+03:00)
+No data sync shedule found on mon at 19:07:48
+139.82147135
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:08:18 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:08:48.394663+03:00 (in 29.998919 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:08:48 EAT)" (scheduled at 2023-10-30 19:08:18.394663+03:00)
+No data sync shedule found on mon at 19:08:18
+139.32147101666666
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:08:48 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:09:18.394663+03:00 (in 29.998803 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:09:18 EAT)" (scheduled at 2023-10-30 19:08:48.394663+03:00)
+No data sync shedule found on mon at 19:08:48
+138.82146916666667
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:09:18 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 19:09:48.394663+03:00 (in 29.998951 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:09:48 EAT)" (scheduled at 2023-10-30 19:09:18.394663+03:00)
+No data sync shedule found on mon at 19:09:18
+138.32147315
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 19:09:48 EAT)" executed successfully
+usage: gunicorn [OPTIONS] [APP_MODULE]
+gunicorn: error: unrecognized arguments: --bind:0.0.0.0:8000
+[2023-10-30 21:08:23 +0000] [163551] [INFO] Starting gunicorn 21.2.0
+[2023-10-30 21:08:23 +0000] [163551] [INFO] Listening at: http://0.0.0.0:8000 (163551)
+[2023-10-30 21:08:23 +0000] [163551] [INFO] Using worker: sync
+[2023-10-30 21:08:23 +0000] [163552] [INFO] Booting worker with pid: 163552
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Added job "Command.handle" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:13:25.608852+03:00 (in 29.988915 seconds)
+Processing login mail
+Email thread started!
+Unauthorized: /api/analytics/
+Unauthorized: /api/data_issues/
+Unauthorized: /api/facilities/
+Unauthorized: /api/user-logs/
+Unauthorized: /api/data_issue_stats/
+Unauthorized: /api/data_issue_stats/
+Not Found: /media/profiles/django_image_8FMKa1j.png
+Looking for jobs to run
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:13:25 EAT)" (scheduled at 2023-10-31 00:13:25.608852+03:00)
+Next wakeup is due at 2023-10-31 00:13:55.608852+03:00 (in 29.997545 seconds)
+No data sync shedule found on tue at 00:13:25
+1273.2272509166667
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:13:55 EAT)" executed successfully
+Processing login mail
+Email thread started!
+Not Found: /media/profiles/django_image_8FMKa1j.png
+Not Found: /media/profiles/django_image_8FMKa1j.png
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:14:25.608852+03:00 (in 29.993681 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:14:25 EAT)" (scheduled at 2023-10-31 00:13:55.608852+03:00)
+No data sync shedule found on tue at 00:13:55
+1272.72718635
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:14:25 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:14:55.608852+03:00 (in 29.998926 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:14:55 EAT)" (scheduled at 2023-10-31 00:14:25.608852+03:00)
+No data sync shedule found on tue at 00:14:25
+1272.2272693500001
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:14:55 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Not Found: /
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:15:25.608852+03:00 (in 29.999082 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:15:25 EAT)" (scheduled at 2023-10-31 00:14:55.608852+03:00)
+No data sync shedule found on tue at 00:14:55
+1271.7272758833335
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:15:25 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:15:55.608852+03:00 (in 29.998925 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:15:55 EAT)" (scheduled at 2023-10-31 00:15:25.608852+03:00)
+No data sync shedule found on tue at 00:15:25
+1271.2272609
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:15:55 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:16:25.608852+03:00 (in 29.999073 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:16:25 EAT)" (scheduled at 2023-10-31 00:15:55.608852+03:00)
+No data sync shedule found on tue at 00:15:55
+1270.7272761333334
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:16:25 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:16:55.608852+03:00 (in 29.998794 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:16:55 EAT)" (scheduled at 2023-10-31 00:16:25.608852+03:00)
+No data sync shedule found on tue at 00:16:25
+1270.2272682666667
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:16:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:17:25.608852+03:00 (in 29.998735 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:17:25 EAT)" (scheduled at 2023-10-31 00:16:55.608852+03:00)
+No data sync shedule found on tue at 00:16:55
+1269.7272674500002
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:17:25 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:17:55.608852+03:00 (in 29.998939 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:17:55 EAT)" (scheduled at 2023-10-31 00:17:25.608852+03:00)
+No data sync shedule found on tue at 00:17:25
+1269.22727385
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:17:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:18:25.608852+03:00 (in 29.999010 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:18:25 EAT)" (scheduled at 2023-10-31 00:17:55.608852+03:00)
+No data sync shedule found on tue at 00:17:55
+1268.72727585
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:18:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:18:55.608852+03:00 (in 29.998803 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:18:55 EAT)" (scheduled at 2023-10-31 00:18:25.608852+03:00)
+No data sync shedule found on tue at 00:18:25
+1268.2272607166667
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:18:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:19:25.608852+03:00 (in 29.998919 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:19:25 EAT)" (scheduled at 2023-10-31 00:18:55.608852+03:00)
+No data sync shedule found on tue at 00:18:55
+1267.7272745166667
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:19:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:19:55.608852+03:00 (in 29.998999 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:19:55 EAT)" (scheduled at 2023-10-31 00:19:25.608852+03:00)
+No data sync shedule found on tue at 00:19:25
+1267.2272729333333
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:19:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:20:25.608852+03:00 (in 29.998802 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:20:25 EAT)" (scheduled at 2023-10-31 00:19:55.608852+03:00)
+No data sync shedule found on tue at 00:19:55
+1266.7272677666667
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:20:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:20:55.608852+03:00 (in 29.998747 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:20:55 EAT)" (scheduled at 2023-10-31 00:20:25.608852+03:00)
+No data sync shedule found on tue at 00:20:25
+1266.2272687833333
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:20:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:21:25.608852+03:00 (in 29.998776 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:21:25 EAT)" (scheduled at 2023-10-31 00:20:55.608852+03:00)
+No data sync shedule found on tue at 00:20:55
+1265.72726835
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:21:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:21:55.608852+03:00 (in 29.999035 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:21:55 EAT)" (scheduled at 2023-10-31 00:21:25.608852+03:00)
+No data sync shedule found on tue at 00:21:25
+1265.2272765333332
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:21:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:22:25.608852+03:00 (in 29.998906 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:22:25 EAT)" (scheduled at 2023-10-31 00:21:55.608852+03:00)
+No data sync shedule found on tue at 00:21:55
+1264.7272711333333
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:22:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:22:55.608852+03:00 (in 29.998925 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:22:55 EAT)" (scheduled at 2023-10-31 00:22:25.608852+03:00)
+No data sync shedule found on tue at 00:22:25
+1264.2272641833333
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:22:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:23:25.608852+03:00 (in 29.998884 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:23:25 EAT)" (scheduled at 2023-10-31 00:22:55.608852+03:00)
+No data sync shedule found on tue at 00:22:55
+1263.7272713666669
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:23:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:23:55.608852+03:00 (in 29.998825 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:23:55 EAT)" (scheduled at 2023-10-31 00:23:25.608852+03:00)
+No data sync shedule found on tue at 00:23:25
+1263.2272546
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:23:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:24:25.608852+03:00 (in 29.998841 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:24:25 EAT)" (scheduled at 2023-10-31 00:23:55.608852+03:00)
+No data sync shedule found on tue at 00:23:55
+1262.72727195
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:24:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:24:55.608852+03:00 (in 29.999142 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:24:55 EAT)" (scheduled at 2023-10-31 00:24:25.608852+03:00)
+No data sync shedule found on tue at 00:24:25
+1262.2272783333333
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:24:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:25:25.608852+03:00 (in 29.999156 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:25:25 EAT)" (scheduled at 2023-10-31 00:24:55.608852+03:00)
+No data sync shedule found on tue at 00:24:55
+1261.7272765666667
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:25:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:25:55.608852+03:00 (in 29.998838 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:25:55 EAT)" (scheduled at 2023-10-31 00:25:25.608852+03:00)
+No data sync shedule found on tue at 00:25:25
+1261.2272715833335
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:25:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:26:25.608852+03:00 (in 29.998901 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:26:25 EAT)" (scheduled at 2023-10-31 00:25:55.608852+03:00)
+No data sync shedule found on tue at 00:25:55
+1260.7272735833333
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:26:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:26:55.608852+03:00 (in 29.999011 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:26:55 EAT)" (scheduled at 2023-10-31 00:26:25.608852+03:00)
+No data sync shedule found on tue at 00:26:25
+1260.2272598333334
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:26:55 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:27:25.608852+03:00 (in 29.998732 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:27:25 EAT)" (scheduled at 2023-10-31 00:26:55.608852+03:00)
+No data sync shedule found on tue at 00:26:55
+1259.7272622166668
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:27:25 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:27:55.608852+03:00 (in 29.998776 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:27:55 EAT)" (scheduled at 2023-10-31 00:27:25.608852+03:00)
+No data sync shedule found on tue at 00:27:25
+1259.2272688166668
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:27:55 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:28:25.608852+03:00 (in 29.999134 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:28:25 EAT)" (scheduled at 2023-10-31 00:27:55.608852+03:00)
+No data sync shedule found on tue at 00:27:55
+1258.7272781666666
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:28:25 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:28:55.608852+03:00 (in 29.998606 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:28:55 EAT)" (scheduled at 2023-10-31 00:28:25.608852+03:00)
+No data sync shedule found on tue at 00:28:25
+1258.2272543166666
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:28:55 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:29:25.608852+03:00 (in 29.998770 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:29:25 EAT)" (scheduled at 2023-10-31 00:28:55.608852+03:00)
+No data sync shedule found on tue at 00:28:55
+1257.72726775
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:29:25 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:29:55.608852+03:00 (in 29.998842 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:29:55 EAT)" (scheduled at 2023-10-31 00:29:25.608852+03:00)
+No data sync shedule found on tue at 00:29:25
+1257.2272705
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:29:55 EAT)" executed successfully
+Couldnt reverse DQIT_Endpoint
+avatar field must be an ImageField/URLField on the user model, or a callable
+Looking for jobs to run
+Next wakeup is due at 2023-10-31 00:30:25.608852+03:00 (in 29.999035 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:30:25 EAT)" (scheduled at 2023-10-31 00:29:55.608852+03:00)
+No data sync shedule found on tue at 00:29:55
+1256.7272774833332
+Backup schedule will run on 2023-10-31 21:26:39.246768
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-31 00:30:25 EAT)" executed successfully
+[2023-10-30 21:35:58 +0000] [164143] [INFO] Starting gunicorn 21.2.0
+[2023-10-30 21:35:58 +0000] [164143] [INFO] Listening at: http://0.0.0.0:8000 (164143)
+[2023-10-30 21:35:58 +0000] [164143] [INFO] Using worker: sync
+[2023-10-30 21:35:58 +0000] [164144] [INFO] Booting worker with pid: 164144
