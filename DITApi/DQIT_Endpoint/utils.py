@@ -98,7 +98,7 @@ class DataImporter:
 
     def generate_data_from_files(self):
         try:
-            for filename in os.listdir(self.data_folder):
+            for filename in sorted(os.listdir(self.data_folder)):
                 if filename.endswith('.xlsx') and 'processed' not in filename:
                     file_path = os.path.join(self.data_folder, filename)
                     yield pd.read_excel(file_path),file_path
