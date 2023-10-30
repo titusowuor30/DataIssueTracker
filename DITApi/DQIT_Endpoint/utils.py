@@ -115,7 +115,7 @@ class DataImporter:
             df.drop_duplicates(inplace=True)#drop duplicates
             #remove NATypes(Not-a-Timezone value)
             na_columns = df.columns[df.isna().any()].tolist()#nat col values
-            logger.warning(f"NATypes found -> count:{na_columns}")
+            logger.warning(f"NATypes found -> count:{na_columns.count()}")
             #df['Date of Entry'] = df['Date of Entry'].fillna(pd.Timestamp('today'))# fill with current timestamp
             logger.info(f"dropping rows with NATypes")
             df.dropna(subset=['Inconsistency','Date of Entry'],inplace=True)#drop rows where inconsistency is null
