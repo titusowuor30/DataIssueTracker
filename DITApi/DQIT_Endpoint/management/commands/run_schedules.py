@@ -47,7 +47,7 @@ class Command(BaseCommand):
             next_run_schedule  = DataSyncSettings.objects.filter(
                 Q(day_of_week=day_of_week) &
                 Q(is_active=True) &
-                (Q(time_of_day__gte=time_of_day)| Q(time_of_day__lte=new_time_of_day))
+                (Q(time_of_day__gte=time_of_day) & Q(time_of_day__lte=new_time_of_day))
             ).order_by('time_of_day').first()
 
             if next_run_schedule:
