@@ -4,6 +4,7 @@ from DQIT_Endpoint.models import DataSyncSettings
 from DQITAuth.models import BackupSchedule
 from django.utils import timezone
 from datetime import datetime, time, timedelta
+from django.db.models import Q
 import subprocess
 from django.conf import settings
 import os
@@ -40,9 +41,9 @@ class Command(BaseCommand):
             #     print()
             # Get active backup schedules for the current day and time
             next_run_schedule  = DataSyncSettings.objects.filter(
-                day_of_week=day_of_week,
-                time_of_day__lte=time_of_day,
-                is_active=True
+                Q(day_of_week=day_of_week) &
+                Q(is_active=True)&
+                Q(time_of_day__gte=time_of_day)|Q(time_of_day__lte=time_of_day+timedelta(minutes=2))
             ).order_by('time_of_day').first()
 
             if next_run_schedule:
@@ -53,10 +54,8 @@ class Command(BaseCommand):
                 # Convert the scheduled_time to a datetime.datetime object
                 scheduled_datetime = datetime.combine(datetime.today(), scheduled_time)
 
-                # Add a timedelta of 5 minutes
-                scheduled_time_plus_1hrs = scheduled_datetime + timedelta(minutes=2)
-
-                if current_time >= scheduled_datetime and current_time <= scheduled_time_plus_1hrs:
+                # Add a timedelta of 2 minutes
+                if current_time >= scheduled_datetime and current_time <= scheduled_datetime+ timedelta(minutes=2):
                     logger.info("Data sync active...")
                     data_importer = DataImporter(next_run_schedule.data_issues_folder_url)
                     data_importer.check_for_new_files(facility_file_path=next_run_schedule.faclity_list_csv_path)
