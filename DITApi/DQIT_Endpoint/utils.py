@@ -41,8 +41,9 @@ class DataImporter:
             faclity_user=None
             if len(facilities) > 0:
                 for _, row in df.iterrows():
-                    facility=facilities.filter(facility_code=row['Facility']).first()
+                    facility=facilities.filter(facility_code=str(row['Facility'])).first()
                     if facility != None:
+                        logger.info(f"facility -> {facility.facility_code}:{facility.facility_name}")
                         user_facility=facility
                         faclity_user=user_facility.customuser_set.first() 
                         date_str=str(str(row['Date of Entry']).split(' ')[0])
@@ -62,6 +63,7 @@ class DataImporter:
                             )
                         time.sleep(1)
                     else:
+                        logger.info(f"Skipping faclity no match found for Facility code -> {row['Facility']}")
                         continue #move to the next facility
                 logger.info(f"Data imported from {file_path} successfully.")
                 #Notify user 
