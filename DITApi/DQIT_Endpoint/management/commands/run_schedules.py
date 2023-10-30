@@ -40,10 +40,14 @@ class Command(BaseCommand):
             #     print("Thread Is Current Thread: {}".format(thread == threading.current_thread()))
             #     print()
             # Get active backup schedules for the current day and time
+            #adjust time of day by 2 mins
+            original_datetime=datetime.strptime(time_of_day,'%H:%M:%S')
+            new_datetime=original_datetime+timedelta(minutes=2)
+            new_time_of_day=original_datetime.strftime('%H:%M:%S')
             next_run_schedule  = DataSyncSettings.objects.filter(
                 Q(day_of_week=day_of_week) &
-                Q(is_active=True)&
-                Q(time_of_day__gte=time_of_day)|Q(time_of_day__lte=time_of_day+timedelta(minutes=2))
+                Q(is_active=True) &
+                (Q(time_of_day__gte=time_of_day)| Q(time_of_day__lte=new_time_of_day))
             ).order_by('time_of_day').first()
 
             if next_run_schedule:
