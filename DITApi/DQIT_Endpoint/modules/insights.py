@@ -28,14 +28,14 @@ class DataQualityIssuesAnalyticsView(generics.ListAPIView):
         if selected_year and selected_year !='All':
             base_queryset=base_queryset.filter(date_of_entry__year=selected_year)
 
-        analytics_by_year = base_queryset.values('action_taken','date_of_entry').annotate(count=Count('id')).order_by('-date_of_entry__year')
+        analytics_by_year = base_queryset.values('date_of_entry').annotate(count=Count('id')).order_by('-date_of_entry__year')
 
         # Count data quality issues by year and month
         data = defaultdict(lambda: defaultdict(int))
         for issue in analytics_by_year:
             year = issue['date_of_entry'].year
             month = issue['date_of_entry'].month
-            data[year][month] += 1
+            data[year][month] +=issue['count']
 
         # Generate the desired data format
         series = []
