@@ -31,7 +31,10 @@ const fetchData = () => {
 }
 
 onMounted(() => {
-  fetchData()
+  setInterval(fetchData, 10_000)
+})
+onUnmounted(() => {
+  clearInterval(fetchData)
 })
 </script>
 
