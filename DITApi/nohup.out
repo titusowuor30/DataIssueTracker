@@ -8504,3 +8504,11 @@ Data sync will run on mon at 07:06:00 +2min(s)
 Backup schedule will run on 2023-10-30 21:27:37.684482
 Error: 'NoneType' object has no attribute 'restore_file'
 Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 07:47:06 EAT)" executed successfully
+Looking for jobs to run
+Next wakeup is due at 2023-10-30 07:47:36.675554+03:00 (in 29.999143 seconds)
+Running job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 07:47:36 EAT)" (scheduled at 2023-10-30 07:47:06.675554+03:00)
+Data sync will run on mon at 07:06:00 +2min(s)
+820.5167921666667
+Backup schedule will run on 2023-10-30 21:27:37.684482
+Error: 'NoneType' object has no attribute 'restore_file'
+Job "Command.handle (trigger: interval[0:00:30], next run at: 2023-10-30 07:47:36 EAT)" executed successfully
