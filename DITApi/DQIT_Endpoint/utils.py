@@ -114,6 +114,11 @@ class DataImporter:
         for df, file_path in self.generate_data_from_files():
             df.drop_duplicates(inplace=True)#drop duplicates
             df.dropna(subset=['Inconsistency'],inplace=True)#drop rows where inconsistency is null
+            #remove NATypes(Not-a-Timezone value)
+            na_columns = df.columns[df.isna().any()].tolist()#nat col values
+            logger.warning(f"NATypes found -> count:{na_columns}")
+            df['Date of Entry'] = df['Date of Entry'].fillna(pd.Timestamp('today'))# fill with current timestamp
+            logger.info(f"replacing NATypes with current timesatmp")
             self.import_data_from_excel(file_path,facility_file_path,df)
     
 
