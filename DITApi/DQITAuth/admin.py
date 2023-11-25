@@ -12,19 +12,19 @@ User=get_user_model()
 
 # Register the CustomUser model with the CustomUserAdmin class
 class CustomUserAdmin(UserAdmin):
-    list_display = ('email', 'username', 'role', 'is_staff', 'is_superuser')
+    list_display = ('email', 'username','is_staff', 'is_superuser')
     search_fields = ('email', 'username')
-    list_filter = ('is_staff', 'is_superuser', 'role')
+    list_filter = ('is_staff', 'is_superuser')
     fieldsets = (
         (None, {'fields': ('email', 'username', 'password')}),
-        ('Personal Info', {'fields': ('role', 'gender', 'profile_pic', 'phone', 'address', 'organisation', 'country', 'state', 'zip', 'timezone', 'facilities', 'fcm_token')}),
+        ('Personal Info', {'fields': ( 'gender', 'pic', 'phone', 'address', 'organisation')}),
         ('Permissions', {'fields': ('user_permissions','groups','is_active', 'is_staff', 'is_superuser')}),
         ('Important Dates', {'fields': ('last_login',)}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'username', 'password1', 'password2', 'role', 'gender', 'profile_pic', 'phone', 'address', 'organisation', 'country', 'state', 'zip', 'timezone', 'facilities', 'fcm_token')}
+            'fields': ('email', 'username', 'password1', 'password2', 'gender', 'pic', 'phone', 'address', 'organisation', 'country', 'state', 'zip', 'timezone', 'facilities', 'fcm_token')}
         ),
     )
 

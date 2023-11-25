@@ -16,16 +16,7 @@ const isPositive = controlledComputed(
 </script>
 
 <template>
-  <VCard
-    style="
-      background: linear-gradient(
-        90deg,
-        rgb(251, 235, 255) 0%,
-        rgb(240, 230, 225) 50%,
-        rgb(240, 239, 237) 100%
-      );
-    "
-  >
+  <VCard class="card-stats">
     <VCardText class="d-flex align-center pb-4">
       <VIcon size="42" :icon="props.image" class="text-warning" />
       <VSpacer />
@@ -50,3 +41,12 @@ const isPositive = controlledComputed(
     </VCardText>
   </VCard>
 </template>
+
+<style scoped>
+.card-stats {
+  border: solid;
+  border-color: slateblue;
+  border-radius: 5%;
+  background: rgba(219, 221, 219, 26.7%);
+}
+</style>

@@ -12,7 +12,7 @@ import UserProfile from "@/layouts/components/UserProfile.vue"
 
 const vuetifyTheme = useTheme()
 const store = useStore()
-const isAdmin = ref(JSON.parse(localStorage.getItem("isAdmin")))
+const isAdmin = ref(JSON.parse(sessionStorage.getItem("isAdmin")))
 
 console.log(isAdmin)
 
@@ -109,13 +109,13 @@ const upgradeBanner = computed(() => {
           }"
         />
         <VerticalNavLink
-        v-show="isAdmin"
-        :item="{
-          title: 'System Logs',
-          icon: 'mdi-account-tag',
-          to: '/system-logs',
-        }"
-      />
+          v-show="isAdmin"
+          :item="{
+            title: 'System Logs',
+            icon: 'mdi-account-tag',
+            to: '/system-logs',
+          }"
+        />
       </div>
 
       <!-- 👉 User Interface -->

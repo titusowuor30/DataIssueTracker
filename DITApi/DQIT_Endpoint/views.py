@@ -59,7 +59,7 @@ class DataQualityIssuesEndpoints(APIView):
             issues = issues.filter(facility__country=country)
 
         paginator = LimitOffsetPagination()
-        paginator.default_limit = 100
+        paginator.default_limit = 10
         result_page = paginator.paginate_queryset(issues, request)
         serializer = DataQualityIssuesSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
@@ -198,7 +198,7 @@ class DataSyncSetupEndpoints(APIView):
         setup = self.get_object()
         setup.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
 class SyncDataView(APIView):
     def post(self,request,*args,**kwargs):
         try:

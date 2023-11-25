@@ -98,8 +98,8 @@
       </p>
       <VCard class="px-2 py-2">
         <VRow>
-          <VCol 
-            v-if="isAdmin" 
+          <VCol
+            v-if="isAdmin"
             cols="3"
           >
             <div class="select-action">
@@ -150,7 +150,7 @@ const perPage = ref(10) // Adjust as needed
 const totalItems = ref(0)
 const userlogs = ref([])
 const user = ref(store.state.auth.user)
-const isAdmin=ref(JSON.parse(localStorage.getItem("isAdmin")))
+const isAdmin=ref(JSON.parse(sessionStorage.getItem("isAdmin")))
 const action = ref("Delete")
 
 //reports

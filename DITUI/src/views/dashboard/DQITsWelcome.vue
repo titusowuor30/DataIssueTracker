@@ -6,7 +6,7 @@ import axios from "@/axiosConfig"
 
 const { global } = useTheme()
 const adminurl=ref(axios.defaults.baseURL)
-const isAdmin = ref(JSON.parse(localStorage.getItem("isAdmin")))
+const isAdmin = ref(JSON.parse(sessionStorage.getItem("isAdmin")))
 
 adminurl.value=adminurl.value.replace("api", "admin")
 console.log(adminurl)

@@ -57,12 +57,13 @@ onUnmounted(() => {
         <VCol
           cols="12"
           md="6"
+          class="card-stats"
         >
           <CardStatisticsVertical
             v-bind="{
               title: 'All Issues',
               image: 'bx-bar-chart',
-              style: 'bg-primary',
+              style: 'card-stats',
               stats: new Intl.NumberFormat().format(all_issues),
               change: Number((all_issues / all_issues) * 100).toFixed(2),
             }"
@@ -188,3 +189,12 @@ onUnmounted(() => {
     </VCol>
   </VRow>
 </template>
+
+<style scoped>
+.card-stats {
+  border: slateblue;
+  border: 2px;
+  border-radius: 5%;
+  background: rgba(219, 221, 219, 26.7%);
+}
+</style>

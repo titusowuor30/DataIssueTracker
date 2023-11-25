@@ -22,13 +22,13 @@ const actions = {
       const { token, user } = response.data
 
       if (user.role === "Admin") {
-        localStorage.setItem('isAdmin', true)
+        sessionStorage.setItem('isAdmin', true)
       } else {
-        localStorage.setItem('isAdmin', false)
+        sessionStorage.setItem('isAdmin', false)
       }
       commit('SET_AUTHENTICATED', true)
-      localStorage.setItem('token', token)
-      localStorage.setItem('user', user)
+      sessionStorage.setItem('token', token)
+      sessionStorage.setItem('user', user)
       commit('SET_USER', user)
     } catch (error) {
       // Modify this part to include the response message in the error
@@ -41,20 +41,19 @@ const actions = {
   },
 
   logout({ commit }) {
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-    localStorage.removeItem('isAdmin')
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('isAdmin')
     commit('SET_AUTHENTICATED', false, false)
     commit('SET_USER', null)
   },
 
   checkAuthentication({ commit }) {
-    const token = localStorage.getItem('token')
-    const user = this.localStorage.getItem('user')
+    const token = sessionStorage.getItem('token')
+    const user = this.sessionStorage.getItem('user')
     if (token) {
       commit('SET_AUTHENTICATED', true)
-
-      // Fetch user data or perform other checks here
+      commit('SET_USER', user)
     }
   },
 }
