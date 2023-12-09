@@ -17,10 +17,14 @@ class FacilitiesAdmin(admin.ModelAdmin):
 class EmailSetupAdmin(admin.ModelAdmin):
     list_display = ('support_reply_email_name', 'support_reply_email', 'email_password', 'email_port', 'email_backed', 'email_host', 'fail_silently', 'use_tls')
     list_filter = ('support_reply_email_name', 'support_reply_email', 'email_password', 'email_port', 'email_backed', 'email_host', 'fail_silently', 'use_tls')
+    list_editable=['support_reply_email', 'email_password', 'email_port', 'email_backed', 'email_host', 'fail_silently', 'use_tls']
+    list_display_links=['support_reply_email_name']
 
 
 @admin.register(DataSyncSettings)
 class DataSyncSettingsAdmin(admin.ModelAdmin):
-    list_display = ('day_of_week','time_of_day','is_active','data_issues_folder_url','faclity_list_csv_path')
+    list_display = ('id','day_of_week','time_of_day','is_active','data_issues_folder_url','faclity_list_csv_path')
     list_filter= ('data_issues_folder_url','faclity_list_csv_path','day_of_week','time_of_day','is_active')
     search_fields= ('data_issues_folder_url','faclity_list_csv_path','day_of_week','time_of_day','is_active')
+    list_editable=['day_of_week','time_of_day','data_issues_folder_url','faclity_list_csv_path','is_active',]
+    list_display_links=['id']

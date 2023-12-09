@@ -64,19 +64,25 @@ class DataImporter:
                         time.sleep(1)
                     else:
                         logger.info(f"Skipping faclity no match found for Facility code -> {row['Facility']}")
+                        subject="Facilty Not Matched Alert!"
+                        message=f"Skipping data import for faclity,no match found for Facility code -> {row['Facility']}"
+                        emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email,"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+                        emailthread.daemon=True
+                        emailthread.start()
+                        logger.debug("Email thread started!")
                         continue #move to the next facility
                 logger.info(f"Data imported from {file_path} successfully.")
                 #Notify user 
-                #try:
-                #     #print("Processing login mail")
-                #     subject="New device just logged into your account"
-                #     message=f"Dear {self.request.user.username},\n<br/>New data quality issues for facility {user_facility.facility_name} have been uploaded into the DQITs portal, please login and check!"
-                #     emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email if faclity_user else "titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
-                #     emailthread.daemon=True
-                #     emailthread.start()
-                #     #print("Email thread started!")
-                # except Exception as e:
-                #     #print(e)
+                try:
+                    #print("Processing login mail")
+                    subject="New Issues Alert!"
+                    message=f"Dear {faclity_user.email if faclity_user.email else 'titusowuor30@gmail.com'},\n<br/>New data quality issues for facility {user_facility.facility_name} have been uploaded into the DQITs portal, please login and check!"
+                    emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email,"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+                    emailthread.daemon=True
+                    emailthread.start()
+                    logger.debug("Email thread started!")
+                except Exception as e:
+                    logger.error(e)
                 new_file_name = file_path.replace('.xlsx', '_processed.xlsx') if 'xlsx' in file_path else file_path.replace('.csv',  '_processed.csv')
                 os.rename(file_path, new_file_name)
             else:
@@ -94,6 +100,12 @@ class DataImporter:
                         )
                 logger.info(f"Facilities imported successfully.")
         except Exception as e:
+            subject="DQITs encountered an error while importing data"
+            message=f"Error importing data from {file_path}: {str(e)}, please alert your system admin!"
+            emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email,"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+            emailthread.daemon=True
+            emailthread.start()
+            logger.debug("Email thread started!")
             logger.error(f"Error importing data from {file_path}: {str(e)}")
 
     def generate_data_from_files(self):

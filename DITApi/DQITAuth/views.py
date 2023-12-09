@@ -72,16 +72,21 @@ class LoginAPIView(APIView):
             res=get_client_info(request)
             content=res.content
             clientdata=list(json.loads(content.decode('utf-8')).values())
-            #print("client data",clientdata)
-            if (user.ip_address not in clientdata) or (user.device not in clientdata):
+            clientdata=" ".join(map(str, clientdata))
+            userdata=user.ip_address+" "+user.device
+            logger.debug("client data",clientdata,"user data",user.ip_address+" "+user.device)
+            if (userdata not in clientdata):
                try:
                     logger.debug("Processing login mail")
                     subject="New device just logged into your account"
                     message=f"A new device just logged into your account<br/>\n\nDevice name:{clientdata[1]}<br/>\nDevice OS:{clientdata[2]}<br/>\nIP Address:{clientdata[0]}"
-                    # emailthread=threading.Thread(target=DQITSEmailBackend(request=request,subject=subject,body=message,to=["titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
-                    # emailthread.daemon=True
-                    #emailthread.start()
+                    emailthread=threading.Thread(target=DQITSEmailBackend(request=request,subject=subject,body=message,to=[request.user.email,"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+                    emailthread.daemon=True
+                    emailthread.start()
                     logger.info("Email thread started!")
+                    user.ip_address=clientdata[0]
+                    user.device=clientdata[1]+" "+clientdata[2]
+                    user.save()
                except Exception as e:
                    logger.debug(e)
 

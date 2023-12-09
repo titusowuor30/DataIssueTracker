@@ -17,14 +17,15 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ('is_staff', 'is_superuser')
     fieldsets = (
         (None, {'fields': ('email', 'username', 'password')}),
-        ('Personal Info', {'fields': ( 'gender', 'pic', 'phone', 'address', 'organisation')}),
-        ('Permissions', {'fields': ('user_permissions','groups','is_active', 'is_staff', 'is_superuser')}),
+        ('Personal Info', {'fields': ( 'gender', 'profile_pic', 'phone', 'address', 'organisation')}),
+        ('Login Info',{'fields':('ip_address','device')}),
         ('Important Dates', {'fields': ('last_login',)}),
+        ('Permissions', {'fields': ('user_permissions','groups','is_active', 'is_staff', 'is_superuser')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'username', 'password1', 'password2', 'gender', 'pic', 'phone', 'address', 'organisation', 'country', 'state', 'zip', 'timezone', 'facilities', 'fcm_token')}
+            'fields': ('email', 'username', 'password1', 'password2', 'role','gender', 'profile_pic', 'phone', 'address', 'organisation', 'country', 'state', 'zip', 'timezone', 'facilities', 'fcm_token')}
         ),
     )
 
@@ -55,6 +56,8 @@ class BackupScheduleAdmin(admin.ModelAdmin):
     list_display = ('task_type', 'schedule_type', 'start_datetime', 'next_run_datetime', 'enabled')
     list_filter = ('task_type', 'schedule_type', 'enabled')
     search_fields = ('task_type', 'schedule_type', 'destination_path', 'source_path')
+    list_editable=['schedule_type','enabled']
+    list_display_links=['task_type',]
 
 # Register the BackupSchedule model with the admin site
 admin.site.register(BackupSchedule, BackupScheduleAdmin)
@@ -63,6 +66,8 @@ class AccountRequestAdmin(admin.ModelAdmin):
     list_display = ('email', 'username', 'request_date', 'is_approved')
     list_filter = ('email', 'username', 'request_date', 'is_approved')
     search_fields = ('email', 'username', 'request_date', 'is_approved')
+    list_editable=['is_approved']
+    list_display_links=['email',]
 
 # Register the BackupSchedule model with the admin site
 admin.site.register(AccountRequest, AccountRequestAdmin)
