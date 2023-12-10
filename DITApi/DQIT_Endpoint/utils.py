@@ -7,6 +7,7 @@ from datetime import datetime
 from user_agents import parse
 import threading
 import json
+import os
 from django.http import JsonResponse
 from DQIT_Endpoint.modules.custom_email_backend import DQITSEmailBackend
 from django.http import HttpRequest
@@ -33,6 +34,10 @@ class DataImporter:
     def __init__(self, data_folder):
         self.data_folder = data_folder
         self.request=HttpRequest()
+        data=os.environ.get('REQUEST_DATA',{})
+        jsondata=json.loads(data)
+        self.request.META=jsondata
+        #logger.debug(self.request.META)
     def import_data_from_excel(self,file_path,facility_file_path,df=pd.DataFrame([])):
         try:
             # Read the Excel file into a Pandas DataFrame
@@ -66,7 +71,7 @@ class DataImporter:
                         logger.info(f"Skipping faclity no match found for Facility code -> {row['Facility']}")
                         subject="Facilty Not Matched Alert!"
                         message=f"Skipping data import for faclity,no match found for Facility code -> {row['Facility']}"
-                        emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email,"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+                        emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email if faclity_user else 'titusowuor30@gmail.com',"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
                         emailthread.daemon=True
                         emailthread.start()
                         logger.debug("Email thread started!")
@@ -76,8 +81,8 @@ class DataImporter:
                 try:
                     #print("Processing login mail")
                     subject="New Issues Alert!"
-                    message=f"Dear {faclity_user.email if faclity_user.email else 'titusowuor30@gmail.com'},\n<br/>New data quality issues for facility {user_facility.facility_name} have been uploaded into the DQITs portal, please login and check!"
-                    emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email,"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+                    message=f"Dear {faclity_user.email if faclity_user else 'titusowuor30@gmail.com'},\n\n<br/>New data quality issues for facility {user_facility.facility_code}, {user_facility.facility_name} have been uploaded into the DQITs portal, please login and check!"
+                    emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email if faclity_user else 'titusowuor30@gmail.com',"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
                     emailthread.daemon=True
                     emailthread.start()
                     logger.debug("Email thread started!")
@@ -102,7 +107,7 @@ class DataImporter:
         except Exception as e:
             subject="DQITs encountered an error while importing data"
             message=f"Error importing data from {file_path}: {str(e)}, please alert your system admin!"
-            emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email,"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+            emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email if faclity_user else 'titusowuor30@gmail.com',"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
             emailthread.daemon=True
             emailthread.start()
             logger.debug("Email thread started!")

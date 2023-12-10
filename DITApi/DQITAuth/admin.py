@@ -19,8 +19,9 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': ('email', 'username', 'password')}),
         ('Personal Info', {'fields': ( 'gender', 'profile_pic', 'phone', 'address', 'organisation')}),
         ('Login Info',{'fields':('ip_address','device')}),
-        ('Important Dates', {'fields': ('last_login',)}),
+        ('Assigned Facilities',{'fields':('facilities',)}),
         ('Permissions', {'fields': ('user_permissions','groups','is_active', 'is_staff', 'is_superuser')}),
+        ('Important Dates', {'fields': ('last_login',)}),
     )
     add_fieldsets = (
         (None, {

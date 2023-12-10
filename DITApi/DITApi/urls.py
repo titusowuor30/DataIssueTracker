@@ -36,5 +36,5 @@ admin.site.site_title = 'DQITss API Administration'
 
 # Initialize and configure the scheduler
 scheduler = BackgroundScheduler()
-scheduler.add_job(run_schedules.Command().handle, 'interval', minutes=0.50)  # Run every 1 hour
+scheduler.add_job(run_schedules.Command().handle, 'interval', minutes=0.50)  # Run every ..
 scheduler.start()
