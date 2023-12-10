@@ -32,7 +32,7 @@ class DQITSEmailBackend:
                                 password=config.email_password, use_tls=config.use_tls, fail_silently=config.fail_silently)
             # replace &nbsp; with space
             message = re.sub(r'(?<!&nbsp;)&nbsp;', ' ', strip_tags(self.body))
-            message=message+f"\tDITS Portal url {site_login_url}"
+            message=message+f"\nDITS Portal url {site_login_url}"
             if len(self.attachments) > 0:
                 logger.debug('check attachments...')
                 email = EmailMessage(

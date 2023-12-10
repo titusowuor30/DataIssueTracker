@@ -72,10 +72,10 @@ class LoginAPIView(APIView):
             res=get_client_info(request)
             content=res.content
             clientdata=list(json.loads(content.decode('utf-8')).values())
-            clientdata=" ".join(map(str, clientdata))
+            checkstring=" ".join(map(str, clientdata))
             userdata=user.ip_address+" "+user.device
-            logger.debug("client data",clientdata,"user data",user.ip_address+" "+user.device)
-            if (userdata not in clientdata):
+            logger.debug(f"client data {checkstring} user data {user.ip_address+' '+user.device}")
+            if (userdata not in checkstring):
                try:
                     logger.debug("Processing login mail")
                     subject="New device just logged into your account"
