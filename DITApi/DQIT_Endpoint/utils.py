@@ -68,26 +68,26 @@ class DataImporter:
                             )
                         time.sleep(1)
                     else:
+                        emailsent=0
                         logger.info(f"Skipping faclity no match found for Facility code -> {row['Facility']}")
                         subject="Facilty Not Matched Alert!"
-                        message=f"Skipping data import for faclity,no match found for Facility code -> {row['Facility']}"
-                        emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email if faclity_user else 'titusowuor30@gmail.com',"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
-                        emailthread.daemon=True
-                        emailthread.start()
-                        logger.debug("Email thread started!")
+                        message=f"Skipping data import for faclity ,no match found for Facility code -> {row['Facility']}"
+                        if emailsent == 1:
+                            emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email if faclity_user else 'titusowuor30@gmail.com',"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+                            emailthread.daemon=True
+                            emailthread.start()
+                            logger.debug("Email thread started!")
+                        emailsent+=1
                         continue #move to the next facility
                 logger.info(f"Data imported from {file_path} successfully.")
                 #Notify user 
-                try:
-                    #print("Processing login mail")
-                    subject="New Issues Alert!"
-                    message=f"Dear {faclity_user.email if faclity_user else 'titusowuor30@gmail.com'},\n\n<br/>New data quality issues for facility {user_facility.facility_code}, {user_facility.facility_name} have been uploaded into the DQITs portal, please login and check!"
-                    emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email if faclity_user else 'titusowuor30@gmail.com',"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
-                    emailthread.daemon=True
-                    emailthread.start()
-                    logger.debug("Email thread started!")
-                except Exception as e:
-                    logger.error(e)
+                #print("Processing login mail")
+                subject="New Issues Alert!"
+                message=f"Dear {faclity_user.email if faclity_user else 'titusowuor30@gmail.com'},\n\n<br/>New data quality issues for facility {user_facility.facility_code}, {user_facility.facility_name}, have been uploaded into the DQITs portal, please login and check!"
+                emailthread=threading.Thread(target=DQITSEmailBackend(request=self.request,subject=subject,body=message,to=[faclity_user.email if faclity_user else 'titusowuor30@gmail.com',"titusowuor30@gmail.com",],attachments=[]).send_email(),name='EmailThread')
+                emailthread.daemon=True
+                emailthread.start()
+                logger.debug("Email thread started!")
                 new_file_name = file_path.replace('.xlsx', '_processed.xlsx') if 'xlsx' in file_path else file_path.replace('.csv',  '_processed.csv')
                 os.rename(file_path, new_file_name)
             else:
